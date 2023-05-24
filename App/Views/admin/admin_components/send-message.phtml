@@ -1,0 +1,79 @@
+<div class="w-full mx-auto bg-white px-5 text-gray-600">
+<div class="flex-1 p:2 sm:p-6 justify-between flex flex-col">
+   <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
+      <div class=" flex items-center space-x-4">
+         <div class="relative">
+            <span class="absolute text-green-500 right-[-7px] bottom-[-10px]">
+               <svg width="20" height="20">
+                  <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+               </svg>
+            </span>
+         <img src="ressources/images/user.png" alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
+         </div>
+         <div class="flex flex-col leading-tight">
+            <div class="text-2xl mt-1 flex items-center">
+               <span class="text-gray-700 mr-3"><?=$oneContact[0]["contact_name"]?></span>
+            </div>
+            <span class="text-lg text-gray-600"><?=$oneContact[0]["contact_email"]?></span>
+         </div>
+      </div>
+      <div class="flex items-center space-x-2 text-orange-500 font-semibold text-center">
+        <?=$oneContact[0]["state"]?>  <br>
+
+        <?=$oneContact[0]["created_at"]?>
+      </div>
+
+
+    
+   </div>
+
+
+   <div>
+        Sujet: <?=$oneContact[0]["contact_theme"]?> <br>
+        Message: <?=$oneContact[0]["contact_body"]?>
+    </div>
+
+
+
+</div>
+<div class="container-msg flex justify-between items-center">
+    <form method="post" class="flex justify-between gap-2">
+        <input type="email" hidden  id="mail" value="<?=$oneContact[0]["contact_email"]?>" readonly>
+        <input type="text" id="subject" placeholder="Objet du message">
+        <textarea id="message" cols="30" rows="3" placeholder="Ecrire le message..."></textarea>
+        <div class="flex justify-between gap-2 flex-end">
+        <button id="btn-msg" class="bg-orange-700 text-white px-2 py-2 h-10">Envoyer</button>
+        <a class="bg-red-700 text-white px-2 py-2 h-10"href="?goto=<?=$this->datacrypt('dashboard')?>&action=<?=$this->datacrypt('message')?>">Annuler</a>
+        </div>
+    </form>
+</div>
+
+
+
+<style>
+.scrollbar-w-2::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.scrollbar-track-blue-lighter::-webkit-scrollbar-track {
+  --bg-opacity: 1;
+  background-color: #f7fafc;
+  background-color: rgba(247, 250, 252, var(--bg-opacity));
+}
+
+.scrollbar-thumb-blue::-webkit-scrollbar-thumb {
+  --bg-opacity: 1;
+  background-color: #edf2f7;
+  background-color: rgba(237, 242, 247, var(--bg-opacity));
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+}
+</style>
+
+<script>
+	const el = document.getElementById('messages')
+	el.scrollTop = el.scrollHeight
+</script>
