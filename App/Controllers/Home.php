@@ -7,17 +7,21 @@ require_once("../App/Controllers/CategoryController.php");
 class Home {
     use Crypt;
     use AdresseIp;
-    public function viewHome()
-    {
-        require_once("../App/Views/home.phtml");
-    }
+    // public function viewHome()
+    // {
+    //     require_once("../App/Views/home.phtml");
+    // }
     public function newviewHome()
     {
         require_once("../App/Views/FrontendUser/homePage.phtml");
     }
-    public function viewLogin()
+    // public function viewLogin()
+    // {
+    //     require_once("../App/Views/login.phtml");
+    // }
+    public function newViewLogin()
     {
-        require_once("../App/Views/login.phtml");
+        require_once("../App/Views/FrontendUser/loginPage.phtml");
     }
 
     public function register(){
@@ -29,27 +33,51 @@ class Home {
         require_once("../App/Views/forget.phtml");
     }
 
-    public function contact()
+    // public function contact()
+    // {
+    //     require_once("../App/Views/contact.phtml");
+    // }
+    public function newContact()
     {
-        require_once("../App/Views/contact.phtml");
+        require_once("../App/Views/FrontendUser/contactPage.phtml");
     }
 
-    public function about()
+    // public function about()
+    // {
+    //     require_once("../App/Views/about.phtml");
+    // }
+    public function newAbout()
     {
-        require_once("../App/Views/about.phtml");
+        require_once("../App/Views/FrontendUser/aboutPage.phtml");
     }
-    public function articles()
+    // public function articles()
+    // {
+    //     require_once("../App/Views/articles.phtml");
+    // }
+
+    public function newArticles()
     {
-        require_once("../App/Views/articles.phtml");
+        require_once("../App/Views/FrontendUser/articlesPage.phtml");;
     }
 
-    public function logout()
+    // public function logout()
+    // {
+    //     @session_start();
+    //     unset($_SESSION["Auth"]);
+    //     session_destroy();
+    //     $controller = $this->datacrypt('home');
+    //     $action = $this->datacrypt('view-home');
+    //     $url = "?goto=$controller&action=$action";
+    //     header("Location:/$url");
+    // }
+
+    public function newLogout()
     {
         @session_start();
         unset($_SESSION["Auth"]);
         session_destroy();
         $controller = $this->datacrypt('home');
-        $action = $this->datacrypt('view-home');
+        $action = $this->datacrypt('newview-home');
         $url = "?goto=$controller&action=$action";
         header("Location:/$url");
     }

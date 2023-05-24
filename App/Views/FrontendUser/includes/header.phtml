@@ -3,38 +3,28 @@
 
 <head>
 
-    <!--====== Required meta tags ======-->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
+    <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!--====== Title ======-->
     <title>MasterCode</title>
 
-    <!--====== Favicon Icon ======-->
-    <!-- <link rel="shortcut icon" href="/ressources/images/favicon.ico" type="image/png"> -->
     <link rel="shortcut icon" href="/ressources/images/web.svg" />
 
-    <!--====== Bootstrap css ======-->
     <link rel="stylesheet" href="/ressources/css/bootstrap.min.css">
 
-    <!--====== Fontawesome css ======-->
     <link rel="stylesheet" href="/ressources/css/font-awesome.min.css">
 
-    <!--====== nice select css ======-->
     <link rel="stylesheet" href="/ressources/css/nice-select.css">
 
-    <!--====== Magnific Popup css ======-->
     <link rel="stylesheet" href="/ressources/css/magnific-popup.css">
 
-    <!--====== Slick css ======-->
     <link rel="stylesheet" href="/ressources/css/slick.css">
 
-    <!--====== Default css ======-->
     <link rel="stylesheet" href="/ressources/css/default.css">
 
-    <!--====== Style css ======-->
     <link rel="stylesheet" href="/ressources/css/style.css">
 
 
@@ -51,25 +41,33 @@
                         <div class="binduz-er-news-canvas_close">
                             <a href="javascript:void(0)"><i class="fal fa-times"></i></a>
                         </div>
-                        <div class="accountHeader">
-                            <!-- <img src="/ressources/images/account.png" alt="image"> -->
-                            k
-                        </div>
+                        <?php if (isset($_SESSION['Auth'])): ?>
+                            <div class="accountHeader">
+                                <?php $pseudo = $_SESSION['Auth']['pseudo']; echo $pseudo[0]; ?>
+                            </div>
+                        <?php endif; ?>
                         <div id="menu" class="text-left ">
                             <ul class="binduz-er-news-offcanvas_main_menu">
+                                <?php if (isset($_SESSION['Auth'])): ?>
+                                    <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
+                                        <a href="#"><?= $_SESSION['Auth']['pseudo'] ?></a>
+                                        <ul class="binduz-er-news-sub-menu">
+                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
+                                                <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('dash') ?>">Dashboard</a></li>
+                                            <?php endif; ?>
+                                            <li><a href="#">Commentaires</a></li>
+                                            <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newLogout') ?>">Se déconnecter</a></li>
+                                        </ul>
+                                    </li>
+                                <?php endif; ?>
                                 <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
-                                    <a href="#">Kola</a>
-                                    <ul class="binduz-er-news-sub-menu">
-                                        <li><a href="#">Dashboard</a></li>
-                                        <li><a href="#">Commentaires</a></li>
-                                        <li><a href="#">Se déconnecter</a></li>
-                                    </ul>
-                                </li>
-                                <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
-                                    <a href="#">Accueil</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newviewHome') ?>">Accueil</a>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children">
-                                    <a href="#">Découvrir nos articles</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newArticles') ?>">Découvrir
+                                        nos articles</a>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
                                     <a href="#">Nos catégories</a>
@@ -87,14 +85,19 @@
                                     </ul>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children">
-                                    <a href="#"> About</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newAbout') ?>">A
+                                        propos de nous</a>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children">
-                                    <a href="#"> Contact</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newContact') ?>">Contactez-nous</a>
                                 </li>
-                                <li class="binduz-er-news-menu-item-has-children">
-                                    <a href="#"> Se connecter</a>
-                                </li>
+                                <?php if (!isset($_SESSION['Auth'])): ?>
+                                    <li class="binduz-er-news-menu-item-has-children">
+                                        <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newViewLogin') ?>"> Se connecter</a>
+                                    </li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                         <div class="binduz-er-news-offcanvas_footer">
@@ -125,7 +128,8 @@
                     </div>
                     <div class=" col-6">
                         <div class="binduz-er-news-search-close float-end">
-                            <button class="binduz-er-news-search-close-btn flexSearch">Fermer <i class="fal fa-times"></i> </button>
+                            <button class="binduz-er-news-search-close-btn flexSearch">Fermer <i
+                                    class="fal fa-times"></i> </button>
                         </div> <!-- search close -->
                     </div>
                 </div> <!-- row -->
@@ -174,16 +178,22 @@
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul class="navbar-nav nav-element mr-auto">
                                 <li class="nav-link-element actived">
-                                    <a class="" href="index.html">Accueil</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newviewHome') ?>">Accueil</a>
                                 </li>
                                 <li class="nav-link-element">
-                                    <a class="" href="archived.html">Découvrir nos articles</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newArticles') ?>">Découvrir
+                                        nos articles</a>
                                 </li>
                                 <li class="nav-link-element">
-                                    <a class="" href="about-us.html">A propos de nous</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newAbout') ?>">A
+                                        propos de nous</a>
                                 </li>
                                 <li class="nav-link-element">
-                                    <a class="" href="contact.html">Contactez-nous</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newContact') ?>">Contactez-nous</a>
                                 </li>
                             </ul>
                         </div> <!-- navbar collapse -->
@@ -192,7 +202,11 @@
                 <div class="">
                     <div class="binduz-er-news-top-header-weather">
                         <ul>
-                            <li><a href="#"><i class="fal fa-user"></i> Se connecter</a></li>
+                            <?php if (!isset($_SESSION['Auth'])): ?>
+                                <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newViewLogin') ?>"><i class="fal fa-user"></i> Se connecter</a></li>
+                            <?php else: ?>
+                                <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newLogout') ?>">Se déconnecter</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
