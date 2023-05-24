@@ -9797,3 +9797,11 @@ div.accountImg>img, div.accountAuthor>img {
     height: 310px;
   }
 }
+
+.mainAbout {
+  margin-top: 25px;
+}
+
+div.aboutImage>img {
+  width: 100%;
+}
