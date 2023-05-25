@@ -1,11 +1,328 @@
 <?php include_once("../App/Views/FrontendUser/includes/header.phtml") ?>
 
-<main>
-    <section class="binduz-er-favorites-categories-area mt-30">
+<main class="mainAbout">
+    <section class="binduz-er-author-item-area pb-20">
         <div class=" container">
-            Nos différents articles.
+            <div class="row">
+                <div class=" col-lg-9">
+                    <article class="binduz-er-author-item mb-40">
+                        <div class="binduz-er-thumb">
+                            <img src="/ressources/images/js1.jpg" alt="image">
+                        </div>
+                        <div class="binduz-er-content">
+                            <div class="binduz-er-meta-item">
+                                <div class="binduz-er-meta-categories">
+                                    <a href="#">JavaScript</a>
+                                </div>
+                                <div class="binduz-er-meta-date">
+                                    <span><i class="fal fa-calendar-alt"></i>2023-05-25</span>
+                                </div>
+                            </div>
+                            <h3 class="binduz-er-title"><a href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt('1') ?>&action=<?= $this->datacrypt('articleOne') ?>">Comment enrégistrer une variable dans le
+                                    localStorage et l'utiliser ?</a></h3>
+                            <div class="binduz-er-meta-author">
+                                <div class="binduz-er-author accountImg">
+                                    <img src="/ressources/images/account.png" alt="account">
+                                    <span>Publié par <span>Kola</span></span>
+                                </div>
+                                <div class="binduz-er-meta-list">
+                                    <ul>
+                                        <li><i class="fal fa-eye"></i> 5k</li>
+                                        <li><i class="fal fa-heart"></i> 5k</li>
+                                        <li><i class="fal fa-comments"></i> 5k</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="binduz-er-author-item mb-40">
+                        <div class="binduz-er-thumb">
+                            <img src="/ressources/images/html-tagst.jpg" alt="image">
+                        </div>
+                        <div class="binduz-er-content">
+                            <div class="binduz-er-meta-item">
+                                <div class="binduz-er-meta-categories">
+                                    <a href="#">HTML</a>
+                                </div>
+                                <div class="binduz-er-meta-date">
+                                    <span><i class="fal fa-calendar-alt"></i>2023-05-25</span>
+                                </div>
+                            </div>
+                            <h3 class="binduz-er-title"><a href="#">C'est quoi une balise sémantique ?</a></h3>
+                            <div class="binduz-er-meta-author">
+                                <div class="binduz-er-author accountImg">
+                                    <img src="/ressources/images/account.png" alt="account">
+                                    <span>Publié par <span>Marcos</span></span>
+                                </div>
+                                <div class="binduz-er-meta-list">
+                                    <ul>
+                                        <li><i class="fal fa-eye"></i> 5k</li>
+                                        <li><i class="fal fa-heart"></i> 5k</li>
+                                        <li><i class="fal fa-comments"></i> 5k</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="binduz-er-author-item mb-40">
+                        <div class="binduz-er-thumb">
+                            <img src="/ressources/images/chart.jpeg" alt="image">
+                        </div>
+                        <div class="binduz-er-content">
+                            <div class="binduz-er-meta-item">
+                                <div class="binduz-er-meta-categories">
+                                    <a href="#">VueJS</a>
+                                </div>
+                                <div class="binduz-er-meta-date">
+                                    <span><i class="fal fa-calendar-alt"></i>2023-05-25</span>
+                                </div>
+                            </div>
+                            <h3 class="binduz-er-title"><a href="#">Comment utiliser chartJS ? </a></h3>
+                            <div class="binduz-er-meta-author">
+                                <div class="binduz-er-author accountImg">
+                                    <img src="/ressources/images/account.png" alt="account">
+                                    <span>Publié par <span>Erik</span></span>
+                                </div>
+                                <div class="binduz-er-meta-list">
+                                    <ul>
+                                        <li><i class="fal fa-eye"></i> 5k</li>
+                                        <li><i class="fal fa-heart"></i> 5k</li>
+                                        <li><i class="fal fa-comments"></i> 5k</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="binduz-er-author-item mb-40">
+                        <div class="binduz-er-thumb">
+                            <img src="/ressources/images/laravel9.jpg" alt="image">
+                        </div>
+                        <div class="binduz-er-content">
+                            <div class="binduz-er-meta-item">
+                                <div class="binduz-er-meta-categories">
+                                    <a href="#">Dépannage</a>
+                                </div>
+                                <div class="binduz-er-meta-date">
+                                    <span><i class="fal fa-calendar-alt"></i>2023-05-23</span>
+                                </div>
+                            </div>
+                            <h3 class="binduz-er-title"><a href="#">Comment installer laravel 9 sur son poste ?</a></h3>
+                            <div class="binduz-er-meta-author">
+                                <div class="binduz-er-author accountImg">
+                                    <img src="/ressources/images/account.png" alt="account">
+                                    <span>Publié par <span>Erik</span></span>
+                                </div>
+                                <div class="binduz-er-meta-list">
+                                    <ul>
+                                        <li><i class="fal fa-eye"></i> 5k</li>
+                                        <li><i class="fal fa-heart"></i> 5k</li>
+                                        <li><i class="fal fa-comments"></i> 5k</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="binduz-er-author-item mb-40">
+                        <div class="binduz-er-thumb">
+                            <img src="/ressources/images/ajax.jpg" alt="image">
+                        </div>
+                        <div class="binduz-er-content">
+                            <div class="binduz-er-meta-item">
+                                <div class="binduz-er-meta-categories">
+                                    <a href="#">JavaScript</a>
+                                </div>
+                                <div class="binduz-er-meta-date">
+                                    <span><i class="fal fa-calendar-alt"></i>2023-05-23</span>
+                                </div>
+                            </div>
+                            <h3 class="binduz-er-title"><a href="#">Comment télécharger une image en utilisant ajax
+                                    ?</a></h3>
+                            <div class="binduz-er-meta-author">
+                                <div class="binduz-er-author accountImg">
+                                    <img src="/ressources/images/account.png" alt="account">
+                                    <span>Publié par <span>Marcos</span></span>
+                                </div>
+                                <div class="binduz-er-meta-list">
+                                    <ul>
+                                        <li><i class="fal fa-eye"></i> 5k</li>
+                                        <li><i class="fal fa-heart"></i> 5k</li>
+                                        <li><i class="fal fa-comments"></i> 5k</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="binduz-er-author-item mb-40">
+                        <div class="binduz-er-thumb">
+                            <img src="/ressources/images/upload-php.jpg" alt="image">
+                        </div>
+                        <div class="binduz-er-content">
+                            <div class="binduz-er-meta-item">
+                                <div class="binduz-er-meta-categories">
+                                    <a href="#">PHP</a>
+                                </div>
+                                <div class="binduz-er-meta-date">
+                                    <span><i class="fal fa-calendar-alt"></i>2023-05-23</span>
+                                </div>
+                            </div>
+                            <h3 class="binduz-er-title"><a href="#">Comment télécharger une image en utilisant php ?</a>
+                            </h3>
+                            <div class="binduz-er-meta-author">
+                                <div class="binduz-er-author accountImg">
+                                    <img src="/ressources/images/account.png" alt="account">
+                                    <span>Publié par <span>Kola</span></span>
+                                </div>
+                                <div class="binduz-er-meta-list">
+                                    <ul>
+                                        <li><i class="fal fa-eye"></i> 5k</li>
+                                        <li><i class="fal fa-heart"></i> 5k</li>
+                                        <li><i class="fal fa-comments"></i> 5k</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class=" col-lg-3">
+                    <div class="binduz-er-populer-news-sidebar">
+
+                        <form action="#" class="binduz-er-author-sidebar-search-bar searchArticle">
+                            <div class="binduz-er-input-box">
+                                <input type="text" name="searchInt" id="searchInt" placeholder="Recherche intuitive">
+                                <button type="button"><i class="fal fa-search"></i></button>
+                            </div>
+                        </form>
+
+                        <article
+                            class="binduz-er-populer-news-sidebar-newsletter binduz-er-author-page-newsletter mt-40">
+                            <div class="binduz-er-newsletter-box text-center">
+                                <img src="/ressources/images/icon/icon-3.png" alt="logo du site">
+                                <h3 class="binduz-er-title">MasterCode & Opportunités</h3>
+                                <p>Chers visiteurs, pour ceux qui sont intéressés....</p>
+                                <a class="clrBtn">Allez sur <i class="fal fa-long-arrow-right"></i></a>
+                            </div>
+                        </article>
+
+                        <article class="binduz-er-archived-sidebar-about">
+                            <h4 class="binduz-er-title">Pour les publicités de Google Ads</h4>
+                        </article>
+
+                        <div class="binduz-er-populer-news-sidebar-post pt-40">
+                            <div class="binduz-er-popular-news-title">
+                                <ul class="nav nav-pills mb-3" id="pills-tab-2" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                            href="#pills-home" role="tab" aria-controls="pills-home"
+                                            aria-selected="true">Publicités Google Ads</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="pills-tabContent-2">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <div class="binduz-er-sidebar-latest-post-box">
+                                        <div class="binduz-er-sidebar-latest-post-item">
+                                            <div class="binduz-er-thumb">
+                                                <img src="assets/images/latest-post-1.jpg" alt="latest">
+                                            </div>
+                                            <div class="binduz-er-content">
+                                                <span><i class="fal fa-calendar-alt"></i> 24th February 2020</span>
+                                                <h4 class="binduz-er-title"><a href="#">Why creating inclusive
+                                                        classrooms matters</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="binduz-er-sidebar-latest-post-item">
+                                            <div class="binduz-er-thumb">
+                                                <img src="assets/images/latest-post-2.jpg" alt="latest">
+                                            </div>
+                                            <div class="binduz-er-content">
+                                                <span><i class="fal fa-calendar-alt"></i> 24th February 2020</span>
+                                                <h4 class="binduz-er-title"><a href="#">Celebrating Asian Pacific
+                                                        American art and</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="binduz-er-sidebar-latest-post-item">
+                                            <div class="binduz-er-thumb">
+                                                <img src="assets/images/latest-post-3.jpg" alt="latest">
+                                            </div>
+                                            <div class="binduz-er-content">
+                                                <span><i class="fal fa-calendar-alt"></i> 24th February 2020</span>
+                                                <h4 class="binduz-er-title"><a href="#">From overcoming burnout to
+                                                        finding new</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="binduz-er-sidebar-latest-post-item">
+                                            <div class="binduz-er-thumb">
+                                                <img src="assets/images/latest-post-4.jpg" alt="latest">
+                                            </div>
+                                            <div class="binduz-er-content">
+                                                <span><i class="fal fa-calendar-alt"></i> 24th February 2020</span>
+                                                <h4 class="binduz-er-title"><a href="#">Sparks of inspiration to the new
+                                                        trend 2021</a></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+                                    <div class="binduz-er-sidebar-latest-post-box">
+                                        <div class="binduz-er-sidebar-latest-post-item">
+                                            <div class="binduz-er-thumb">
+                                                <img src="assets/images/latest-post-1.jpg" alt="latest">
+                                            </div>
+                                            <div class="binduz-er-content">
+                                                <span><i class="fal fa-calendar-alt"></i> 24th February 2020</span>
+                                                <h4 class="binduz-er-title"><a href="#">Why creating inclusive
+                                                        classrooms matters</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="binduz-er-sidebar-latest-post-item">
+                                            <div class="binduz-er-thumb">
+                                                <img src="assets/images/latest-post-2.jpg" alt="latest">
+                                            </div>
+                                            <div class="binduz-er-content">
+                                                <span><i class="fal fa-calendar-alt"></i> 24th February 2020</span>
+                                                <h4 class="binduz-er-title"><a href="#">Celebrating Asian Pacific
+                                                        American art and</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="binduz-er-sidebar-latest-post-item">
+                                            <div class="binduz-er-thumb">
+                                                <img src="assets/images/latest-post-3.jpg" alt="latest">
+                                            </div>
+                                            <div class="binduz-er-content">
+                                                <span><i class="fal fa-calendar-alt"></i> 24th February 2020</span>
+                                                <h4 class="binduz-er-title"><a href="#">From overcoming burnout to
+                                                        finding new</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="binduz-er-sidebar-latest-post-item">
+                                            <div class="binduz-er-thumb">
+                                                <img src="assets/images/latest-post-4.jpg" alt="latest">
+                                            </div>
+                                            <div class="binduz-er-content">
+                                                <span><i class="fal fa-calendar-alt"></i> 24th February 2020</span>
+                                                <h4 class="binduz-er-title"><a href="#">Sparks of inspiration to the new
+                                                        trend 2021</a></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <article class="binduz-er-populer-news-social binduz-er-author-page-social mt-40">
+                            <div class="binduz-er-popular-news-title">
+                                <h3 class="binduz-er-title">Publicités google ads</h3>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
 
 </main>
 

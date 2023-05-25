@@ -60,6 +60,11 @@ class Home {
         require_once("../App/Views/FrontendUser/articlesPage.phtml");;
     }
 
+    public function articleOne()
+    {
+        require_once("../App/Views/FrontendUser/articleOnePage.phtml");;
+    }
+
     // public function logout()
     // {
     //     @session_start();
