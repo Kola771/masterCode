@@ -1,71 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <script src="https://cdn.tailwindcss.com" defer></script> -->
-  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js" defer></script>
-  <script src="ressources/js/tailwind/tailwind.js"></script>
-  <link rel="shortcut icon" href="ressources/images/web.svg" />
-  <link href='ressources/css/froola.css' rel='stylesheet' type='text/css' />
-  <title>Genius</title>
-
-  <style>
-    .App-logo {
-      pointer-events: none;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .App-logo {
-        animation: App-logo-spin infinite 10s linear;
-      }
-    }
-
-
-    @keyframes App-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/ressources/css/tailwind.output.css" />
+  <script src="/ressources/js/alpine.min.js" defer></script>
+  <script src="/ressources/js/init-alpine.js"></script>
+  <link rel="stylesheet" href="/ressources/css/Chart.min.css" />
+  <script src="/ressources/js/Chart.min.js" defer></script>
+  <script src="/ressources/js/charts-lines.js" defer></script>
+  <script src="/ressources/js/charts-pie.js" defer></script>
 </head>
-<main>
 
-  <div class="flex w-screen">
-    <aside>
+<body>
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    <?php
+    include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
+    ?>
+    <div class="flex flex-col flex-1 w-full">
+
       <?php
-      $page = "category";
-      include_once "../App/Views/admin/partials/navbar/nav-left.phtml"; ?>
-    </aside>
+      include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
+      ?>
+      <main class="h-full overflow-y-auto">
+        <div class="container px-6 mx-auto grid">
+          <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Liste des catégories
+          </h2>
 
-    <div class="w-full flex flex-col">
-      <div>
-        <header class="">
-          <?php include_once "../App/Views/admin/partials/navbar/nav-top.phtml" ?>
-        </header>
-        <div class="sample">
           <?php include_once "../App/Views/admin/admin_components/category.phtml" ?>
+
         </div>
-      </div>
+      </main>
     </div>
   </div>
-  <footer>
-</main>
-<script>
-    tailwind.config = {
-        darkMode: 'class',
-    }
-</script>
-<script>
-    function darkModeListener() {
-        document.querySelector("main").classList.toggle("dark");
-    }
-    document.querySelector("input[type='checkbox']#dark-toggle").addEventListener("click", darkModeListener);
-</script>
+</body>

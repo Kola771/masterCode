@@ -101,5 +101,6 @@ class Home {
         $statistique_articles = $articles->statistique();
         $countDay = $contacts->countDay();
         require_once("../App/Views/admin/dashboard.phtml");
+        //  require_once("../App/Views/BackendAdmin/pages/dashboard.phtml");
     }
 }

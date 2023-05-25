@@ -1,86 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <script src="https://cdn.tailwindcss.com" defer></script> -->
-  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js" defer></script>
-  <script src="ressources/js/tailwind/tailwind.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/ressources/css/tailwind.output.css" />
+  <script src="/ressources/js/alpine.min.js" defer></script>
+  <script src="/ressources/js/init-alpine.js"></script>
+  <link rel="stylesheet" href="/ressources/css/Chart.min.css" />
+  <script src="/ressources/js/Chart.min.js" defer></script>
   <link rel="shortcut icon" href="ressources/images/web.svg" />
   <script src="ressources/tinymce/tinymce.min.js"></script>
-  <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+  <script src="/ressources/js/charts-lines.js" defer></script>
+  <script src="/ressources/js/charts-pie.js" defer></script>
   <script type="text/javascript">
     tinymce.init({
       selector: '#mytextarea'
     });
   </script>
-  <title>Genius</title>
-
-  <style>
-    .App-logo {
-      pointer-events: none;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .App-logo {
-        animation: App-logo-spin infinite 10s linear;
-      }
-    }
-
-
-    @keyframes App-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
-
 </head>
-<main>
 
-  <div class="flex w-screen">
-    <aside>
+<body>
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    <?php
+    include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
+    ?>
+    <div class="flex flex-col flex-1 w-full">
+
       <?php
-      
-      $page= "editor";
-   
-        include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
-        ?>
-    </aside>
-
-    <div class="w-full flex flex-col">
-      <div>
-        <header class="">
-          <?php
-            include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
-            ?>
-        </header>
-        <div class="sample">
-
+      include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
+      ?>
+      <main class="h-full overflow-y-auto">
+      <div class="container grid px-6 mx-auto mt-10">
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Editeur d'articles
+          </h2>
         <?php include_once "../App/Views/admin/admin_components/editor_panel.phtml" ?>
-        
       </div>
+      </main>
     </div>
   </div>
-</div>
-<
-  </main>
+  </script>
   <script>
-    tailwind.config = {
-        darkMode: 'class',
-    }
-</script>
-<script>
     function darkModeListener() {
         document.querySelector("main").classList.toggle("dark");
     }
     document.querySelector("input[type='checkbox']#dark-toggle").addEventListener("click", darkModeListener);
 </script>
-  <!-- <script type='text/javascript' src='ressources/js/editor/froola.js'></script> -->
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+</body>
+  </body>

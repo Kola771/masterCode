@@ -10,7 +10,7 @@
   <script src="ressources/js/tailwind/tailwind.js"></script>
   <link rel="shortcut icon" href="ressources/images/web.svg" />
   <link href='ressources/css/froola.css' rel='stylesheet' type='text/css' />
-  <title>Master Code</title>
+  <title>Genius</title>
 
   <style>
     .App-logo {
@@ -40,27 +40,24 @@
 
   <div class="flex w-screen">
     <aside>
-      <?php $page = "users";
-      include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
-      ?>
+      <?php
+      $page = "category";
+      include_once "../App/Views/admin/partials/navbar/nav-left.phtml"; ?>
     </aside>
 
     <div class="w-full flex flex-col">
       <div>
         <header class="">
-          <?php
-          include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
-            ?>
+          <?php include_once "../App/Views/admin/partials/navbar/nav-top.phtml" ?>
         </header>
         <div class="sample">
-          <?php include_once "../App/Views/admin/admin_components/update-users.phtml" ?>
+          <?php include_once "../App/Views/admin/admin_components/category.phtml" ?>
         </div>
       </div>
     </div>
   </div>
+  <footer>
 </main>
-
-<script src="/ressources/js/update-users.js"></script>
 <script>
     tailwind.config = {
         darkMode: 'class',
