@@ -9,8 +9,14 @@
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js" defer></script>
   <script src="ressources/js/tailwind/tailwind.js"></script>
   <link rel="shortcut icon" href="ressources/images/web.svg" />
-  <link href='ressources/css/froola.css' rel='stylesheet' type='text/css' />
-  <title>Master Code</title>
+  <script src="ressources/tinymce/tinymce.min.js"></script>
+  <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+  <script type="text/javascript">
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+  </script>
+  <title>Genius</title>
 
   <style>
     .App-logo {
@@ -40,28 +46,32 @@
 
   <div class="flex w-screen">
     <aside>
-      <?php $page = "users";
-      include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
-      ?>
+      <?php
+      
+      $page= "editor";
+   
+        include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
+        ?>
     </aside>
 
     <div class="w-full flex flex-col">
       <div>
         <header class="">
           <?php
-          include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
+            include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
             ?>
         </header>
         <div class="sample">
-          <?php include_once "../App/Views/admin/admin_components/update-users.phtml" ?>
-        </div>
+
+        <?php include_once "../App/Views/admin/admin_components/editor_panel.phtml" ?>
+        
       </div>
     </div>
   </div>
-</main>
-
-<script src="/ressources/js/update-users.js"></script>
-<script>
+</div>
+<
+  </main>
+  <script>
     tailwind.config = {
         darkMode: 'class',
     }
@@ -72,3 +82,5 @@
     }
     document.querySelector("input[type='checkbox']#dark-toggle").addEventListener("click", darkModeListener);
 </script>
+  <!-- <script type='text/javascript' src='ressources/js/editor/froola.js'></script> -->
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->

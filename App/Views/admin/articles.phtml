@@ -1,269 +1,212 @@
 <!DOCTYPE html>
-<html lang="en" class="">
-
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <script src="https://cdn.tailwindcss.com" defer></script> -->
-  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js" defer></script>
-  <script src="ressources/js/tailwind/tailwind.js"></script>
-  <link rel="shortcut icon" href="ressources/images/web.svg" />
-  <link href='ressources/css/froola.css' rel='stylesheet' type='text/css' />
-  <title>Genius</title>
-
-  <style>
-    .App-logo {
-      pointer-events: none;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .App-logo {
-        animation: App-logo-spin infinite 10s linear;
-      }
-    }
-
-
-    @keyframes App-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .animated {
-      -webkit-animation-duration: 1s;
-      animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
-      animation-fill-mode: both;
-    }
-
-    .animated.faster {
-      -webkit-animation-duration: 500ms;
-      animation-duration: 500ms;
-    }
-
-    .fadeIn {
-      -webkit-animation-name: fadeIn;
-      animation-name: fadeIn;
-    }
-
-    .fadeOut {
-      -webkit-animation-name: fadeOut;
-      animation-name: fadeOut;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeOut {
-      from {
-        opacity: 1;
-      }
-
-      to {
-        opacity: 0;
-      }
-    }
-  </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/ressources/css/tailwind.output.css" />
+  <script src="/ressources/js/alpine.min.js" defer></script>
+  <script src="/ressources/js/init-alpine.js"></script>
+  <link rel="stylesheet" href="/ressources/css/Chart.min.css" />
+  <script src="/ressources/js/Chart.min.js" defer></script>
+  <script src="/ressources/js/charts-lines.js" defer></script>
+  <script src="/ressources/js/charts-pie.js" defer></script>
 </head>
-<main>
 
-  <div class="flex w-screen">
-    <aside>
+<body>
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    <?php
+    include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
+    ?>
+    <div class="flex flex-col flex-1 w-full">
+
       <?php
-      $page = "articles";
-      include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
+      include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
       ?>
-    </aside>
-    <div class="w-full flex flex-col">
-      <div>
-        <header class="">
-          <?php
-          include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
-          ?>
-        </header>
-        <div class="sample">
-          <div class="bg-white max-w-full pt-12 pr-0 pb-12 pl-0 mt-0 mr-auto mb-0 ml-auto sm:py-16 lg:py-20">
-
-            <div class="pt-0 pr-4 pb-0 pl-4 mt-0 mr-auto mb-0 ml-auto max-w-full sm:px-6 lg:px-8">
-
-              <div class="flex w-full px-4 py-6 justify-end justify-items-center items-center gap-4 justify-self-end pr-6">
-                <form action="" class="">
-                  <input type="text" id="search" placeholder="Search">
-                </form>
-
-
-                <button class="delete bg-red-700 pt-2 pr-6 pb-2 pl-6 text-lg font-medium text-white transition-all duration-200 hover:bg-gray-700 rounded-lg">Supprimer</button>
-                <button class="update bg-orange-700 pt-2 pr-6 pb-2 pl-6 text-lg font-medium text-white transition-all duration-200 hover:bg-gray-700 rounded-lg">Modifier</button>
-                <button onclick="openModal()" class="update bg-green-700 pt-2 pr-6 pb-2 pl-6 text-lg font-medium text-white transition-all duration-200 hover:bg-gray-700 rounded-lg">Ajouter</button>
-                <div class="flex justify-items-center items-center">
-                  <label for="all_checked">Tout cocher</label>
-                  <input type="checkbox" id="all_checked">
-                </div>
-
-              </div>
-
-              <div class="max-w-full px-4">
-                <div class="flex flex-col">
-                  <div class="overflow-x-auto shadow-md sm:rounded-lg">
-                    <div class="inline-block min-w-full align-middle">
-                      <div class="overflow-hidden ">
-                        <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                          <thead class="bg-gray-100 dark:bg-gray-700">
-                            <tr>
-
-                              <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Titre de l'article
-                              </th>
-                              <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Likes&Commentaires
-                              </th>
-                              <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Créer depuis
-                              </th>
-                              <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Modifier depuis
-                              </th>
-                              
-                              <th scope="col" class="p-4">
-                                <div class="flex items-center">
-                                  <input id="checkbox-all" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                  <label for="checkbox-all" class="sr-only">checkbox</label>
-                                </div>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                            <?php foreach ($allArticles as $key => $values) : ?>
-                              <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-
-                                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $values["article_title"] ?></td>
-                                <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                  <span>0 comments</span><br>
-                                  <span>0 likes</span>
-                                </td>
-                                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                  <?php if ($values["updated_at"] == null) : ?>
-                                    <p class="text-gray-900 whitespace-no-wrap">---</p>
-                                  <?php else : ?>
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                      Le
-                                      <?= $values["updated_at"] ?> par
-                                      <span class="text-lg font-bold text-gray-800 truncate mb-2 p-2 w[50%k]">
-                                        <?= $values["user_pseudo"] ?>
-                                      </span>
-                                    </p>
-                                  <?php endif; ?>
-                                </td>
-
-                                <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                  <input type="checkbox" name="user_select" class="clique" value="<?= $this->datacrypt($values["article_id"]) ?>">
-                                </td>
-
-                                <td class="p-4 w-4">
-                                  <div class="flex items-center">
-                                    <input id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-table-1" class="sr-only">checkbox</label>
-                                  </div>
-                                </td>
-                              </tr>
-                            <?php endforeach; ?>
-                          </tbody>
-                        </table>
+      <main class="h-full pb-16 overflow-y-auto">
+        <div class="container grid px-6 mx-auto">
+          <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Tables des articles
+          </h2>
+          <!-- With avatar -->
+          <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+            <div class="w-full overflow-x-auto">
+              <table class="w-full whitespace-no-wrap">
+                <thead>
+                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">Titre articles</th>
+                    <th class="px-4 py-3">Nombre de vue</th>
+                    <th class="px-4 py-3">Nombre de commentaire</th>
+                    <th class="px-4 py-3">Date de publication</th>
+                    <th class="px-4 py-3">Derniere modification</th>
+                    <th class="px-4 py-3">Actions</th>
+                    <th scope="col" class="p-4">
+                      <div class="flex items-center">
+                      <label for="checkbox-all" class="sr-only">Tout cocher</label>
+                        <input id="checkbox-all" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                <tr class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                            <img class="object-cover w-full h-full rounded-full" src="/ressources/images/java.png" alt="" loading="lazy" />
+                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">Java, un langage compliqué</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                              Catégorie 1
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        10258
+                      </td>
+                      <td class="px-4 py-3 text-xs">
+                        <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                          89651
+                        </span>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        25/052023 11:25
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        29/052023 14:25
+                      </td>
+                      <td class="px-4 py-3">
+                      <div class="flex items-center space-x-4 text-sm">
+                        <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
+                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                          </svg>
+                        </button>
+                        <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
+                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </td>
+                      <td class="p-4 w-4">
+                        <div class="flex items-center ">
+                          <input id="checkbox-table-1" type="checkbox" class="mx-auto my-auto w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                          <!-- <label for="checkbox-table-1" class="sr-only">checkbox</label> -->
+                        </div>
+                      </td>
+                    </tr>
+                  <!-- <?php foreach ($allArticles as $key => $values) : ?>
+                   
+                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
-              <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
-                <div class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-                  <div class="modal-content py-4 text-left px-6">
-                    <!--Title-->
-                    <div class="flex justify-between items-center pb-3">
-                      <p class="text-2xl font-bold">Ajouter d'articles</p>
-                      <div class="modal-close cursor-pointer z-50">
-                        <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                          </path>
+                      <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $values["article_title"] ?></td>
+                      <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                        <span>0 comments</span><br>
+                        <span>0 likes</span>
+                      </td>
+                      <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <?php if ($values["updated_at"] == null) : ?>
+                          <p class="text-gray-900 whitespace-no-wrap">---</p>
+                        <?php else : ?>
+                          <p class="text-gray-900 whitespace-no-wrap">
+                            Le
+                            <?= $values["updated_at"] ?> par
+                            <span class="text-lg font-bold text-gray-800 truncate mb-2 p-2 w[50%k]">
+                              <?= $values["user_pseudo"] ?>
+                            </span>
+                          </p>
+                        <?php endif; ?>
+                      </td>
+
+                      <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                        <input type="checkbox" name="user_select" class="clique" value="<?= $this->datacrypt($values["article_id"]) ?>">
+                      </td>
+
+                      <td class="p-4 w-4">
+                        <div class="flex items-center">
+                          <input id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                          <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                        </div>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?> -->
+
+                </tbody>
+              </table>
+            </div>
+            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+              <span class="flex items-center col-span-3">
+                Voir plus 21-30 of 100
+              </span>
+              <span class="col-span-2"></span>
+              <!-- Pagination -->
+              <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                <nav aria-label="Table navigation">
+                  <ul class="inline-flex items-center">
+                    <li>
+                      <button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple" aria-label="Previous">
+                        <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                          <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
                         </svg>
-
-                      </div>
-                    </div>
-                    <!--Body-->
-                    <div class="my-5">
-                      <h3 class="mb-2">Selectionnez une catégorie pour votre article</h3>
-                      <select name="categorie" id="categorie">
-                        <option value="defaut">Choisir une categorie d'article</option>
-                        <?php foreach ($allCategories as $key => $values) : ?>
-                          <option value=<?= $values["category_id"] ?>> <?= $values["category_name"] ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                    <!--Footer-->
-                    <div class="flex justify-end pt-2">
-                      <button class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">Cancel</button>
-                      <button class="redirect focus:outline-none px-4 bg-orange-700 p-3 ml-3 rounded-lg text-white hover:bg-blue-700">Aller sur l'éditeur</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-</main>
-<script>
-  const modal = document.querySelector('.main-modal');
-  const closeButton = document.querySelectorAll('.modal-close');
-
-  const modalClose = () => {
-    modal.classList.remove('fadeIn');
-    modal.classList.add('fadeOut');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 500);
-  }
-
-  const openModal = () => {
-    modal.classList.remove('fadeOut');
-    modal.classList.add('fadeIn');
-    modal.style.display = 'flex';
-  }
-
-  for (let i = 0; i < closeButton.length; i++) {
-
-    const elements = closeButton[i];
-
-    elements.onclick = (e) => modalClose();
-
-    modal.style.display = 'none';
-
-    window.onclick = function(event) {
-      if (event.target == modal) modalClose();
-    }
-  }
-</script>
-<script>
-    tailwind.config = {
-        darkMode: 'class',
-    }
-</script>
-<script>
-    function darkModeListener() {
-        document.querySelector("main").classList.toggle("dark");
-    }
-    document.querySelector("input[type='checkbox']#dark-toggle").addEventListener("click", darkModeListener);
-</script>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                        1
+                      </button>
+                    </li>
+                    <li>
+                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                        2
+                      </button>
+                    </li>
+                    <li>
+                      <button class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">
+                        3
+                      </button>
+                    </li>
+                    <li>
+                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                        4
+                      </button>
+                    </li>
+                    <li>
+                      <span class="px-3 py-1">...</span>
+                    </li>
+                    <li>
+                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                        8
+                      </button>
+                    </li>
+                    <li>
+                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                        9
+                      </button>
+                    </li>
+                    <li>
+                      <button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple" aria-label="Next">
+                        <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
+                          <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
 <script src="/ressources/js/article_js.js"></script>
 <script src="/ressources/js/search.js"></script>
+</html>
