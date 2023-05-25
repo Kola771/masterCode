@@ -176,7 +176,7 @@ class ContactController
             $to = $datas->mail;
             $subject = $this->sanitaze($datas->subject);
             $message = $datas->message;
-            $headers = "From: Genius Blog" . "\r\n" . "CC: geniusblog@gmail.com";
+            $headers = "From: Genius Blog" . "\r\n" . "CC: mastercode@gmail.com";
             // NB: geniusblog@gmail.com, cet email dépend de l'hébergeur sur lequel se trouve notre site et doit être valide.
             mail($to, $subject, $message, $headers);
             $controller = "?goto=" . $this->datacrypt('dashboard');

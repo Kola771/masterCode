@@ -8,8 +8,14 @@
                 <div class=" col-lg-9">
                     <div class="binduz-er-author-item mb-40 mtop-90">
                         <div class="binduz-er-content">
-                            <div class="binduz-er-meta-item">
-                                <div class="binduz-er-meta-categories">
+                            <div class="binduz-er-meta-item flexOneArticle">
+                                <div class="childFlexOne">
+                                    <div class="binduz-er-input-box commentPost">
+                                        M
+                                    </div>
+                                    <span>Publié par <span>Marcos</span></span>
+                                </div>
+                                <div class="binduz-er-meta-categories" id="categ">
                                     <a href="#">JavaScript</a>
                                 </div>
                                 <div class="binduz-er-meta-date">
@@ -18,44 +24,35 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class=" col-lg-2">
-                                <div class="binduz-er-blog-social-share">
-                                    <div class="binduz-er-item mb-10">
-                                        <span class="iconArticle" href="#">
-                                            <i class="fal fa-user"></i>
-                                            <span>Par Kola</span>
-                                        </span>
-                                    </div>
-                                    <div class="binduz-er-item mb-10">
-                                        <span class="iconArticle" href="#">
-                                            <i class="fal fa-eye"></i>
-                                            <span>5k</span>
-                                        </span>
-                                    </div>
-                                    <div class="binduz-er-item mb-10">
-                                        <span class="iconArticle redHeart" href="#">
-                                            <i class="fal fa-heart"></i>
-                                            <span>5k</span>
-                                        </span>
-                                    </div>
-                                    <div class="binduz-er-item mb-10">
-                                        <span class="iconArticle skyComment" href="#">
-                                            <i class="fal fa-comments"></i>
-                                            <span>5k</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-10">
+
+                            <div>
                                 <div class="binduz-er-blog-details-box">
                                     <div class="binduz-er-text">
                                         Code html
-                                        <h2><span style="font-size: 24px; font-family: Arial, Helvetica, sans-serif; color: rgb(26, 188, 156);">testy</span></h2><p><br></p><p>sfsdfsdfsd</p><p>jlhkhjkgjkgkj tjghjghj</p>
+                                    </div>
+                                    <div class="elementArticle">
+                                        <!-- <div class="iconArticle">
+                                            <i class="fal fa-user"></i>
+                                            <span>Par Kola</span>
+                                        </div> -->
+                                        <div class="iconArticle">
+                                            <i class="fal fa-eye"></i>
+                                            <span>5k</span>
+                                        </div>
+                                        <div class="iconArticle redHeart">
+                                            <form action="#">
+                                                <input type="hidden" id="user_id" value="">
+                                                <button><i class="fal fa-heart"></i></button>
+                                            </form>
+                                            <span>5k</span>
+                                        </div>
+                                        <div class="iconArticle skyComment">
+                                            <a href="#commentForm"><i class="fal fa-comments"></i></a>
+                                            <span>5k</span>
+                                        </div>
                                     </div>
 
-                                    <div class="binduz-er-footer-add-item text-center pt-55">
-                                        <span class="binduz-er-mb-10 d-inline-block">ADVERTISEMENT</span>
-                                        <img src="assets/images/space-bg-4.jpg" alt="">
+                                    <div class="binduz-er-footer-add-item bg-prog">
                                     </div>
 
                                     <div class="binduz-er-blog-post-newsletter">
@@ -71,7 +68,7 @@
                                         </div>
                                     </div>
 
-                                    <form action="#" method="post" class="binduz-er-blog-post-form">
+                                    <form action="#" method="post" id="commentForm" class="binduz-er-blog-post-form">
                                         <div class="binduz-er-blog-post-title">
                                             <h3 class="binduz-er-title">Laisser un commentaire</h3>
                                         </div>
@@ -95,15 +92,71 @@
                                         <div class="binduz-er-blog-post-title">
                                             <h3 class="binduz-er-title">Voir les commentaires</h3>
                                         </div>
-                                        <div class="row">
+                                        <div class="row overPost">
                                             <div class="parentComment">
                                                 <div class="binduz-er-input-box commentPost">
                                                     k
                                                 </div>
                                                 <div class="bodyPost">
-                                                    <h4>Kola</h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae, consequuntur?</p>
-                                                    <p><i class="fal fa-calendar-alt"></i> 2023-05-25</p>
+                                                    <div class="childPost">
+                                                        <h4>Kola</h4>
+                                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                                            Molestiae, consequuntur?</p>
+                                                        <span><i class="fal fa-calendar-alt"></i> 2023-05-25</span>
+                                                    </div>
+                                                    <div>
+                                                        <form action="#" class="upDelForm">
+                                                            <input type="hidden" value="" id="user_id_comment">
+                                                            <button><i class="fal fa-pencil"></i> Modifier</button>
+                                                            <button><i class="fal fa-ban"></i> Supprimer</span>
+                                                                <button><i class="fal fa-ban"></i> Supprimer de cet
+                                                                    utilisateur</span>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="parentComment">
+                                                <div class="binduz-er-input-box commentPost">
+                                                    E
+                                                </div>
+                                                <div class="bodyPost">
+                                                    <div class="childPost">
+                                                        <h4>Erik</h4>
+                                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                                            Molestiae, consequuntur?</p>
+                                                        <span><i class="fal fa-calendar-alt"></i> 2023-05-25</span>
+                                                    </div>
+                                                    <div>
+                                                        <form action="#" class="upDelForm">
+                                                            <input type="hidden" value="" id="user_id_del_comment">
+                                                            <button><i class="fal fa-pencil"></i> Modifier</button>
+                                                            <button><i class="fal fa-ban"></i> Supprimer</span>
+                                                                <button><i class="fal fa-ban"></i> Supprimer de cet
+                                                                    utilisateur</span>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="parentComment">
+                                                <div class="binduz-er-input-box commentPost">
+                                                    M
+                                                </div>
+                                                <div class="bodyPost">
+                                                    <div class="childPost">
+                                                        <h4>Marcos</h4>
+                                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                                            Molestiae, consequuntur?</p>
+                                                        <span><i class="fal fa-calendar-alt"></i> 2023-05-25</span>
+                                                    </div>
+                                                    <div>
+                                                        <form action="#" class="upDelForm">
+                                                            <input type="hidden" value="">
+                                                            <button><i class="fal fa-pencil"></i> Modifier</button>
+                                                            <button><i class="fal fa-ban"></i> Supprimer</span>
+                                                                <button><i class="fal fa-ban"></i> Supprimer de cet
+                                                                    utilisateur</span>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -244,5 +297,5 @@
 
 
 </main>
-
+<?php include_once("../App/Views/getViewArticle.phtml") ?>
 <?php include_once("../App/Views/FrontendUser/includes/footer.phtml") ?>

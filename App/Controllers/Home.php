@@ -7,6 +7,7 @@ require_once("../App/Controllers/CategoryController.php");
 class Home {
     use Crypt;
     use AdresseIp;
+    use ViewArticleIp;
     // public function viewHome()
     // {
     //     require_once("../App/Views/home.phtml");

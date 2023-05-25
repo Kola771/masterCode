@@ -35,6 +35,7 @@ class LoginController
                 $_SESSION["Auth"]["email"] = $result[0]["user_email"];
                 $_SESSION["Auth"]["pseudo"] = $result[0]["user_pseudo"];
                 $_SESSION["Auth"]["role"] = $result[0]["user_role"];
+                $_SESSION["Auth"]["bgc"] = $result[0]["user_bgc"];
                 $_SESSION["Auth"]["created_at"] = $result[0]["created_at"];
                 $controller = "?goto=" . $this->datacrypt('home');
                 $action = "action=" . $this->datacrypt('view-home');

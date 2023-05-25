@@ -29,18 +29,19 @@ class ViewArticle extends Database
         return $result;
     }
 
-    public function getAllViews()
+    public function getAllViewsById($id)
     {
         $conn = $this->connect();
+        $this->id = $id;
         /**
          * $sql, pour les requêtes vers la base de données
          */
-        $sql = "SELECT viewarticle_id, nom_hote, article_id FROM `blog`.viewsarticles;";
+        $sql = "SELECT viewarticle_id, nom_hote, article_id FROM `blog`.viewsarticles WHERE `viewsarticles`.article_id = ?;";
         /**
          * $stmt, pour recupérer la requête préparée
          */
         $stmt = $conn->prepare($sql);
-        $stmt->execute([]);
+        $stmt->execute([$this->id]);
         $result = $stmt->fetchAll();
         return $result;
     }

@@ -17,6 +17,6 @@ trait ViewArticleIp
     // Retourne un formulaire
     public function inputIp($hostname)
     {
-        return "<form method=" . "\"post\"" . "><input id='adresse_ip' type='hidden' value=" . "\"$hostname\"" . "/></form>";
+        return "<form method=" . "\"post\"" . "><input id='adresse_view_ip' type='hidden' value=" . "\"$hostname\"" . "/></form>";
     }
 }

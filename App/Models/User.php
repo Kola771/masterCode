@@ -7,7 +7,7 @@ class User extends Database
      * 
      * $conn = $this->connect();
      */
-    private $id, $email, $code, $pseudo, $password, $role, $timestamps;
+    private $id, $email, $code, $pseudo, $password, $role, $timestamps, $bgc;
 
     /**
      * verifyEmailOrName(), pour vérifier si il y a un utilisateur dans la bd ayant déjà ce genre d'email ou de nom d'utilisateur
@@ -40,7 +40,7 @@ class User extends Database
         /**
          * $sql, pour les requêtes vers la base de données
          */
-        $sql = "SELECT `users`.user_id, `users`.user_email, `users`.user_pseudo, `users`.user_role, `users`.created_at, `users`.updated_at FROM `blog`.users;";
+        $sql = "SELECT `users`.user_id, `users`.user_email, `users`.user_pseudo, `users`.user_role, `users`.user_bgc, `users`.created_at, `users`.updated_at FROM `blog`.users;";
         /**
          * $stmt, pour recupérer la requête préparée
          */
@@ -58,7 +58,7 @@ class User extends Database
         /**
          * $sql, pour les requêtes vers la base de données
          */
-        $sql = "SELECT `users`.user_id, `users`.user_email, `users`.user_pseudo, `users`.user_role, `users`.created_at FROM `blog`.users WHERE `users`.user_id=?;";
+        $sql = "SELECT `users`.user_id, `users`.user_email, `users`.user_pseudo, `users`.user_role, `users`.user_bgc, `users`.created_at FROM `blog`.users WHERE `users`.user_id=?;";
         /**
          * $stmt, pour recupérer la requête préparée
          */
@@ -111,7 +111,7 @@ class User extends Database
     /**
      * insertUser(), pour insérer dans la bd des utilisateurs
      */
-    public function insertUser($email, $pseudo, $role, $password, $timestamps)
+    public function insertUser($email, $pseudo, $role, $password, $bgc, $timestamps)
     {
 
         $conn = $this->connect();
@@ -119,13 +119,14 @@ class User extends Database
         $this->email = $email;
         $this->pseudo = $pseudo;
         $this->password = $password;
+        $this->bgc = $bgc;
         $this->role = $role;
         $this->timestamps = $timestamps;
 
         /**
          * $sql, pour les requêtes vers la base de données
          */
-        $sql = "INSERT INTO `blog`.users VALUES(NULL, :email, NULL, :pseudo, :role, :password, :timesdate, NULL)";
+        $sql = "INSERT INTO `blog`.users VALUES(NULL, :email, NULL, :pseudo, :role, :password, :bgc, :timesdate, NULL)";
 
         /**
          * $stmt, pour recupérer la requête préparée
@@ -136,6 +137,7 @@ class User extends Database
             ":pseudo" => $this->pseudo,
             ":role" => $this->role,
             ":password" => password_hash($this->password, PASSWORD_DEFAULT),
+            ":bgc" => $this->bgc,
             ":timesdate" => $this->timestamps
         ]);
 

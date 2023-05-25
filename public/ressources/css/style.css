@@ -9420,7 +9420,8 @@ p {
 
 .binduz-er-blog-bg-area {
   height: 500px;
-  background-image: url(/ressources/images/js1.jpg);
+  /* background-image: url(/ressources/images/js1.jpg); */
+  background-image: url(/ressources/images/Code.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9775,13 +9776,20 @@ div.imgElement>img {
   }
 }
 
-
 .bg-prog {
   border: 4px solid;
 }
 
 .mtop-90 {
   margin-top: -90px;
+}
+
+div.accountImg {
+  gap: .5em;
+}
+
+div.binduz-er-content div.accountAuthor>div.commentPost+span {
+  margin-left: 10px;
 }
 
 div.accountImg, div.accountAuthor, div.accountHeader {
@@ -9791,12 +9799,6 @@ div.accountImg, div.accountAuthor, div.accountHeader {
 
 div.accountAuthor, div.accountHeader {
   justify-content: center;
-}
-
-div.accountImg>img, div.accountAuthor>img {
-  aspect-ratio: 1;
-  width: 55px;
-  border-radius: 50%;
 }
 
 .clrBtn, .clrArticle {
@@ -9833,13 +9835,31 @@ div.accountImg>img, div.accountAuthor>img {
   margin-right: 15px;
 }
 
+.elementArticle {
+  display: flex;
+  justify-content: space-between;
+  margin-block: 20px 25px;
+}
+
 .iconArticle span {
   color: #000;
   font-weight: 700;
 }
 
-.redHeart i {
+.redHeart>form {
+  border: none;
+  margin-right: 15px;
+}
+
+.redHeart>form>button {
+  border: none;
+  padding: 0;
+}
+
+.redHeart>form>button i {
   background-color: #CD201F;
+  border: none;
+  margin: 0;
 }
 
 .skyComment i {
@@ -9854,10 +9874,37 @@ a.clrBtn:hover {
   color: rgba(255, 255, 255, 0.7);
 }
 
+div.flexOneArticle {
+  align-items: center;
+  gap: .8em;
+}
+
+div.binduz-er-content>div.flexOneArticle>div#categ {
+  margin: 0;
+}
+
+div.flexOneArticle>div.childFlexOne
+{
+  display: flex;
+  align-items: center;
+  gap: .6em;
+}
+
+div.childFlexOne>span>span {
+  font-weight: bold;
+  color: #000;
+}
+
+.overPost {
+  overflow-y: scroll;
+  height: 400px;
+}
+
 .parentComment {
   display: flex;
   align-items: center;
   gap: 1em;
+  margin-block: 16px 10px;
 }
 
 .commentPost {
@@ -9876,12 +9923,48 @@ a.clrBtn:hover {
 }
 
 .bodyPost {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8em;
+}
+
+.bodyPost>div.childPost {
   background-color: #f8f8f8;
   width: 100%;
-  padding: .2em;
+  padding: .4em;
+  border-radius: .4em;
+}
+
+div.childPost h4 {
+  font-size: 20px;
+  color: var(--clr-primary);
+  font-weight: bold;
+}
+
+div.childPost span {
+  font-weight: bold;
+  color: #000;
+}
+
+.upDelForm {
+  display: flex;
+  gap: 1em;
+}
+
+.upDelForm button {
+  background-color: var(--clr-primary);
+  padding: .5em;
+  color: #eee;
+  border: none;
+  border-radius: .3em;
 }
 
 @media only screen and (max-width: 992px) {
+  .overPost {
+    height: 600px;
+  }
+
   .clrBtn {
     padding: .5em;
     font-size: 25px;
