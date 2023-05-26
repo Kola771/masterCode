@@ -9714,7 +9714,6 @@ div.accountHeader{
   aspect-ratio: 1;
   border-radius: 50%;
   width: 150px;
-  background-color: var(--clr-primary);
   font-size: var(--fz40);
   text-transform: uppercase;
   color: white;
@@ -9936,6 +9935,17 @@ div.childFlexOne>span>span {
   border-radius: .4em;
 }
 
+div.bodyPost>div:nth-of-type(2), .upDelForm
+{
+  display: flex;
+  align-items: center;
+}
+
+div.bodyPost>div:nth-of-type(2)
+{
+  gap: .5em;
+}
+
 div.childPost h4 {
   font-size: 20px;
   color: var(--clr-primary);
@@ -9948,11 +9958,14 @@ div.childPost span {
 }
 
 .upDelForm {
-  display: flex;
   gap: 1em;
 }
 
-.upDelForm button {
+div.bodyPost>div:nth-of-type(2)>a {
+  cursor: pointer;
+}
+
+.upDelForm button, div.bodyPost>div:nth-of-type(2)>a {
   background-color: var(--clr-primary);
   padding: .5em;
   color: #eee;

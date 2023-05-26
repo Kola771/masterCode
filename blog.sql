@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   PRIMARY KEY (`contact_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.contacts : ~0 rows (environ)
+-- Listage des données de la table blog.contacts : ~1 rows (environ)
 /*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
 INSERT INTO `contacts` (`contact_id`, `contact_email`, `contact_name`, `contact_theme`, `contact_body`, `state`, `created_at`) VALUES
 	(1, 'test@gmail.fr', 'akanni', 'dsjdfh', 'jfthj<br />\nvhgvj<br />\n,vhj<br />\n', 'attente', '2023-04-01 12:00:00');
@@ -142,8 +142,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Listage des données de la table blog.users : ~2 rows (environ)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `user_email`, `email_code`, `user_pseudo`, `user_role`, `user_password`, `user_bgc`, `created_at`, `updated_at`) VALUES
-	(2, 'koladeaboudou@gmail.com', 733100, 'AsdePic', '0', '$2y$10$Z70PvqWVrwTroQwiR3nmWuqdtSTbIEgC2W7bDGlpR.qA1HeEhrVqC', '', '2023-04-01 05:49:13', NULL),
-	(3, 'marcosmedenou@gmail.com', NULL, 'marcos', '0', '$2y$10$ppEg5kJHwAoXUOhnQnio/OmZhu4q1yzlph33fKOpiDH.z6aOs5t22', '', '2023-04-04 08:02:54', NULL);
+	(2, 'koladeaboudou@gmail.com', 733100, 'AsdePic', '0', '$2y$10$Z70PvqWVrwTroQwiR3nmWuqdtSTbIEgC2W7bDGlpR.qA1HeEhrVqC', '#66CDAA', '2023-04-01 05:49:13', NULL),
+	(3, 'marcosmedenou@gmail.com', NULL, 'marcos', '0', '$2y$10$ppEg5kJHwAoXUOhnQnio/OmZhu4q1yzlph33fKOpiDH.z6aOs5t22', '#D2691E', '2023-04-04 08:02:54', NULL),
+	(10, 'admin@gmail.com', NULL, 'admin', '1', '$2y$10$MBXaS6854xfjNxJzO1nqJetdEscuu3daS3jEJ4UROUnsI/wUXjB56', '#DC143C', '2023-05-26 02:07:30', NULL),
+	(11, 'erikazankpo@gmail.com', NULL, 'ericaz99', '0', '$2y$10$DlbYGLxKWO6yZw8zQlQKu.RBXOmIomhJy124g4P0ZRWu85XFvudk2', '#FFFACD', '2023-05-26 02:31:33', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. viewsarticles
@@ -158,6 +160,8 @@ CREATE TABLE IF NOT EXISTS `viewsarticles` (
 
 -- Listage des données de la table blog.viewsarticles : ~0 rows (environ)
 /*!40000 ALTER TABLE `viewsarticles` DISABLE KEYS */;
+INSERT INTO `viewsarticles` (`viewarticle_id`, `nom_hote`, `article_id`) VALUES
+	(1, 'dFCw4oEazAH13G2JP/4hXUDcyAHREQoycw8J8rQABGqonsSpQ4P/EImxRD1iAwfD', 1);
 /*!40000 ALTER TABLE `viewsarticles` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

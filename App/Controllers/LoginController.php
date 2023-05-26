@@ -38,7 +38,7 @@ class LoginController
                 $_SESSION["Auth"]["bgc"] = $result[0]["user_bgc"];
                 $_SESSION["Auth"]["created_at"] = $result[0]["created_at"];
                 $controller = "?goto=" . $this->datacrypt('home');
-                $action = "action=" . $this->datacrypt('view-home');
+                $action = "action=" . $this->datacrypt('newview-home');
                 $url = $controller . "&" . $action;
                 echo json_encode("$url");
             } else {
