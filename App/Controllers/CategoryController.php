@@ -40,7 +40,26 @@ class CategoryController
         }
     }
 
-    // Ajoute les catégories dans la table catégories
+    // Vérifie s'il n'y a pas de doublons dans la base
+    public function verifyCategory()
+    {
+        $data = file_get_contents("php://input");
+        $data = json_decode($data);
+
+        // instanciation de la classe model category
+        $this->category = new Category();
+
+        $this->category_name = $this->sanitaze($data->category_name);
+
+        $array = $this->category->searchCategory($this->category_name);
+        // On vérifie si il y a une catégorie qui a ce nom
+        if (count($array) > 0) {
+            echo json_encode("exist");
+        } else {
+            echo json_encode("good");
+        }
+    }
+
     public function addCategory()
     {
         $data = file_get_contents("php://input");
@@ -49,31 +68,17 @@ class CategoryController
         // instanciation de la classe model category
         $this->category = new Category();
 
-        // Récupération du nouveau nom de l'image et du chemin de l'image
-        $filename = $data->filename;
-        $filetmp = $data->tmp;
-
         $this->category_name = $this->sanitaze($data->category_name);
-        $this->category_description = nl2br($data->category_description);
+        $this->category_description = $this->sanitaze($data->category_description);
 
-        $array = $this->category->searchCategory($this->category_name);
-        // On vérifie si il y a une catégorie qui a ce nom
-        if (count($array) > 0) {
-            echo json_encode("exist");
-        } else {
-            $location = "../public/ressources/images/categories_images/" . $filename;
-            // Upload de l'image
-            move_uploaded_file($filetmp, $location);
+        // Enrégistrement de la catégorie dans la table catégories
+        $this->category->addCategory($data->file, $this->category_name, $this->category_description);
 
-            // Enrégistrement de la catégorie dans la table catégories
-            $this->category->addCategory($filename, $this->category_name, $this->category_description);
-
-            // Redirection sur la page des catégories
-            $controller = "?goto=" . $this->datacrypt('dashboard');
-            $action = "action=" . $this->datacrypt('category');
-            $url = $controller . "&" . $action;
-            echo json_encode("$url");
-        }
+        // Redirection sur la page des catégories
+        $controller = "?goto=" . $this->datacrypt('dashboard');
+        $action = "action=" . $this->datacrypt('category');
+        $url = $controller . "&" . $action;
+        echo json_encode($url);
     }
 
     // Vérifie si l'image respecte certaines caractéristiques
@@ -95,7 +100,9 @@ class CategoryController
             if ($filesize <= 10000000 && $fileerror === 0) {
                 $file = uniqid("category_image-", true);
                 $filename = $file . "." . $ext;
-                echo json_encode([$filename, $filetmp_name]);
+                $location = '../public/ressources/images/categories_images/' . $filename;
+                move_uploaded_file($filetmp_name, $location);
+                echo json_encode($filename);
             } else {
                 echo json_encode("Image non correcte");
             }
@@ -116,13 +123,26 @@ class CategoryController
     {
         $data = file_get_contents("php://input");
         $data = json_decode($data);
-        $this->id = $this->sanitaze($data->id);
+        $this->id = $this->datadecrypt($data->id);
         // instanciation de la classe model category
         $this->category = new Category();
         $search = $this->category->searchCategoryById($this->id);
         if (count($search) > 0) {
             $delete_cat = $this->category->deleteOneCategory($this->id);
             unlink('../public/ressources/images/categories_images/' . $search[0]["category_img"]);
+        }
+    }
+
+    public function searchOneCategory()
+    {
+        $data = file_get_contents("php://input");
+        $data = json_decode($data);
+        $this->id = $this->datadecrypt($data->id);
+        // instanciation de la classe model category
+        $this->category = new Category();
+        $search = $this->category->searchCategoryById($this->id);
+        if (count($search) > 0) {
+            echo json_encode($search);
         }
     }
 
