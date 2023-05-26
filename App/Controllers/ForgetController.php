@@ -137,7 +137,7 @@ class ForgetController
         $updatePass = $this->user->updatePassword($this->password, $this->email);
         if ($updatePass === true) {
             $controller = "?goto=" . $this->datacrypt('home');
-            $action = "action=" . $this->datacrypt('view-login');
+            $action = "action=" . $this->datacrypt('new-view-login');
             $url = $controller . "&" . $action;
             echo json_encode("$url");
         } else {

@@ -8,54 +8,32 @@ class Home {
     use Crypt;
     use AdresseIp;
     use ViewArticleIp;
-    // public function viewHome()
-    // {
-    //     require_once("../App/Views/home.phtml");
-    // }
+    
     public function newviewHome()
     {
         require_once("../App/Views/FrontendUser/homePage.phtml");
     }
-    // public function viewLogin()
-    // {
-    //     require_once("../App/Views/login.phtml");
-    // }
+    
     public function newViewLogin()
     {
         require_once("../App/Views/FrontendUser/loginPage.phtml");
     }
 
-    public function register(){
-        require_once("../App/Views/register.phtml");
-    }
-
-    public function viewForget()
+    public function newViewForget()
     {
-        require_once("../App/Views/forget.phtml");
+        require_once("../App/Views/FrontendUser/forgetPass.phtml");
     }
-
-    // public function contact()
-    // {
-    //     require_once("../App/Views/contact.phtml");
-    // }
+    
     public function newContact()
     {
         require_once("../App/Views/FrontendUser/contactPage.phtml");
     }
-
-    // public function about()
-    // {
-    //     require_once("../App/Views/about.phtml");
-    // }
+    
     public function newAbout()
     {
         require_once("../App/Views/FrontendUser/aboutPage.phtml");
     }
-    // public function articles()
-    // {
-    //     require_once("../App/Views/articles.phtml");
-    // }
-
+    
     public function newArticles()
     {
         require_once("../App/Views/FrontendUser/articlesPage.phtml");;
@@ -65,17 +43,6 @@ class Home {
     {
         require_once("../App/Views/FrontendUser/articleOnePage.phtml");;
     }
-
-    // public function logout()
-    // {
-    //     @session_start();
-    //     unset($_SESSION["Auth"]);
-    //     session_destroy();
-    //     $controller = $this->datacrypt('home');
-    //     $action = $this->datacrypt('view-home');
-    //     $url = "?goto=$controller&action=$action";
-    //     header("Location:/$url");
-    // }
 
     public function newLogout()
     {

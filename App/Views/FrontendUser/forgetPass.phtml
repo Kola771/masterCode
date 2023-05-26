@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>MasterCode</title>
+    <link rel="stylesheet" href="/ressources/css/styleLogin.css">
+
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="login-wrap">
+        <div class="login-html">
+            <div class="lien-master">
+                <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newviewHome') ?>">MasterCode</a>
+            </div>
+            <div class="login-form logPass">
+                    <form action="#">
+                        <div class="group">
+                            <label for="useremail" class="label">Adresse électronique</label>
+                            <input id="useremail" type="text" class="input">
+                            <p id="email_error"></p>
+                        </div>
+                        <div class="group forget1">
+                            <label for="email_code" class="label">Code de vérification</label>
+                            <input id="email_code" type="text" class="input" data-type="password">
+                            <p id="email_code_error"></p>
+                        </div>
+                        <div class="group forget2">
+                            <label for="mdp" class="label">Nouveau mot de passe</label>
+                            <input id="mdp" type="password" class="input" data-type="password">
+                            <p id="pas_error"></p>
+                        </div>
+                        <div class="group forget3">
+                            <label for="new_mdp" class="label">Password</label>
+                            <input id="new_mdp" type="password" class="input" data-type="password">
+                            <p id="c_pas_error"></p>
+                        </div>
+                        <div class="group">
+                            <input type="submit" id="validation_email" class="button" value="Soumettre">
+                        </div>
+                        <div class="group forget4">
+                            <input type="submit" id="validation_password" class="button" value="Valider le formulaire">
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/ressources/js/forgetPass.js"></script>
+
+</body>
+
+</html>

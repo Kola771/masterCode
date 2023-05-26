@@ -107,6 +107,10 @@ a {
     font-size: 25px;
 }
 
+.logPass {
+    margin-top: 50px;
+}
+
 .login-mt {
     margin-top: 40px;
 }
@@ -115,11 +119,27 @@ a {
     margin-top: 5px;
 }
 
-#validation_connexion, #validation_inscription {
+.forget1,
+.forget2,
+.forget3,
+.forget4 {
+    display: none;
+}
+
+#validation_connexion, 
+#validation_inscription, 
+#validation_email,
+#validation_password {
     cursor: pointer;
 }
 
-#name_error, #email_error, #pas_error, #c_pas_error, #uname_error, #upas_error {
+#name_error, 
+#email_error, 
+#pas_error, 
+#c_pas_error, 
+#uname_error, 
+#upas_error, 
+#email_code_error {
     text-align: center;
     margin: 0;
     margin-top: 5px;
