@@ -21,15 +21,16 @@ USE `blog`;
 CREATE TABLE IF NOT EXISTS `adresses` (
   `adresse_id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_hote` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL,
   PRIMARY KEY (`adresse_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.adresses : ~0 rows (environ)
+-- Listage des données de la table blog.adresses : ~3 rows (environ)
 /*!40000 ALTER TABLE `adresses` DISABLE KEYS */;
-INSERT INTO `adresses` (`adresse_id`, `nom_hote`) VALUES
-	(1, 'TgVURMuqKoOdbu1M3l6lPnIXt8i6yAm029H8HDw/Vs4='),
-	(2, 'Shhe66Ytxzlf[plus]Nl5OjTldbdVE[plus]CNtlqiehR1KCYY[plus]R0='),
-	(3, '06aH5OhH6q0lbtT70mXms46k0jQTLv7ajU27c187N0qbTJQs8ssdjm5Ozq9Q5n2g');
+INSERT INTO `adresses` (`adresse_id`, `nom_hote`, `created_at`) VALUES
+	(1, 'TgVURMuqKoOdbu1M3l6lPnIXt8i6yAm029H8HDw/Vs4=', '2023-04-02 10:15:31'),
+	(2, 'Shhe66Ytxzlf[plus]Nl5OjTldbdVE[plus]CNtlqiehR1KCYY[plus]R0=', '2023-03-11 11:12:14'),
+	(3, '06aH5OhH6q0lbtT70mXms46k0jQTLv7ajU27c187N0qbTJQs8ssdjm5Ozq9Q5n2g', '2023-04-05 09:50:54');
 /*!40000 ALTER TABLE `adresses` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. articles
@@ -128,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_code` int(11) DEFAULT NULL,
   `user_pseudo` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_role` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_role` enum('0','1','2') COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_password` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_bgc` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL,
@@ -144,6 +145,20 @@ INSERT INTO `users` (`user_id`, `user_email`, `email_code`, `user_pseudo`, `user
 	(2, 'koladeaboudou@gmail.com', 733100, 'AsdePic', '0', '$2y$10$Z70PvqWVrwTroQwiR3nmWuqdtSTbIEgC2W7bDGlpR.qA1HeEhrVqC', '', '2023-04-01 05:49:13', NULL),
 	(3, 'marcosmedenou@gmail.com', NULL, 'marcos', '0', '$2y$10$ppEg5kJHwAoXUOhnQnio/OmZhu4q1yzlph33fKOpiDH.z6aOs5t22', '', '2023-04-04 08:02:54', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+-- Listage de la structure de la table blog. viewsarticles
+CREATE TABLE IF NOT EXISTS `viewsarticles` (
+  `viewarticle_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_hote` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `article_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`viewarticle_id`),
+  KEY `FK__articles` (`article_id`),
+  CONSTRAINT `FK__articles` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table blog.viewsarticles : ~0 rows (environ)
+/*!40000 ALTER TABLE `viewsarticles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `viewsarticles` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

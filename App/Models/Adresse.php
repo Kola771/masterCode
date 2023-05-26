@@ -7,12 +7,13 @@ class Adresse extends Database
      * 
      * $conn = $this->connect();
      */
-    private $adresse;
+    private $adresse, $time;
 
-    public function addAdress($adresse)
+    public function addAdress($adresse, $time)
     {
         $conn = $this->connect();
         $this->adresse = $adresse;
+        $this->time = $time;
         /**
          * $sql, pour les requêtes vers la base de données
          */
@@ -22,7 +23,8 @@ class Adresse extends Database
          */
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
-            ":adresse" => $this->adresse
+            ":adresse" => $this->adresse,
+            ":created_at" => $this->time
         ]);
         return $result;
     }
@@ -33,7 +35,7 @@ class Adresse extends Database
         /**
          * $sql, pour les requêtes vers la base de données
          */
-        $sql = "SELECT adresse_id, nom_hote FROM `blog`.adresses;";
+        $sql = "SELECT adresse_id, nom_hote, created_at FROM `blog`.adresses;";
         /**
          * $stmt, pour recupérer la requête préparée
          */

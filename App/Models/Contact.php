@@ -42,6 +42,8 @@ class Contact extends Database {
         $result = $stmt->fetchAll();
         return $result;
     }
+
+    // Affiche tout les messages en attente
     public function getAllContactAttente()
     {
         $conn = $this->connect();

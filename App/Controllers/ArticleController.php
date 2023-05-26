@@ -109,37 +109,35 @@ class ArticleController
         $array = $this->article->countArticle();
         return $array;
     }
-    
+
     // Connaître le pourcentage des utilisateurs venus dans ce mois
     public function statistique()
     {
-        $date = date("Y-m");
-        $tableau = [];
-        $dat = [];
-        $articles_month = 0;
-        $this->article = new Article();
-        $array = $this->article->getAllArticles();
-        for ($i = 0; $i < count($array); $i++) {
-           $el = explode(" ", $array[$i]["created_at"])[0];
-           array_push($dat, $el);
+        $pastMonth = intval(date("m")) - 1;
+        if ($pastMonth == 0) {
+            $pastMonth = 12;
+            $currentYear = intval(date("Y")) - 1;
+        } else {
+            $currentYear = intval(date("Y"));
         }
-        for ($i = 1; $i <= date('t'); $i++) {
-            if($i < 10)
-            {
-                $i = "0" . $i;
-            }
-           $element = $date . '-' . $i;
-           array_push($tableau, $element);
+        $daysPastMonth = DaysPast::daysPastMonth($pastMonth, $currentYear);
+        $this->article = new Article();
+        $datas = $this->article->getAllArticles();
+        $dat = [];
+        $articlesPasts = 0;
+        for ($i = 0; $i < count($datas); $i++) {
+            $el = explode(" ", $datas[$i]["created_at"])[0];
+            array_push($dat, $el);
         }
         for ($i = 0; $i < count($dat); $i++) {
-            if(in_array($dat[$i], $tableau))
-            {
-                $articles_month += 1;
+            if (in_array($dat[$i], $daysPastMonth)) {
+                $articlesPasts += 1;
             }
         }
-        // $pourcentage = (100 * $articles_month)/ count($array);
-        $pourcentage = (100 * $articles_month)/ 1;
 
-        return $pourcentage;
+        // $pourcentage = (100 * $articles_month)/ count($array);
+        // $pourcentage = (100 * $articles_month)/ 1;
+
+        return $articlesPasts;
     }
 }

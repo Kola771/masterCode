@@ -93,6 +93,7 @@ class ContactController
         $datas = file_get_contents("php://input");
         $datas = json_decode($datas);
         $adresses = $this->datadecrypt($datas->adresse);
+        $this->timestamps = date("Y-m-d h:i:s");
         $tableau = $this->adresse->getAllAdresse();
         if (count($tableau) > 0) {
             $tableau_decrypt = [];
@@ -102,10 +103,10 @@ class ContactController
             if (in_array($adresses, $tableau_decrypt)) {
                 echo json_encode("Adresse existante !!!");
             } else {
-                $this->adresse->addAdress($datas->adresse);
+                $this->adresse->addAdress($datas->adresse, $this->timestamps);
             }
         } else {
-            $this->adresse->addAdress($datas->adresse);
+            $this->adresse->addAdress($datas->adresse, $this->timestamps);
         }
     }
 
@@ -193,5 +194,32 @@ class ContactController
         $array = $this->contact->getAllContactAttente();
         $message_day = count($array);
         return $message_day;
+    }
+
+    // Pour connaître le nombre de personnes venues le mois passé sur le blog
+    public function stast()
+    {
+        $pastMonth = intval(date("m")) - 1;
+        if ($pastMonth == 0) {
+            $pastMonth = 12;
+            $currentYear = intval(date("Y")) - 1;
+        } else {
+            $currentYear = intval(date("Y"));
+        }
+        $daysPastMonth = DaysPast::daysPastMonth($pastMonth, $currentYear);
+        $this->adresse = new Adresse();
+        $datas = $this->adresse->getAllAdresse();
+        $dat = [];
+        $viewsPast = 0;
+        for ($i = 0; $i < count($datas); $i++) {
+            $el = explode(" ", $datas[$i]["created_at"])[0];
+            array_push($dat, $el);
+        }
+        for ($i = 0; $i < count($dat); $i++) {
+            if (in_array($dat[$i], $daysPastMonth)) {
+                $viewsPast += 1;
+            }
+        }
+        return $viewsPast;
     }
 }

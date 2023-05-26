@@ -93,6 +93,36 @@ class Category extends Database
 
         return $result;
     }
+    
+    // Pour la modification des catégories
+    public function updateCategory($file, $name, $description, $id)
+    {
+
+        $conn = $this->connect();
+
+        $this->file = $file;
+        $this->name = $name;
+        $this->description = $description;
+        $this->id = $id;
+
+        /**
+         * $sql, pour les requêtes vers la base de données
+         */
+        $sql = "UPDATE `blog`.categories SET category_img = :file, category_name = :name, category_description = :description WHERE category_id = :id";
+
+        /**
+         * $stmt, pour recupérer la requête préparée
+         */
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ":file" => $this->file,
+            ":name" => $this->name,
+            ":description" => $this->description,
+            ":id" => $this->id
+        ]);
+
+        return $result;
+    }
 
     // Suppression d'une catégorie
     public function deleteOneCategory($id)

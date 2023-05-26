@@ -97,6 +97,7 @@ class Home {
         $countusers = $users->countUsers();
         $statistique = $users->statistique();
         $countadresses = $contacts->countAdresse();
+        $stast = $contacts->stast();
         $countarticles = $articles->countArticle();
         $countcategories = $category->countCategories();
         $statistique_articles = $articles->statistique();
