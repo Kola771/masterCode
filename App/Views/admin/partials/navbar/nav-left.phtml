@@ -43,7 +43,7 @@
       </li>
       <li class="relative px-6 py-3">
         <?php
-        if ((isset($page) && $page !== "editor")) { ?>
+        if ((isset($page) && $page == "editor")) { ?>
           <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
         <?php } ?>
         <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="?goto=<?= $this->datacrypt('dashboard') ?>&action=<?= $this->datacrypt('editor') ?>">
@@ -55,7 +55,7 @@
       </li>
       <li class="relative px-6 py-3">
         <?php
-        if ((isset($page) && $page !== "message")) { ?>
+        if ((isset($page) && $page == "message")) { ?>
           <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
         <?php } ?>
         <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="?goto=<?= $this->datacrypt('dashboard') ?>&action=<?= $this->datacrypt('message') ?>">
@@ -69,7 +69,7 @@
       </li>
       <li class="relative px-6 py-3">
       <?php
-        if ((isset($page) && $page !== "categorie")) { ?>
+        if ((isset($page) && $page == "categorie")) { ?>
           <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
         <?php } ?>
         <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="?goto=<?= $this->datacrypt('dashboard') ?>&action=<?= $this->datacrypt('category') ?>">
@@ -82,7 +82,7 @@
       </li>
       <li class="relative px-6 py-3">
         <?php
-        if ((isset($page) && $page !== "users")) { ?>
+        if ((isset($page) && $page == "users")) { ?>
           <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
         <?php } ?>
         <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="?goto=<?= $this->datacrypt('dashboard') ?>&action=<?= $this->datacrypt('users') ?>">
@@ -95,7 +95,7 @@
       </li>
       <li class="relative px-6 py-3">
       <?php
-        if ((isset($page) && $page !== "look")) { ?>
+        if ((isset($page) && $page == "look")) { ?>
           <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
         <?php } ?>
         <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newviewHome') ?>">
@@ -108,7 +108,7 @@
       </li>
       <li class="relative px-6 py-3">
       <?php
-        if ((isset($page) && $page !== "logout")) { ?>
+        if ((isset($page) && $page == "logout")) { ?>
           <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
         <?php } ?>
         <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newLogout') ?>">
