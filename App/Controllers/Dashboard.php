@@ -69,5 +69,12 @@ class Dashboard {
         $oneContact = $contacts->getOneContact();
         require_once("../App/Views/admin/send-message.phtml");
     }
+
+    public function setting(){
+
+        $users = new UserController();
+        $allUsers = $users->getAllUsers();
+        require_once("../App/Views/admin/settings.phtml");
+    }
    
 }

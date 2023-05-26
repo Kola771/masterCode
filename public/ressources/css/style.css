@@ -9935,17 +9935,6 @@ div.childFlexOne>span>span {
   border-radius: .4em;
 }
 
-div.bodyPost>div:nth-of-type(2), .upDelForm
-{
-  display: flex;
-  align-items: center;
-}
-
-div.bodyPost>div:nth-of-type(2)
-{
-  gap: .5em;
-}
-
 div.childPost h4 {
   font-size: 20px;
   color: var(--clr-primary);
@@ -9958,14 +9947,11 @@ div.childPost span {
 }
 
 .upDelForm {
+  display: flex;
   gap: 1em;
 }
 
-div.bodyPost>div:nth-of-type(2)>a {
-  cursor: pointer;
-}
-
-.upDelForm button, div.bodyPost>div:nth-of-type(2)>a {
+.upDelForm button {
   background-color: var(--clr-primary);
   padding: .5em;
   color: #eee;

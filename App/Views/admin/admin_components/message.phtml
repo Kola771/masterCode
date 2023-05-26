@@ -86,11 +86,11 @@
                     <div class="flex items-center text-sm">
                         <!-- Avatar with inset shadow -->
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                            <img class="object-cover w-full h-full rounded-full" src="/ressources/images/web-developer.jpg" alt="" loading="lazy" />
+                            <img class="object-cover w-full h-full rounded-full" src="/ressources/images/account.png" alt="" loading="lazy" />
                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
-                            <p class="font-semibold"> <?= $values["contact_name"] ?></p>
+                            <p class="font-semibold  dark:text-white pb-2" > <?= $values["contact_name"] ?></p>
                             <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
 
                                 <?= $values["contact_email"] ?>
@@ -105,10 +105,10 @@
                         <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
                             <div class="chat-message">
                                 <div class="flex items-end">
+                                <!-- <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-1"> -->
                                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">Can be verified on any platform using docker</span></div>
+                                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600 dark:text-white">Can be verified on any platform using docker</span></div>
                                     </div>
-                                    <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-1">
                                 </div>
                             </div>
                         </div>
@@ -135,9 +135,12 @@
                 <form>
                     <input type="hidden" name="email" value=" <?= $values["contact_email"] ?>">
                     <input type="hidden" name="sujet" value="  <?= $values["contact_theme"] ?> ">
-                    <label for="chat" class="sr-only">Votre message</label>
                     <div class="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
-                        <textarea id="chat" rows="1" class="py-4 px-2 block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Votre message..."></textarea>
+                        <textarea id="chat" rows="1" class="py-4 px-2 block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Objet..."></textarea>
+                       
+                    </div>
+                    <div class="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
+                        <textarea id="chat" rows="1" class="py-4 px-2 block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Message..."></textarea>
                         <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/ressources/css/tailwind.output.css" />
+  <script src="/ressources/js/alpine.min.js" defer></script>
+  <script src="/ressources/js/init-alpine.js"></script>
+  <link rel="stylesheet" href="/ressources/css/Chart.min.css" />
+  <script src="/ressources/js/Chart.min.js" defer></script>
+  <script src="/ressources/js/charts-lines.js" defer></script>
+  <script src="/ressources/js/charts-pie.js" defer></script>
+</head>
+
+<body>
+<?php $page="users" ; ?>
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    <?php
+    include_once "../App/Views/admin/partials/navbar/nav-left.phtml";
+    ?>
+    <div class="flex flex-col flex-1 w-full">
+
+      <?php
+      include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
+      ?>
+      <main class="h-full overflow-y-auto">
+        <div class="container px-6 mx-auto grid">
+          <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Affectation utilisateur
+          </h2>
+
+          <?php include_once "../App/Views/admin/admin_components/comp_setting.phtml" ?>
+
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+
