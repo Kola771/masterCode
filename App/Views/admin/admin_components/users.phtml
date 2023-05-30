@@ -2,7 +2,8 @@
 	<div class="w-full overflow-x-auto">
 		<table class="w-full whitespace-no-wrap">
 			<thead>
-				<tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+				<tr
+					class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
 					<th class="px-4 py-3">Nom de l'utilisateur</th>
 					<th class="px-4 py-3">Role</th>
 					<th class="px-4 py-3">Date de création du compte</th>
@@ -12,53 +13,73 @@
 				</tr>
 			</thead>
 			<tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-				<?php foreach ($allUsers as $key => $values) : ?>
+				<?php foreach ($allUsers as $key => $values): ?>
 					<tr class="text-gray-700 dark:text-gray-400">
 						<td class="px-4 py-3">
 							<div class="flex items-center text-sm">
 								<!-- Avatar with inset shadow -->
 								<div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-									<img class="object-cover w-full h-full rounded-full" src="/ressources/images/web-developer.jpg" alt="" loading="lazy" />
+									<img class="object-cover w-full h-full rounded-full"
+										src="/ressources/images/web-developer.jpg" alt="" loading="lazy" />
 									<div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
 								</div>
 								<div>
-									<p class="font-semibold"><?= $values["user_pseudo"] ?></p>
+									<p class="font-semibold">
+										<?= $values["user_pseudo"] ?>
+									</p>
 
 								</div>
 							</div>
 						</td>
 						<td class="px-4 py-3 text-sm">
-							<?php if ($values["user_role"] == 0) : ?>
-								<span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:bg-orange-700 dark:text-orange-700">
+							<?php if ($values["user_role"] == 0): ?>
+								<span
+									class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:bg-orange-700 dark:text-orange-700">
 									Administrateur
 								</span>
-							<?php else : ?>
-								<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-white">
+							<?php elseif($values["user_role"] == 1) : ?>
+								<span
+									class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-white">
 									Lecteur
+								</span>
+							<?php else: ?>
+								<span
+									class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-white">
+									Rédacteur
 								</span>
 							<?php endif; ?>
 						</td>
 						<td class="px-4 py-3 text-xs">
-							<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+							<span
+								class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
 								<?= $values["created_at"] ?>
 							</span>
 						</td>
 						<td class="px-4 py-3 text-sm">
-							<?php if ($values["updated_at"] == null) : ?>
-								<span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full dark:bg-yellow-700 dark:text-yellow-100">
+							<?php if ($values["updated_at"] == null): ?>
+								<span
+									class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full dark:bg-yellow-700 dark:text-yellow-100">
 									---
 								</span>
-							<?php else : ?>
-								<?php if ($values["user_role"] == 0) : ?>
-									<span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+							<?php else: ?>
+								<?php if ($values["user_role"] == 0): ?>
+									<span
+										class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
 										Le
 										<?= $values["updated_at"] ?> en compte Adminstrateur
 									</span>
-
-								<?php else : ?>
-									<span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-rose-100 rounded-full dark:bg-rose-700 dark:text-rose-100">
+							<?php elseif($values["user_role"] == 1) : ?>
+									<span
+										class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
 										Le
 										<?= $values["updated_at"] ?> en compte Utilisateur
+									</span>
+
+								<?php else: ?>
+									<span
+										class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+										Le
+										<?= $values["updated_at"] ?> en compte Rédacteur
 									</span>
 								<?php endif; ?>
 							<?php endif; ?>
@@ -66,20 +87,18 @@
 						</td>
 
 						<td class="px-4 py-3">
-                      <div class="flex items-center space-x-4 text-sm">
-                    
-                        <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
-                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-						<!-- <td class="px-4 py-3 text-sm">
-							
-								<input type="checkbox" class="user_select mx-auto my-auto" value="<?= $this->datacrypt($values["user_id"]) ?>">
-							
-						</td> -->
+							<div class="flex items-center space-x-4 text-sm">
+								<button
+									class="supprime flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+									value="<?= $this->datacrypt($values["user_id"]) ?>" aria-label="Delete">
+									<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+										<path fill-rule="evenodd"
+											d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+											clip-rule="evenodd"></path>
+									</svg>
+								</button>
+							</div>
+						</td>
 					</tr>
 
 				<?php endforeach; ?>
@@ -88,7 +107,8 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+	<div
+		class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
 		<span class="flex items-center col-span-3">
 		</span>
 		<span class="col-span-2"></span>
@@ -97,14 +117,18 @@
 			<nav aria-label="Table navigation">
 				<ul class="inline-flex items-center">
 					<li>
-						<button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple" aria-label="Previous">
+						<button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+							aria-label="Previous">
 							<svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-								<path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+								<path
+									d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+									clip-rule="evenodd" fill-rule="evenodd"></path>
 							</svg>
 						</button>
 					</li>
 					<li>
-						<button class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">
+						<button
+							class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">
 							1
 						</button>
 
@@ -122,9 +146,12 @@
 
 
 					<li>
-						<button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple" aria-label="Next">
+						<button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+							aria-label="Next">
 							<svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-								<path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+								<path
+									d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+									clip-rule="evenodd" fill-rule="evenodd"></path>
 							</svg>
 						</button>
 					</li>
@@ -133,147 +160,3 @@
 		</span>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="bg-white p-8 rounded-md w-full">
-	<div class=" flex items-center justify-between pb-6">
-		<div>
-			<h2 class="text-gray-600 font-semibold">Liste des utilisateurs</h2>
-			<span class="text-xs">Tous les utilisateurs</span>
-		</div> -->
-		<!-- <div class="flex items-center justify-between">
-			<form action="" class="flex bg-gray-50 items-center p-2 rounded-md">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-					fill="currentColor">
-					<path fill-rule="evenodd"
-						d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-						clip-rule="evenodd" />
-				</svg>
-				<input class="bg-gray-50 outline-none ml-1 block " type="text" id="search" placeholder="search...">
-			</form>
-			<div class="lg:ml-40 ml-10 space-x-8">
-				<button
-					class="update bg-orange-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Modifier</button>
-				<button
-					class="delete bg-orange-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Supprimer</button>
-				<button class="bg-orange-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
-					id="all_checked">Tout cocher</button>
-			</div>
-		</div> -->
-	<!-- </div>
-	<div>
-		<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-			<div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-				<table class="table-fetch min-w-full leading-normal" id="myTable">
-					<thead>
-						<tr>
-							<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-								Pseudo
-							</th>
-							<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-								Role
-							</th>
-							<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-								Utilisateur depuis
-							</th>
-							<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-								Modifié depuis
-							</th>
-							<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider text-center">
-								cocher
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($allUsers as $key => $values) : ?>
-							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<div class="flex items-center">
-										<div class="flex-shrink-0 w-10 h-10">
-											<img class="w-full h-full rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80" alt="" />
-										</div>
-										<div class="ml-3">
-											<p class="text-gray-900 whitespace-no-wrap">
-												<?= $values["user_pseudo"] ?>
-											</p>
-										</div>
-									</div>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<?php if ($values["user_role"] == 0) : ?>
-										<p class="text-gray-900 whitespace-no-wrap">Adminstrateur</p>
-									<?php else : ?>
-										<p class="text-gray-900 whitespace-no-wrap">Utilisateur</p>
-									<?php endif; ?>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">
-										<?= $values["created_at"] ?>
-									</p>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<?php if ($values["updated_at"] == null) : ?>
-										<p class="text-gray-900 whitespace-no-wrap">---</p>
-									<?php else : ?>
-										<?php if ($values["user_role"] == 0) : ?>
-											<p class="text-gray-900 whitespace-no-wrap">Le
-												<?= $values["updated_at"] ?> en compte Adminstrateur
-											</p>
-										<?php else : ?>
-											<p class="text-gray-900 whitespace-no-wrap">Le
-												<?= $values["updated_at"] ?> en compte Utilisateur
-											</p>
-										<?php endif; ?>
-									<?php endif; ?>
-								</td>
-
-								<td class="ml-50 px-3 py-5 border-b border-gray-200 bg-white text-sm text-center">
-									<input type="checkbox" name="user_select" class="clique" value="<?= $this->datacrypt($values["user_id"]) ?>">
-								</td>
-							</tr>
-						<?php endforeach; ?>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-</div> -->
-
-<!-- test -->
-
-<!-- test -->
-<script src="/ressources/js/users_js.js"></script>
-<script src="/ressources/js/search.js"></script>

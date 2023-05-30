@@ -1,0 +1,33 @@
+<div class="container px-6 mx-auto grid">
+          <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Résultat de la recherche
+          </h2>
+
+<div class="w-full overflow-hidden rounded-lg shadow-xs">
+	<div class="w-full overflow-x-auto">
+    <?php if(isset($users)) : ?>
+    <?php if(count($users) > 0) : ?>
+        <?php var_dump($users); ?>
+    <?php endif; ?>
+    <?php endif; ?>
+
+    <?php if(isset($articles)) : ?>
+    <?php if(count($articles) > 0) : ?>
+        <?php var_dump($articles); ?>
+    <?php endif; ?>
+    <?php endif; ?>
+
+    <?php if(isset($contacts)) : ?>
+    <?php if(count($contacts) > 0) : ?>
+        <?php var_dump($contacts); ?>
+    <?php endif; ?>
+    <?php endif; ?>
+    
+    <?php if(isset($categories)) : ?>
+    <?php if(count($categories) > 0) : ?>
+        <?php var_dump($categories); ?>
+    <?php endif; ?>
+    <?php endif; ?>
+	</div>
+</div>
+</div>

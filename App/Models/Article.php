@@ -132,5 +132,25 @@ class Article extends Database
         $stmt->execute([]);
         $result = $stmt->fetch();
         return $result;
+    }  
+    
+    public function searchLike($title)
+    {
+        $this->title = $title;
+
+        $conn = $this->connect();
+
+        /**
+         * $sql, pour les requêtes vers la base de données
+         */
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE article_title like ? ORDER BY `articles`.created_at DESC;";
+
+        /**
+         * $stmt, pour recupérer la requête préparée
+         */
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$this->title]);
+        $result = $stmt->fetchAll();
+        return $result;
     }
 }

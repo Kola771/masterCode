@@ -158,4 +158,25 @@ class Category extends Database
         $result = $stmt->fetch();
         return $result;
     }
+    
+    public function searchLike($name)
+    {
+        $this->name = $name;
+
+        $conn = $this->connect();
+
+        /**
+         * $sql, pour les requêtes vers la base de données
+         */
+        $sql = "SELECT * FROM `blog`.categories WHERE category_name like ?;";
+
+        /**
+         * $stmt, pour recupérer la requête préparée
+         */
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$this->name]);
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
 }

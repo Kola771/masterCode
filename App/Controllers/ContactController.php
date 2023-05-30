@@ -161,30 +161,27 @@ class ContactController
 
         // Suppression d'un article
         $this->contact->deleteOneContact($this->id);
-        echo json_encode("supprime");
     }
 
     // Cette fonction permet de répondre à un message et envoie ce dernier dans l'email de l'utilisateur
     public function sendMessage()
     {
-        if (isset($_GET["contactid"])) {
-            $datas = file_get_contents("php://input");
-            $datas = json_decode($datas);
-            $this->id = intval($this->datadecrypt($_GET["contactid"]));
-            // instanciation de la classe model contact
-            $this->contact = new Contact();
-            $this->contact->updateOneStateValide($this->id);
-            $to = $datas->mail;
-            $subject = $this->sanitaze($datas->subject);
-            $message = $datas->message;
-            $headers = "From: Genius Blog" . "\r\n" . "CC: mastercode@gmail.com";
-            // NB: geniusblog@gmail.com, cet email dépend de l'hébergeur sur lequel se trouve notre site et doit être valide.
-            mail($to, $subject, $message, $headers);
-            $controller = "?goto=" . $this->datacrypt('dashboard');
-            $action = "action=" . $this->datacrypt('message');
-            $url = $controller . "&" . $action;
-            echo json_encode("$url");
-        }
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        $this->id = intval($datas->id);
+        // instanciation de la classe model contact
+        $this->contact = new Contact();
+        $this->contact->updateOneStateValide($this->id);
+        $to = $datas->mail;
+        $subject = $this->sanitaze($datas->subject);
+        $message = $datas->message;
+        $headers = "From: Master Code" . "\r\n" . "CC: mastercode@gmail.com";
+        // NB: mastercode@gmail.com, cet email dépend de l'hébergeur sur lequel se trouve notre site et doit être valide.
+        mail($to, $subject, $message, $headers);
+        $controller = "?goto=" . $this->datacrypt('dashboard');
+        $action = "action=" . $this->datacrypt('message');
+        $url = $controller . "&" . $action;
+        echo json_encode("$url");
     }
 
     // Compte par jour le nombre de messages reçus
@@ -221,5 +218,18 @@ class ContactController
             }
         }
         return $viewsPast;
+    }
+
+
+    public function getOneContactByFetch()
+    {
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        $this->id = $this->datadecrypt($datas->id);
+
+        // instanciation de la classe model contact
+        $this->contact = new Contact();
+        $array = $this->contact->getOneContact($this->id);
+        echo json_encode($array);
     }
 }

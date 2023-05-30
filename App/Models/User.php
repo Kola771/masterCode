@@ -33,6 +33,29 @@ class User extends Database
         return $result;
     }
 
+    /**
+     * searchLike(), pour vérifier si il y des utilisateurs dans la bd portant ces caractéristiques dans leurs noms d'utilisateur
+     */
+    public function searchLike($pseudo)
+    {
+        $this->pseudo = $pseudo;
+
+        $conn = $this->connect();
+
+        /**
+         * $sql, pour les requêtes vers la base de données
+         */
+        $sql = "SELECT * FROM `users` WHERE user_pseudo like ?;";
+
+        /**
+         * $stmt, pour recupérer la requête préparée
+         */
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$this->pseudo]);
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
     // Requête renvoyant tous les utilisateurs ayant un compte sur le site
     public function getAllUsers()
     {

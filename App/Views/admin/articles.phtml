@@ -28,7 +28,7 @@
       <?php
       include_once "../App/Views/admin/partials/navbar/nav-top.phtml"
       ?>
-      <main class="h-full pb-16 overflow-y-auto">
+      <main class="main-contain h-full pb-16 overflow-y-auto">
         <div class="container grid px-6 mx-auto">
           <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Tables des articles
@@ -111,41 +111,6 @@
                     </td>
 
                   </tr>
-                  <!-- <?php foreach ($allArticles as $key => $values) : ?>
-
-                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-
-                      <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $values["article_title"] ?></td>
-                      <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                        <span>0 comments</span><br>
-                        <span>0 likes</span>
-                      </td>
-                      <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php if ($values["updated_at"] == null) : ?>
-                          <p class="text-gray-900 whitespace-no-wrap">---</p>
-                        <?php else : ?>
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            Le
-                            <?= $values["updated_at"] ?> par
-                            <span class="text-lg font-bold text-gray-800 truncate mb-2 p-2 w[50%k]">
-                              <?= $values["user_pseudo"] ?>
-                            </span>
-                          </p>
-                        <?php endif; ?>
-                      </td>
-
-                      <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                        <input type="checkbox" name="user_select" class="clique" value="<?= $this->datacrypt($values["article_id"]) ?>">
-                      </td>
-
-                      <td class="p-4 w-4">
-                        <div class="flex items-center">
-                          <input id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                          <label for="checkbox-table-1" class="sr-only">checkbox</label>
-                        </div>
-                      </td>
-                    </tr>
-                  <?php endforeach; ?> -->
 
                 </tbody>
               </table>
@@ -255,6 +220,7 @@
   </div>
 </body>
 <script src="/ressources/js/article_js.js"></script>
-<script src="/ressources/js/search.js"></script>
+<!-- <script src="/ressources/js/search.js"></script> -->
+<script src="/ressources/js/searchGeneral.js"></script>
 
 </html>
