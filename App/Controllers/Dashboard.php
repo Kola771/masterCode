@@ -73,8 +73,23 @@ class Dashboard {
     public function setting(){
 
         $users = new UserController();
+        $contacts = new ContactController();
+        $countDay = $contacts->countDay();
         $allUsers = $users->getAllUsers();
         require_once("../App/Views/admin/settings.phtml");
     }
+
+    public function brouillons(){
+
+        $categories = new CategoryController();
+        $allCategories = $categories->allCategories();
+        $articles = new ArticleController();
+        $allArticles = $articles->getAllArticles();
+        $contacts = new ContactController();
+        $countDay = $contacts->countDay();
+        require_once("../App/Views/admin/brouillons.phtml");
+    }
+
+
    
 }
