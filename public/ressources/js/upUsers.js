@@ -29,18 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     update.addEventListener("click", () => {
-        let data = {
-            id: allUsers.value,
-            status: poste.value,
+        if ((allUsers.value !== "defaut") && (poste.value !== "defaut")) {
+            let data = {
+                id: allUsers.value,
+                status: poste.value,
+            }
+            data = JSON.stringify(data);
+            let option = {
+                header: {
+                    content: "application/json"
+                },
+                body: data,
+                method: "post"
+            }
+            fetch("?ajax=user-controller&action=update-one-user", option);
+            document.querySelector(".msg").style.display = "block";
         }
-        data = JSON.stringify(data);
-        let option = {
-            header: {
-                content: "application/json"
-            },
-            body: data,
-            method: "post"
-        }
-        fetch("?ajax=user-controller&action=update-one-user", option)
     })
 })

@@ -61,6 +61,8 @@ class Home {
         $contacts = new ContactController();
         $category = new CategoryController();
         $articles = new ArticleController();
+        $allAr = $articles->getAllArticlesAttente();
+        $countBroullons = count($allAr);
         $countusers = $users->countUsers();
         $statistique = $users->statistique();
         $countadresses = $contacts->countAdresse();

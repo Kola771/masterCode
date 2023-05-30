@@ -4,14 +4,18 @@ require_once("../App/Controllers/CategoryController.php");
 require_once("../App/Controllers/ArticleController.php");
 require_once("../App/Controllers/UserController.php");
 require_once("../App/Controllers/ContactController.php");
-class Dashboard {
+class Dashboard
+{
     use Crypt;
     use AdresseIp;
- 
+
     public function category()
     {
         $categories = new CategoryController();
+        $articles = new ArticleController();
         $allCategories = $categories->allCategories();
+        $allAr = $articles->getAllArticlesAttente();
+        $countBroullons = count($allAr);
         $contacts = new ContactController();
         $countDay = $contacts->countDay();
         require_once("../App/Views/admin/category_page.phtml");
@@ -19,6 +23,9 @@ class Dashboard {
 
     public function users()
     {
+        $articles = new ArticleController();
+        $allAr = $articles->getAllArticlesAttente();
+        $countBroullons = count($allAr);
         $users = new UserController();
         $allUsers = $users->getAllUsers();
         $contacts = new ContactController();
@@ -28,6 +35,9 @@ class Dashboard {
 
     public function updateUsers()
     {
+        $articles = new ArticleController();
+        $allAr = $articles->getAllArticlesAttente();
+        $countBroullons = count($allAr);
         $users = new UserController();
         $oneUser = $users->getOneUser();
         $contacts = new ContactController();
@@ -40,7 +50,9 @@ class Dashboard {
         $categories = new CategoryController();
         $allCategories = $categories->allCategories();
         $articles = new ArticleController();
-        $allArticles = $articles->getAllArticles();
+        $allAr = $articles->getAllArticlesAttente();
+        $countBroullons = count($allAr);
+        $allArticles = $articles->getAllArticlesPublier();
         $contacts = new ContactController();
         $countDay = $contacts->countDay();
         require_once("../App/Views/admin/articles.phtml");
@@ -48,6 +60,9 @@ class Dashboard {
 
     public function editor()
     {
+        $articles = new ArticleController();
+        $allAr = $articles->getAllArticlesAttente();
+        $countBroullons = count($allAr);
         $contacts = new ContactController();
         $countDay = $contacts->countDay();
         require_once("../App/Views/admin/editor.phtml");
@@ -55,7 +70,10 @@ class Dashboard {
 
     public function message()
     {
+        $articles = new ArticleController();
         $contacts = new ContactController();
+        $allAr = $articles->getAllArticlesAttente();
+        $countBroullons = count($allAr);
         $countDay = $contacts->countDay();
         $allContacts = $contacts->getAllContacts();
         $stateValide = $contacts->stateValide();
@@ -70,8 +88,11 @@ class Dashboard {
         require_once("../App/Views/admin/send-message.phtml");
     }
 
-    public function setting(){
-
+    public function setting()
+    {
+        $articles = new ArticleController();
+        $allAr = $articles->getAllArticlesAttente();
+        $countBroullons = count($allAr);
         $users = new UserController();
         $contacts = new ContactController();
         $countDay = $contacts->countDay();
@@ -79,17 +100,31 @@ class Dashboard {
         require_once("../App/Views/admin/settings.phtml");
     }
 
-    public function brouillons(){
-
+    public function brouillons()
+    {
         $categories = new CategoryController();
         $allCategories = $categories->allCategories();
         $articles = new ArticleController();
-        $allArticles = $articles->getAllArticles();
+        $allArticles = $articles->getAllArticlesAttente();
+        $countBroullons = count($allArticles);
         $contacts = new ContactController();
         $countDay = $contacts->countDay();
         require_once("../App/Views/admin/brouillons.phtml");
     }
 
+    public function updateArticle()
+    {
+        $categories = new CategoryController();
+        $allCategories = $categories->allCategories();
+        $articles = new ArticleController();
+        $allArticles = $articles->getAllArticlesAttente();
+        $countBroullons = count($allArticles);
+        $oneArticle = $articles->getOneArticleById();
+        $contacts = new ContactController();
+        $countDay = $contacts->countDay();
+        require_once("../App/Views/admin/upArt.phtml");
+    }
 
-   
+
+
 }
