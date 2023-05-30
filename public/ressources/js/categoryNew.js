@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".closeFermer").addEventListener("click", () => {
         document.querySelector(".elem").setAttribute("style", "display:none");
     });
+    
 
     // delete_category.forEach(el => {
     //     el.addEventListener("click", (e) => {
