@@ -1,5 +1,8 @@
-
-//pour les recherches dans un tableau
+//Recherche dans les tables suivantes :
+// Users
+// Articles
+// Contacts
+// Categories
 let input = document.querySelector("#searchGeneral");
 let mainContain = document.querySelector(".main-contain");
 
