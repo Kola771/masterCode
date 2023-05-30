@@ -9716,7 +9716,8 @@ div.accountHeader{
   width: 150px;
   font-size: var(--fz40);
   text-transform: uppercase;
-  color: white;
+  color: rgb(209, 204, 204);
+  border: 1px solid;
 }
 
 div.imageElement>a>img {
