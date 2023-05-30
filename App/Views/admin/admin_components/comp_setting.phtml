@@ -5,8 +5,10 @@
                 class="mt-4 block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                 <option value="defaut" selected disabled>Choisir un utilisateur</option>
                 <?php foreach ($allUsers as $key => $values): ?>
-                    <option value=<?= $this->datacrypt($values["user_id"]) ?>> <?= $values["user_pseudo"] ?>
-                    </option>
+                    <?php if ($values["user_pseudo"] !== "SuperAdmin"): ?>
+                        <option value=<?= $this->datacrypt($values["user_id"]) ?>> <?= $values["user_pseudo"] ?>
+                        </option>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </select>
             <input

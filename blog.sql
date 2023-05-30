@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.categories : ~4 rows (environ)
+-- Listage des données de la table blog.categories : ~5 rows (environ)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`category_id`, `category_img`, `category_name`, `category_description`) VALUES
 	(14, 'category_image-6475a76e353e55.22199084.png', 'HTML', 'Langage web'),
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   PRIMARY KEY (`contact_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.contacts : ~2 rows (environ)
+-- Listage des données de la table blog.contacts : ~1 rows (environ)
 /*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
 INSERT INTO `contacts` (`contact_id`, `contact_email`, `contact_name`, `contact_theme`, `contact_body`, `state`, `created_at`) VALUES
 	(2, 'kol@gmail.com', 'kola', 'text', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex non dolorum ab rerum quam doloribus quia tempore quidem, sunt magnam praesentium. Numquam ab minus officiis voluptates consequatur ratione ex ipsum dolore quidem nihil, ullam rem eveniet vel libero quos ad odio sapiente quod reprehenderit voluptate quo doloribus dolor laborum sint? Aspernatur labore exercitationem sunt dolorem similique fugiat error mollitia. Autem minima odit nobis sequi id, laudantium cum dolorem tenetur, quibusdam consequatur ullam corporis facere iusto eos, eveniet a harum. Tenetur, consectetur saepe. Exercitationem quam excepturi nemo doloremque deserunt ad dolorum, eligendi, tempora minima reprehenderit impedit quis dolorem quod sapiente ducimus.', 'attente', '2023-05-27 13:37:51');
@@ -158,10 +158,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Listage des données de la table blog.users : ~4 rows (environ)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `user_email`, `email_code`, `user_pseudo`, `user_role`, `user_password`, `user_bgc`, `created_at`, `updated_at`) VALUES
-	(2, 'koladeaboudou@gmail.com', 201455, 'AsdePic', '0', '$2y$10$WXZQRuoNjqxiWthZlQOqpuFR6oDWnKeKes9OdAtH/zUU68sr8HaYG', '#66CDAA', '2023-04-01 04:49:13', NULL),
+	(2, 'koladeaboudou@gmail.com', 201455, 'Kola', '0', '$2y$10$WXZQRuoNjqxiWthZlQOqpuFR6oDWnKeKes9OdAtH/zUU68sr8HaYG', '#66CDAA', '2023-04-01 04:49:13', NULL),
 	(3, 'marcosmedenou@gmail.com', NULL, 'marcos', '0', '$2y$10$ppEg5kJHwAoXUOhnQnio/OmZhu4q1yzlph33fKOpiDH.z6aOs5t22', '#D2691E', '2023-04-04 07:02:54', NULL),
 	(11, 'erikazankpo@gmail.com', NULL, 'ericaz99', '0', '$2y$10$DlbYGLxKWO6yZw8zQlQKu.RBXOmIomhJy124g4P0ZRWu85XFvudk2', '#FFFACD', '2023-05-26 01:31:33', '2023-05-30 06:20:41'),
-	(13, 'geoffroyotegbeye@gmail.com', NULL, 'geoffroy', '2', '$2y$10$lexm1Iu/yj7FQlEOgFEjzevkWmkrZv9qh2kF0XMO2YCWybOdLqBTO', '#48D1CC', '2023-05-30 05:38:15', '2023-05-30 06:20:45');
+	(13, 'geoffroyotegbeye@gmail.com', NULL, 'geoffroy', '2', '$2y$10$lexm1Iu/yj7FQlEOgFEjzevkWmkrZv9qh2kF0XMO2YCWybOdLqBTO', '#48D1CC', '2023-05-30 05:38:15', '2023-05-30 06:20:45'),
+	(14, 'masterCode@gmail.com', NULL, 'SuperAdmin', '0', '$2y$10$nIIV1.2QxvTEFmXzbw7hUOIGSzMYIAIL2v9paVJgFiVTTJf5hgWwG', '#ADFF2F', '2023-05-30 08:42:24', '2023-05-30 08:42:59');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. viewsarticles

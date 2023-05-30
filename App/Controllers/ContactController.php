@@ -184,7 +184,7 @@ class ContactController
         echo json_encode("$url");
     }
 
-    // Compte par jour le nombre de messages reçus
+    // Compte le nombre de messages reçus
     public function countDay()
     {
         $this->contact = new Contact();
