@@ -108,6 +108,33 @@ class CategoryController
             }
         }
     }
+    public function verifyImgArticles()
+    {
+        // Réccupération du nom, du chemin, de la taille et de l'erreur de l'image
+        $filename = $_FILES['file']['name'];
+        $filetmp_name = $_FILES['file']['tmp_name'];
+        $filesize = $_FILES['file']['size'];
+        $fileerror = $_FILES['file']['error'];
+
+        // Extension de l'image
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+        // Tableau d'extensions que nous acceptons
+        $tab_ext = ["png", "jpg", "jpeg"];
+
+        if (in_array($ext, $tab_ext)) {
+            if ($filesize <= 10000000 && $fileerror === 0) {
+                $file = uniqid("image", true);
+                $filename = $file . "." . $ext;
+                $location = '../public/ressources/images/articles_images/' . $filename;
+                move_uploaded_file($filetmp_name, $location);
+                echo json_encode(array('location' =>"/ressources/images/articles_images/".$filename));
+                // echo json_encode($filename);
+            } else {
+                echo json_encode("Image non correcte");
+            }
+        }
+    }
 
     // Affiche toutes les catégories
     public function allCategories()
