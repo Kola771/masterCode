@@ -47,15 +47,19 @@ CREATE TABLE IF NOT EXISTS `articles` (
   PRIMARY KEY (`article_id`),
   UNIQUE KEY `article_title` (`article_title`),
   KEY `category_id` (`category_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `FK_articles_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_articles_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table blog.articles : ~3 rows (environ)
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
 INSERT INTO `articles` (`article_id`, `article_image`, `article_title`, `code_html`, `state`, `category_id`, `user_id`, `created_at`, `updated_at`) VALUES
-	(4, 'image647638d6c28dd8.53845470.jpg', 'Introduction sur HTML', '<h2 style="text-align: center;"><span style="font-size: 18pt; color: rgb(230, 126, 35);">Welcome to MasterCode</span></h2>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image6475fa2c649551.56308278.jpeg" alt="dfs" width="555" height="369"></p>\n<h3 style="text-align: center;"><span style="font-family: \'book antiqua\', palatino, serif; font-size: 14pt; color: rgb(35, 111, 161);">Essai</span></h3>', 'publier', 14, 2, '2023-05-30 05:56:38', NULL),
-	(5, 'image64772cb432ae53.60192281.jpg', 'Introduction CSS', '<h2 style="text-align: center;"><span style="color: rgb(230, 126, 35); font-family: impact, sans-serif;">Welcome to MasterCode</span></h2>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image6476391e188053.69887989.png" alt="css" width="555" height="261"></p>\n<h3 style="text-align: center;"><span style="font-size: 14pt; color: rgb(35, 111, 161);"><strong><code><em>Test</em></code></strong></span></h3>\n<p><span style="font-size: 14pt; color: rgb(35, 111, 161);"><strong><code><em>Bonjour</em></code></strong></span></p>\n<p><span style="font-size: 14pt; color: rgb(35, 111, 161);"><strong><code><em>Bonsoir</em></code></strong></span></p>\n<p><span style="font-size: 14pt; color: rgb(35, 111, 161);"><strong><code><em>Comment allez-vous ?</em></code></strong></span></p>\n<p><span style="font-size: 14pt; color: rgb(35, 111, 161);"><strong><code><em>Bien et toi ?</em></code></strong></span></p>', 'attente', 15, 2, '2023-05-30 05:59:24', '2023-05-31 11:17:08'),
-	(6, 'image647645d17f0f29.58924958.jpg', 'Introduction JavaScript', '<h2 style="text-align: center;"><span style="font-family: \'arial black\', sans-serif; font-size: 18pt; color: rgb(230, 126, 35);"><strong>Welcome to MasterCode</strong></span></h2>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image647645737606c4.66314234.jpg" alt="javascript" width="500" height="281"></p>\n<h3 style="text-align: center;"><span style="font-size: 14pt; color: rgb(35, 111, 161);">Essai</span></h3>', 'attente', 18, 3, '2023-05-30 06:52:01', NULL);
+	(6, 'image647645d17f0f29.58924958.jpg', 'Introduction JavaScript', '<h2 style="text-align: center;"><span style="font-family: \'arial black\', sans-serif; font-size: 18pt; color: rgb(230, 126, 35);"><strong>Welcome to MasterCode</strong></span></h2>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image647645737606c4.66314234.jpg" alt="javascript" width="500" height="281"></p>\n<h3 style="text-align: center;"><span style="font-size: 14pt; color: rgb(35, 111, 161);">Essai</span></h3>', 'publier', 18, 3, '2023-05-30 06:52:01', NULL),
+	(7, 'image647733da9a8065.35685559.jpg', 'Testes', '<p>Welcome to MasterCode</p>', 'attente', 16, 13, '2023-05-31 11:46:56', '2023-05-31 11:47:38'),
+	(8, 'image64774e0f032a49.77384463.jpg', 'Introduction HTML', '<p>Welcome to MasterCode</p>\n<p><img src="ressources/images/articles_images/image64774df3aa0439.04831254.jpeg" alt="" width="555" height="291"></p>\n<p>Bonjour messieurs</p>', 'publier', 20, 2, '2023-05-31 01:39:27', NULL),
+	(9, 'image64774e93c3efe4.28453597.jpg', 'Introduction DOM', '<p>Welcome to MasterCode</p>\n<p><img src="ressources/images/articles_images/image64774e67ef33e5.05794793.png" alt="" width="225" height="225"></p>\n<p>Test</p>', 'attente', 18, 3, '2023-05-31 01:41:39', NULL),
+	(10, 'image64774fcc454b04.52880177.jpg', 'Introduction PHP', '<p>Welcome to MasterCode</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image64774fa9a84547.57122088.png" alt="" width="512" height="512"></p>\n<p>Hello Test</p>', 'attente', 16, 13, '2023-05-31 01:46:52', NULL);
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. categories
@@ -65,16 +69,16 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category_name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.categories : ~4 rows (environ)
+-- Listage des données de la table blog.categories : ~3 rows (environ)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`category_id`, `category_img`, `category_name`, `category_description`) VALUES
-	(14, 'category_image-6475a76e353e55.22199084.png', 'HTML', 'Langage web'),
-	(15, 'category_image-6472019a08a335.69606764.png', 'CSS', 'Feuille de style'),
 	(16, 'category_image-647204324d99c6.23988483.png', 'PHP', 'procédural...'),
 	(18, 'category_image-6472742d627f63.85422378.png', 'Javascript', 'Langage Front et Back'),
-	(19, 'category_image-6475a79e28d784.30898492.png', 'Java', 'Langage Back');
+	(19, 'category_image-6475a79e28d784.30898492.png', 'Java', 'Langage Back'),
+	(20, 'category_image-64774daf69b2c3.31796084.png', 'HTML', 'Langage Web'),
+	(21, 'category_image-64774dd4eb49b6.81167070.jpg', 'CSS', 'Feuille de style');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. comments
@@ -86,7 +90,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `created_at` timestamp NOT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `user_id` (`user_id`),
-  KEY `article_id` (`article_id`)
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `FK_comments_articles` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table blog.comments : ~0 rows (environ)
@@ -119,7 +125,9 @@ CREATE TABLE IF NOT EXISTS `datasusers` (
   `created_at` timestamp NOT NULL,
   PRIMARY KEY (`datasuser_id`),
   KEY `article_id` (`article_id`),
-  KEY `user_id` (`user_id`)
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `FK_datasusers_articles` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_datasusers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table blog.datasusers : ~0 rows (environ)
@@ -133,7 +141,9 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`like_id`),
   KEY `article_id` (`article_id`),
-  KEY `user_id` (`user_id`)
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `FK_likes_articles` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_likes_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table blog.likes : ~0 rows (environ)
@@ -154,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_email` (`user_email`),
   UNIQUE KEY `user_pseudo` (`user_pseudo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table blog.users : ~5 rows (environ)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
@@ -163,7 +173,8 @@ INSERT INTO `users` (`user_id`, `user_email`, `email_code`, `user_pseudo`, `user
 	(3, 'marcosmedenou@gmail.com', NULL, 'marcos', '0', '$2y$10$ppEg5kJHwAoXUOhnQnio/OmZhu4q1yzlph33fKOpiDH.z6aOs5t22', '#D2691E', '2023-04-04 09:02:54', NULL),
 	(11, 'erikazankpo@gmail.com', NULL, 'ericaz99', '0', '$2y$10$DlbYGLxKWO6yZw8zQlQKu.RBXOmIomhJy124g4P0ZRWu85XFvudk2', '#FFFACD', '2023-05-26 03:31:33', '2023-05-30 08:20:41'),
 	(13, 'geoffroyotegbeye@gmail.com', NULL, 'geoffroy', '2', '$2y$10$lexm1Iu/yj7FQlEOgFEjzevkWmkrZv9qh2kF0XMO2YCWybOdLqBTO', '#48D1CC', '2023-05-30 07:38:15', '2023-05-30 03:43:18'),
-	(14, 'masterCode@gmail.com', NULL, 'SuperAdmin', '0', '$2y$10$nIIV1.2QxvTEFmXzbw7hUOIGSzMYIAIL2v9paVJgFiVTTJf5hgWwG', '#ADFF2F', '2023-05-30 10:42:24', '2023-05-30 10:42:59');
+	(14, 'masterCode@gmail.com', NULL, 'SuperAdmin', '0', '$2y$10$nIIV1.2QxvTEFmXzbw7hUOIGSzMYIAIL2v9paVJgFiVTTJf5hgWwG', '#ADFF2F', '2023-05-30 10:42:24', '2023-05-30 10:42:59'),
+	(15, 'tiburcekouagou@gmail.com', NULL, 'Tiburce', '1', '$2y$10$aBp7Ep8wtLYxRvaggiBQGuxRZF3H7pDBSTyfzVvsmz5/VXO90iMLG', '#0000FF', '2023-05-31 01:43:41', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. viewsarticles
@@ -172,14 +183,14 @@ CREATE TABLE IF NOT EXISTS `viewsarticles` (
   `nom_hote` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `article_id` int(11) NOT NULL,
   PRIMARY KEY (`viewarticle_id`),
-  KEY `article_id` (`article_id`)
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `FK_viewsarticles_articles` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table blog.viewsarticles : ~2 rows (environ)
 /*!40000 ALTER TABLE `viewsarticles` DISABLE KEYS */;
 INSERT INTO `viewsarticles` (`viewarticle_id`, `nom_hote`, `article_id`) VALUES
-	(1, 'dFCw4oEazAH13G2JP/4hXUDcyAHREQoycw8J8rQABGqonsSpQ4P/EImxRD1iAwfD', 1),
-	(2, 'QV7invdN3dfY8SLpQ7T/XlSYmJl7OuxqR6an0SdrkHY=', 1);
+	(2, 'QV7invdN3dfY8SLpQ7T/XlSYmJl7OuxqR6an0SdrkHY=', 6);
 /*!40000 ALTER TABLE `viewsarticles` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
