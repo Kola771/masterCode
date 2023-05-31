@@ -78,6 +78,13 @@ class ArticleController
         $array = $this->article->getAllArticles();
         return $array;
     }
+    // public function getAllArticleAtBrouillons()
+    // {
+    //     // instanciation de la classe model article
+    //     $this->article = new Article();
+    //     $array = $this->article->getAllArticlesAtBrouillons();
+    //     return $array;
+    // }
 
     // Pour afficher tous les titres des différents articles se trouvant dans la bdd
     public function getAllTitlesArticle()

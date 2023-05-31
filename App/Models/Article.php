@@ -79,6 +79,24 @@ class Article extends Database
         return $result;
     }
 
+    // Affiche tous les articles en brouillons (en cours de validation)
+    public function getAllArticlesAtBrouillons()
+    {
+        // Connexion avec la base de données
+        $conn = $this->connect();
+
+        // Requête SQL
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id ORDER BY `articles`.created_at DESC;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([]);
+
+        // Retourne un tableau grâce à fetchAll();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
     // Ajoute les articles dans la table articles 
     public function addArticle($image, $title, $code_html, $category_id, $user_id, $created_at)
     {
