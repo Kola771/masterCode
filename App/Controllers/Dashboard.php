@@ -125,6 +125,19 @@ class Dashboard
         require_once("../App/Views/admin/upArt.phtml");
     }
 
+    public function modalArticle()
+    {
+        $categories = new CategoryController();
+        $allCategories = $categories->allCategories();
+        $articles = new ArticleController();
+        $allArticles = $articles->getAllArticlesAttente();
+        $countBroullons = count($allArticles);
+        $oneArticle = $articles->getOneArticleById();
+        $contacts = new ContactController();
+        $countDay = $contacts->countDay();
+        require_once("../App/Views/admin/modalArticle.phtml");
+    }
+
 
 
 }

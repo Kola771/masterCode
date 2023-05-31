@@ -3,7 +3,7 @@
 class Article extends Database
 {
     // Déclaration des variables
-    private $id, $title, $image, $code_html, $state, $category_id, $user_id, $created_at;
+    private $id, $title, $image, $code_html, $state, $category_id, $user_id, $created_at, $updated_at;
 
     // Affiche tous les titres des articles
     public function getAllTitlesArticle()
@@ -204,10 +204,39 @@ class Article extends Database
          * $stmt, pour recupérer la requête préparée
          */
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
+        $result = $stmt->execute([
             ":id" => $this->id,
             ":state" => $this->state
         ]);
+        return $result;
+    }
+
+    public function updateOneArticle($id, $title, $img, $code, $state, $time)
+    {
+        $conn = $this->connect();
+        $this->id = $id;
+        $this->image = $img;
+        $this->title = $title;
+        $this->code_html = $code;
+        $this->state = $state;
+        $this->updated_at = $time;
+        /**
+         * $sql, pour les requêtes vers la base de données
+         */
+        $sql = "UPDATE `blog`.articles SET `articles`.article_image = :img, `articles`.article_title = :title, `articles`.code_html = :code, `articles`.state = :state, `articles`.updated_at = :tim WHERE `articles`.article_id = :id";
+        /**
+         * $stmt, pour recupérer la requête préparée
+         */
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ":id" => $this->id,
+            ":img" => $this->image,
+            ":title" => $this->title,
+            ":code" => $this->code_html,
+            ":state" => $this->state,
+            ":tim" => $this->updated_at
+        ]);
+        return $result;
     }
 
 }

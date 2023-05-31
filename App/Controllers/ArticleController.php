@@ -5,7 +5,7 @@ class ArticleController
 {
     use Crypt;
     // Déclaration des variables
-    private $article, $id, $title, $image, $code_html, $category_id, $user_id, $created_at;
+    private $article, $id, $title, $image, $code_html, $category_id, $user_id, $created_at, $updated_at;
 
     // sanitaze(); pour les espacements et les injections de codes
     public function sanitaze($data)
@@ -217,5 +217,65 @@ class ArticleController
         // instanciation de la classe model article
         $this->article = new Article();
         $update = $this->article->updateState($this->id, "publier");
+    }
+    
+    // Vérifie s'il y'a pas de doublons lors de la modification d'un article
+    public function verifyUpArt()
+    {
+        $data = file_get_contents("php://input");
+        $data = json_decode($data);
+        $this->id = $this->datadecrypt($data->id);
+        $this->article = new Article();
+        $array = $this->article->getTitlesArticle($this->sanitaze($data->title));
+        if (count($array) > 0) {
+            if (intval($this->id) === intval($array[0]["article_id"])) {
+                echo json_encode("good");
+            } else {
+                echo json_encode("error");
+            }
+        } else {
+            echo json_encode("good");
+        }
+    }
+    
+    // Vérifie si l'image respecte certaines caractéristiques pour la modification
+    public function verifyImgUpArt()
+    {
+        // Réccupération du nom, du chemin, de la taille et de l'erreur de l'image
+        $filename = $_FILES['file']['name'];
+        $filetmp_name = $_FILES['file']['tmp_name'];
+        $filesize = $_FILES['file']['size'];
+        $fileerror = $_FILES['file']['error'];
+
+        // Extension de l'image
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+        // Tableau d'extensions que nous acceptons
+        $tab_ext = ["jpg", "jpeg"];
+
+        if (in_array($ext, $tab_ext)) {
+            if ($filesize <= 10000000 && $fileerror === 0) {
+                $file = uniqid("image", true);
+                $filename = $file . "." . $ext;
+                $location = '../public/ressources/images/images_principales/' . $filename;
+                $img = $_GET["img"];
+                unlink('../public/ressources/images/images_principales/' . $img);
+                move_uploaded_file($filetmp_name, $location);
+                echo json_encode($filename);
+            } else {
+                echo json_encode("Image non correcte");
+            }
+        }
+    }
+    
+    public function updateOneArticle()
+    {
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        $this->id = $this->datadecrypt($datas->id);
+        $this->article = new Article();
+        $this->updated_at = date("Y-m-d h:i:s");
+        // Insertion de l'article
+        $update = $this->article->updateOneArticle($this->id, $datas->title, $datas->img, $datas->code_html, $datas->state, $this->updated_at);
     }
 }
