@@ -8,11 +8,10 @@ let mainContain = document.querySelector(".main-contain");
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    //au moment où on entre des caractères, la fonction myFunction() s'exécute en recherchant tout les mots comportants ces caractères
+    //au moment où on entre des caractères, la fonction s'exécute en recherchant tout les mots comportants ces caractères
     input.addEventListener("keyup", (e) => {
         e.preventDefault();
         if(input.value.trim() !== "") {
-
             let data = {
                 value: input.value
             }

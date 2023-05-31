@@ -7,6 +7,17 @@ class ArticleController
     // Déclaration des variables
     private $article, $id, $title, $image, $code_html, $category_id, $user_id, $created_at;
 
+    // sanitaze(); pour les espacements et les injections de codes
+    public function sanitaze($data)
+    {
+        $reg = preg_replace("/\s+/", " ", $data);
+        $reg = preg_replace("/^\s*/", "", $reg);
+        $reg = htmlspecialchars($reg);
+        $reg = stripslashes($reg);
+        $data = $reg;
+        return $data;
+    }
+
     // Ajout des articles
     public function addArticles()
     {
@@ -14,7 +25,6 @@ class ArticleController
         if ((isset($_GET["categoryid"])) && (isset($_SESSION["Auth"]))) {
             $datas = file_get_contents("php://input");
             $datas = json_decode($datas);
-            $this->code_html = $datas->code_html;
             $this->category_id = $this->datadecrypt($_GET["categoryid"]);
             $this->user_id = $this->datadecrypt($_SESSION["Auth"]["id"]);
             $this->created_at = date("Y-m-d h:i:s");
@@ -22,38 +32,57 @@ class ArticleController
             // instanciation de la classe model article
             $this->article = new Article();
 
-            // Je vérifie si dans le code html on a un ou plusieurs éléments src
-            // preg_match_all("|src=(?<source>\"(.*)\")|U", $this->code_html, $matches_files, PREG_PATTERN_ORDER);
-            // var_dump($matches_files);
-            // $this->image = $matches_files["source"][0];
-            // echo json_encode($this->image);
-            $this->image = "";
+            // Insertion de l'article
+            $insert = $this->article->addArticle($datas->img, $datas->title, $datas->code_html, $datas->state, $this->category_id, $this->user_id, $this->created_at);
+            $controller = "?goto=" . $this->datacrypt('dashboard');
+            $action = "action=" . $this->datacrypt('articles');
+            $url = $controller . "&" . $action;
+            echo json_encode("$url");
+        }
+    }
 
-            // Je vérifie si dans le code html on a un ou plusieurs éléments h2
-            if (preg_match_all("|<h2>(?<title>(.*))</h2>|U", $this->code_html, $matches_title, PREG_PATTERN_ORDER)) {
-                $this->title = $matches_title["title"][0];
-                if (preg_match_all("|<[^>]+>(?<titre>.*)</[^>]+>|U", $this->title, $tab, PREG_PATTERN_ORDER)) {
-                    $this->title = $tab["titre"][0];
-                } else {
-                    $this->title = $matches_title["title"][0];
-                }
-            }
+    // Vérification du titre de l'article dans la bdd pour qu'il n'y ait pas de doublons
+    public function verifyTitle()
+    {
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        $this->article = new Article();
+        $array = $this->article->getTitlesArticle($this->sanitaze($datas->title));
+        if (count($array) == 0) {
+            echo json_encode("good");
+        } else {
+            echo json_encode("Article_exist");
+        }
+    }
 
-            // Je vérifie si il y a un titre dans la bdd correspondant au nouveau qu'on veut insérer dans la bdd
-            $array = $this->article->getTitlesArticle($this->title);
-            $count = count($array);
-            if ($count > 0) {
-                echo json_encode("Article_exist");
+
+    public function verifyImgArticles()
+    {
+        // Réccupération du nom, du chemin, de la taille et de l'erreur de l'image
+        $filename = $_FILES['file']['name'];
+        $filetmp_name = $_FILES['file']['tmp_name'];
+        $filesize = $_FILES['file']['size'];
+        $fileerror = $_FILES['file']['error'];
+
+        // Extension de l'image
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+        // Tableau d'extensions que nous acceptons
+        $tab_ext = ["jpg", "jpeg"];
+
+        if (in_array($ext, $tab_ext)) {
+            if ($filesize <= 10000000 && $fileerror === 0) {
+                $file = uniqid("image", true);
+                $filename = $file . "." . $ext;
+                $location = '../public/ressources/images/images_principales/' . $filename;
+                move_uploaded_file($filetmp_name, $location);
+                echo json_encode($filename);
             } else {
-                // Insertion de l'article
-                $insert = $this->article->addArticle($this->image, $this->title, $this->code_html, $this->category_id, $this->user_id, $this->created_at);
-                $controller = "?goto=" . $this->datacrypt('dashboard');
-                $action = "action=" . $this->datacrypt('articles');
-                $url = $controller . "&" . $action;
-                echo json_encode("$url");
+                echo json_encode("Image non correcte");
             }
         }
     }
+
 
     // Suppression des articles one by one
     public function deleteOneArticle()
@@ -86,6 +115,24 @@ class ArticleController
     //     return $array;
     // }
 
+    // Affiche tous les articles en attente
+    public function getAllArticlesAttente()
+    {
+        // instanciation de la classe model article
+        $this->article = new Article();
+        $array = $this->article->getAllArticlesAttente();
+        return $array;
+    }
+
+    // Affiche tous les articles publiés
+    public function getAllArticlesPublier()
+    {
+        // instanciation de la classe model article
+        $this->article = new Article();
+        $array = $this->article->getAllArticlesPublier();
+        return $array;
+    }
+
     // Pour afficher tous les titres des différents articles se trouvant dans la bdd
     public function getAllTitlesArticle()
     {
@@ -93,6 +140,18 @@ class ArticleController
         $this->article = new Article();
         $array = $this->article->getAllTitlesArticle();
         return $array;
+    }
+
+    // Pour afficher un article spécifique
+    public function getOneArticleById()
+    {
+        if (isset($_GET["id"])) {
+            // instanciation de la classe model article
+            $this->article = new Article();
+            $id = $this->datadecrypt($_GET["id"]);
+            $array = $this->article->getOneArticleById($id);
+            return $array;
+        }
     }
 
     // Tant qu'une catégorie a été choisie, il fait une redirection
@@ -146,5 +205,17 @@ class ArticleController
         // $pourcentage = (100 * $articles_month)/ 1;
 
         return $articlesPasts;
+    }
+
+    public function updateState()
+    {
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        $this->id = $this->datadecrypt($datas->id);
+        echo json_encode($this->id);
+
+        // instanciation de la classe model article
+        $this->article = new Article();
+        $update = $this->article->updateState($this->id, "publier");
     }
 }

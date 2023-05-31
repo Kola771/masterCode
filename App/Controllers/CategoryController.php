@@ -108,6 +108,7 @@ class CategoryController
             }
         }
     }
+    
     public function verifyImgArticles()
     {
         // Réccupération du nom, du chemin, de la taille et de l'erreur de l'image
