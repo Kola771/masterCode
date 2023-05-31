@@ -1,15 +1,20 @@
 <form method="post">
-
-    <select name="etat" id="etat"
-        class="py-4 mt-4 block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-        <?php if ($oneArticle[0]['state'] === "attente"): ?>
-            <option value="attente" selected>En attente</option>
-            <option value="publier">Publier l'article</option>
+    <?php if (isset($_SESSION["Auth"])): ?>
+        <?php if ($_SESSION["Auth"]["role"] === '0'): ?>
+            <select name="etat" id="etat"
+                class="py-4 mt-4 block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                <?php if ($oneArticle[0]['state'] === "attente"): ?>
+                    <option value="attente" selected>En attente</option>
+                    <option value="publier">Publier l'article</option>
+                <?php else: ?>
+                    <option value="attente">En attente</option>
+                    <option value="publier" selected>Publier l'article</option>
+                <?php endif; ?>
+            </select>
         <?php else: ?>
-            <option value="attente">En attente</option>
-            <option value="publier" selected>Publier l'article</option>
+            <input name="etat" id="etat" type="hidden" value="publier">
         <?php endif; ?>
-    </select>
+    <?php endif; ?>
 
     <input
         class="py-4 mt-4 mb-4 block w-full mt-1 text-sm border-black dark:border-white dark:text-gray-300 dark:bg-gray-700 focus:border-red-400 focus:outline-none focus:shadow-outline-red form-input dark:border-green-200"

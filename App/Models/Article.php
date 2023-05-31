@@ -3,7 +3,7 @@
 class Article extends Database
 {
     // Déclaration des variables
-    private $id, $title, $image, $code_html, $state, $category_id, $user_id, $created_at, $updated_at;
+    private $id, $pseudo, $title, $image, $code_html, $state, $category_id, $user_id, $created_at, $updated_at;
 
     // Affiche tous les titres des articles
     public function getAllTitlesArticle()
@@ -91,6 +91,44 @@ class Article extends Database
         // Requête préparée
         $statement = $conn->prepare($sql);
         $statement->execute([]);
+
+        // Retourne un tableau grâce à fetchAll();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
+    // Affiche tous les articles en attente
+    public function getAllArticlesAttenteBySession($pseudo)
+    {
+        // Connexion avec la base de données
+        $conn = $this->connect();
+        $this->pseudo = $pseudo;
+
+        // Requête SQL
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'attente' AND `users`.user_pseudo = ? ORDER BY `articles`.created_at DESC;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([$this->pseudo]);
+
+        // Retourne un tableau grâce à fetchAll();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
+    // Affiche tous les articles en attente
+    public function getAllArticlesBySession($pseudo)
+    {
+        // Connexion avec la base de données
+        $conn = $this->connect();
+        $this->pseudo = $pseudo;
+
+        // Requête SQL
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `users`.user_pseudo = ? ORDER BY `articles`.created_at DESC;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([$this->pseudo]);
 
         // Retourne un tableau grâce à fetchAll();
         $result = $statement->fetchAll();

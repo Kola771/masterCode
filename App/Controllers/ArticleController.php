@@ -124,6 +124,28 @@ class ArticleController
         return $array;
     }
 
+    // Affiche tous les articles en attente par Session
+    public function getAllArticlesAttenteBySession()
+    {
+        if (isset($_SESSION["Auth"])) {
+            // instanciation de la classe model article
+            $this->article = new Article();
+            $array = $this->article->getAllArticlesAttenteBySession($_SESSION["Auth"]["pseudo"]);
+            return $array;
+        }
+    }
+
+    // Affiche tous les articles par Session
+    public function getAllArticlesBySession()
+    {
+        if (isset($_SESSION["Auth"])) {
+            // instanciation de la classe model article
+            $this->article = new Article();
+            $array = $this->article->getAllArticlesBySession($_SESSION["Auth"]["pseudo"]);
+            return $array;
+        }
+    }
+
     // Affiche tous les articles publiés
     public function getAllArticlesPublier()
     {
@@ -179,6 +201,7 @@ class ArticleController
     // Connaître le pourcentage des utilisateurs venus dans ce mois
     public function statistique()
     {
+        @session_start();
         $pastMonth = intval(date("m")) - 1;
         if ($pastMonth == 0) {
             $pastMonth = 12;
@@ -188,7 +211,12 @@ class ArticleController
         }
         $daysPastMonth = DaysPast::daysPastMonth($pastMonth, $currentYear);
         $this->article = new Article();
-        $datas = $this->article->getAllArticles();
+        if ($_SESSION["Auth"]["role"] === '0') {
+            $datas = $this->article->getAllArticles();
+        } else {
+            $datas = $this->article->getAllArticlesBySession($_SESSION["Auth"]["pseudo"]);
+        }
+        // $datas = $this->article->getAllArticles();
         $dat = [];
         $articlesPasts = 0;
         for ($i = 0; $i < count($datas); $i++) {
@@ -218,7 +246,7 @@ class ArticleController
         $this->article = new Article();
         $update = $this->article->updateState($this->id, "publier");
     }
-    
+
     // Vérifie s'il y'a pas de doublons lors de la modification d'un article
     public function verifyUpArt()
     {
@@ -237,7 +265,7 @@ class ArticleController
             echo json_encode("good");
         }
     }
-    
+
     // Vérifie si l'image respecte certaines caractéristiques pour la modification
     public function verifyImgUpArt()
     {
@@ -267,7 +295,7 @@ class ArticleController
             }
         }
     }
-    
+
     public function updateOneArticle()
     {
         $datas = file_get_contents("php://input");

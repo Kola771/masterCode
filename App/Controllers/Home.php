@@ -57,11 +57,18 @@ class Home {
 
     public function dash()
     {
+        @session_start();
         $users = new UserController();
         $contacts = new ContactController();
         $category = new CategoryController();
         $articles = new ArticleController();
-        $allAr = $articles->getAllArticlesAttente();
+        if($_SESSION["Auth"]["role"] === '0')
+        {
+            $allAr = $articles->getAllArticlesAttente();
+        } else {
+            $allAr = $articles->getAllArticlesAttenteBySession();
+        }
+        $articleSession = $articles->getAllArticlesBySession();
         $countBroullons = count($allAr);
         $countusers = $users->countUsers();
         $statistique = $users->statistique();

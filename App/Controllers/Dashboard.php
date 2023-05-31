@@ -47,10 +47,16 @@ class Dashboard
 
     public function articles()
     {
+        @session_start();
         $categories = new CategoryController();
         $allCategories = $categories->allCategories();
         $articles = new ArticleController();
-        $allAr = $articles->getAllArticlesAttente();
+        if($_SESSION["Auth"]["role"] === '0')
+        {
+            $allAr = $articles->getAllArticlesAttente();
+        } else {
+            $allAr = $articles->getAllArticlesAttenteBySession();
+        }
         $countBroullons = count($allAr);
         $allArticles = $articles->getAllArticlesPublier();
         $contacts = new ContactController();
@@ -60,8 +66,14 @@ class Dashboard
 
     public function editor()
     {
+        @session_start();
         $articles = new ArticleController();
-        $allAr = $articles->getAllArticlesAttente();
+        if($_SESSION["Auth"]["role"] === '0')
+        {
+            $allAr = $articles->getAllArticlesAttente();
+        } else {
+            $allAr = $articles->getAllArticlesAttenteBySession();
+        }
         $countBroullons = count($allAr);
         $contacts = new ContactController();
         $countDay = $contacts->countDay();
@@ -102,10 +114,16 @@ class Dashboard
 
     public function brouillons()
     {
+        @session_start();
         $categories = new CategoryController();
         $allCategories = $categories->allCategories();
         $articles = new ArticleController();
-        $allArticles = $articles->getAllArticlesAttente();
+        if($_SESSION["Auth"]["role"] === '0')
+        {
+            $allArticles = $articles->getAllArticlesAttente();
+        } else {
+            $allArticles = $articles->getAllArticlesAttenteBySession();
+        }
         $countBroullons = count($allArticles);
         $contacts = new ContactController();
         $countDay = $contacts->countDay();
@@ -114,10 +132,16 @@ class Dashboard
 
     public function updateArticle()
     {
+        @session_start();
         $categories = new CategoryController();
         $allCategories = $categories->allCategories();
         $articles = new ArticleController();
-        $allArticles = $articles->getAllArticlesAttente();
+        if($_SESSION["Auth"]["role"] === '0')
+        {
+            $allArticles = $articles->getAllArticlesAttente();
+        } else {
+            $allArticles = $articles->getAllArticlesAttenteBySession();
+        }
         $countBroullons = count($allArticles);
         $oneArticle = $articles->getOneArticleById();
         $contacts = new ContactController();
@@ -127,10 +151,16 @@ class Dashboard
 
     public function modalArticle()
     {
+        @session_start();
         $categories = new CategoryController();
         $allCategories = $categories->allCategories();
         $articles = new ArticleController();
-        $allArticles = $articles->getAllArticlesAttente();
+        if($_SESSION["Auth"]["role"] === '0')
+        {
+            $allArticles = $articles->getAllArticlesAttente();
+        } else {
+            $allArticles = $articles->getAllArticlesAttenteBySession();
+        }
         $countBroullons = count($allArticles);
         $oneArticle = $articles->getOneArticleById();
         $contacts = new ContactController();

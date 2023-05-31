@@ -54,7 +54,7 @@
                                     <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
                                         <a href="#"><?= $_SESSION['Auth']['pseudo'] ?></a>
                                         <ul class="binduz-er-news-sub-menu">
-                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
+                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] !== '1'): ?>
                                                 <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('dash') ?>">Dashboard</a></li>
                                             <?php endif; ?>
                                             <li><a href="#">Commentaires</a></li>
