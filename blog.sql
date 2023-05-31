@@ -52,14 +52,14 @@ CREATE TABLE IF NOT EXISTS `articles` (
   CONSTRAINT `FK_articles_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.articles : ~3 rows (environ)
+-- Listage des données de la table blog.articles : ~5 rows (environ)
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
 INSERT INTO `articles` (`article_id`, `article_image`, `article_title`, `code_html`, `state`, `category_id`, `user_id`, `created_at`, `updated_at`) VALUES
 	(6, 'image647645d17f0f29.58924958.jpg', 'Introduction JavaScript', '<h2 style="text-align: center;"><span style="font-family: \'arial black\', sans-serif; font-size: 18pt; color: rgb(230, 126, 35);"><strong>Welcome to MasterCode</strong></span></h2>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image647645737606c4.66314234.jpg" alt="javascript" width="500" height="281"></p>\n<h3 style="text-align: center;"><span style="font-size: 14pt; color: rgb(35, 111, 161);">Essai</span></h3>', 'publier', 18, 3, '2023-05-30 06:52:01', NULL),
-	(7, 'image647733da9a8065.35685559.jpg', 'Testes', '<p>Welcome to MasterCode</p>', 'attente', 16, 13, '2023-05-31 11:46:56', '2023-05-31 11:47:38'),
-	(8, 'image64774e0f032a49.77384463.jpg', 'Introduction HTML', '<p>Welcome to MasterCode</p>\n<p><img src="ressources/images/articles_images/image64774df3aa0439.04831254.jpeg" alt="" width="555" height="291"></p>\n<p>Bonjour messieurs</p>', 'publier', 20, 2, '2023-05-31 01:39:27', NULL),
+	(8, 'Code.jpg', 'Introduction HTML', '<p>Welcome to MasterCode</p>\n<p><img src="ressources/images/articles_images/image64774df3aa0439.04831254.jpeg" alt="" width="555" height="291"></p>\n<p>Bonjour messieurs</p>', 'publier', 20, 2, '2023-05-31 01:39:27', NULL),
 	(9, 'image64774e93c3efe4.28453597.jpg', 'Introduction DOM', '<p>Welcome to MasterCode</p>\n<p><img src="ressources/images/articles_images/image64774e67ef33e5.05794793.png" alt="" width="225" height="225"></p>\n<p>Test</p>', 'attente', 18, 3, '2023-05-31 01:41:39', NULL),
-	(10, 'image64774fcc454b04.52880177.jpg', 'Introduction PHP', '<p>Welcome to MasterCode</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image64774fa9a84547.57122088.png" alt="" width="512" height="512"></p>\n<p>Hello Test</p>', 'attente', 16, 13, '2023-05-31 01:46:52', NULL);
+	(11, 'image64776f35809c70.76760241.jpg', 'Introduction Java', '<p>Welcome to MasterCode</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image64776e80c57ea4.18824137.png" alt="test" width="800" height="450"></p>\n<h3 style="text-align: center;"><span style="font-family: \'arial black\', sans-serif; font-size: 14pt;"><code><span style="color: rgb(230, 126, 35);">Voyourie</span></code></span></h3>', 'attente', 19, 13, '2023-05-31 04:00:53', NULL),
+	(12, 'image64776f77a1ab75.73847069.jpeg', 'Introduction HyperText Modal Langage', '<p>Welcome to MasterCode</p>\n<p><img src="ressources/images/articles_images/image64776f5ba1aa65.52799252.png" alt="" width="600" height="600"></p>', 'publier', 20, 13, '2023-05-31 04:01:59', NULL);
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. categories
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.categories : ~3 rows (environ)
+-- Listage des données de la table blog.categories : ~5 rows (environ)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`category_id`, `category_img`, `category_name`, `category_description`) VALUES
 	(16, 'category_image-647204324d99c6.23988483.png', 'PHP', 'procédural...'),
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   PRIMARY KEY (`contact_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.contacts : ~2 rows (environ)
+-- Listage des données de la table blog.contacts : ~1 rows (environ)
 /*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
 INSERT INTO `contacts` (`contact_id`, `contact_email`, `contact_name`, `contact_theme`, `contact_body`, `state`, `created_at`) VALUES
 	(2, 'kol@gmail.com', 'kola', 'text', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex non dolorum ab rerum quam doloribus quia tempore quidem, sunt magnam praesentium. Numquam ab minus officiis voluptates consequatur ratione ex ipsum dolore quidem nihil, ullam rem eveniet vel libero quos ad odio sapiente quod reprehenderit voluptate quo doloribus dolor laborum sint? Aspernatur labore exercitationem sunt dolorem similique fugiat error mollitia. Autem minima odit nobis sequi id, laudantium cum dolorem tenetur, quibusdam consequatur ullam corporis facere iusto eos, eveniet a harum. Tenetur, consectetur saepe. Exercitationem quam excepturi nemo doloremque deserunt ad dolorum, eligendi, tempora minima reprehenderit impedit quis dolorem quod sapiente ducimus.', 'attente', '2023-05-27 15:37:51');
@@ -166,13 +166,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `user_pseudo` (`user_pseudo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.users : ~5 rows (environ)
+-- Listage des données de la table blog.users : ~6 rows (environ)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `user_email`, `email_code`, `user_pseudo`, `user_role`, `user_password`, `user_bgc`, `created_at`, `updated_at`) VALUES
 	(2, 'koladeaboudou@gmail.com', 201455, 'Kola', '0', '$2y$10$WXZQRuoNjqxiWthZlQOqpuFR6oDWnKeKes9OdAtH/zUU68sr8HaYG', '#66CDAA', '2023-04-01 06:49:13', NULL),
 	(3, 'marcosmedenou@gmail.com', NULL, 'marcos', '0', '$2y$10$ppEg5kJHwAoXUOhnQnio/OmZhu4q1yzlph33fKOpiDH.z6aOs5t22', '#D2691E', '2023-04-04 09:02:54', NULL),
 	(11, 'erikazankpo@gmail.com', NULL, 'ericaz99', '0', '$2y$10$DlbYGLxKWO6yZw8zQlQKu.RBXOmIomhJy124g4P0ZRWu85XFvudk2', '#FFFACD', '2023-05-26 03:31:33', '2023-05-30 08:20:41'),
-	(13, 'geoffroyotegbeye@gmail.com', NULL, 'geoffroy', '2', '$2y$10$lexm1Iu/yj7FQlEOgFEjzevkWmkrZv9qh2kF0XMO2YCWybOdLqBTO', '#48D1CC', '2023-05-30 07:38:15', '2023-05-30 03:43:18'),
+	(13, 'geoffroyotegbeye@gmail.com', NULL, 'geoffroy', '2', '$2y$10$lexm1Iu/yj7FQlEOgFEjzevkWmkrZv9qh2kF0XMO2YCWybOdLqBTO', '#48D1CC', '2023-05-30 07:38:15', '2023-05-31 04:06:20'),
 	(14, 'masterCode@gmail.com', NULL, 'SuperAdmin', '0', '$2y$10$nIIV1.2QxvTEFmXzbw7hUOIGSzMYIAIL2v9paVJgFiVTTJf5hgWwG', '#ADFF2F', '2023-05-30 10:42:24', '2023-05-30 10:42:59'),
 	(15, 'tiburcekouagou@gmail.com', NULL, 'Tiburce', '1', '$2y$10$aBp7Ep8wtLYxRvaggiBQGuxRZF3H7pDBSTyfzVvsmz5/VXO90iMLG', '#0000FF', '2023-05-31 01:43:41', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `viewsarticles` (
   CONSTRAINT `FK_viewsarticles_articles` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.viewsarticles : ~2 rows (environ)
+-- Listage des données de la table blog.viewsarticles : ~1 rows (environ)
 /*!40000 ALTER TABLE `viewsarticles` DISABLE KEYS */;
 INSERT INTO `viewsarticles` (`viewarticle_id`, `nom_hote`, `article_id`) VALUES
 	(2, 'QV7invdN3dfY8SLpQ7T/XlSYmJl7OuxqR6an0SdrkHY=', 6);

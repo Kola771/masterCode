@@ -93,10 +93,11 @@ class ArticleController
 
         // instanciation de la classe model article
         $this->article = new Article();
-
+        $data = $this->article->getOneArticleById($this->id);
+        unlink('../public/ressources/images/images_principales/' . $data[0]["article_image"]);
+        
         // Suppression d'un article
         $array = $this->article->deleteOneArticle($this->id);
-        echo json_encode("supprime");
     }
 
     // Affiche tous les articles
