@@ -12,7 +12,9 @@
                 <?php endif; ?>
             </select>
         <?php else: ?>
-            <input name="etat" id="etat" type="hidden" value="publier">
+            <?php if(isset($_GET["state"])) : ?>
+            <input name="etat" id="etat" type="hidden" value="<?= $this->datadecrypt($_GET["state"]) ?>">
+        <?php endif; ?>
         <?php endif; ?>
     <?php endif; ?>
 
