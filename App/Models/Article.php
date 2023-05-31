@@ -28,10 +28,10 @@ class Article extends Database
     {
         // Connexion avec la base de données
         $conn = $this->connect();
-        $this->title = "%$title%";
+        $this->title = "$title";
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_title FROM `blog`.articles WHERE `articles`.article_title LIKE ?;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_title FROM `blog`.articles WHERE `articles`.article_title = ?;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
@@ -50,7 +50,7 @@ class Article extends Database
         $this->id = $id;
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.state, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.article_id =?;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.state, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.article_id =?;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
@@ -68,7 +68,7 @@ class Article extends Database
         $conn = $this->connect();
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id ORDER BY `articles`.created_at DESC;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id ORDER BY `articles`.created_at DESC;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
@@ -86,7 +86,7 @@ class Article extends Database
         $conn = $this->connect();
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'attente' ORDER BY `articles`.created_at DESC;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'attente' ORDER BY `articles`.created_at DESC;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
@@ -105,7 +105,7 @@ class Article extends Database
         $this->pseudo = $pseudo;
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'attente' AND `users`.user_pseudo = ? ORDER BY `articles`.created_at DESC;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'attente' AND `users`.user_pseudo = ? ORDER BY `articles`.created_at DESC;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
@@ -124,7 +124,7 @@ class Article extends Database
         $this->pseudo = $pseudo;
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `users`.user_pseudo = ? ORDER BY `articles`.created_at DESC;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `users`.user_pseudo = ? ORDER BY `articles`.created_at DESC;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
@@ -142,7 +142,7 @@ class Article extends Database
         $conn = $this->connect();
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'publier' ORDER BY `articles`.created_at DESC;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'publier' ORDER BY `articles`.created_at DESC;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
@@ -218,7 +218,7 @@ class Article extends Database
         /**
          * $sql, pour les requêtes vers la base de données
          */
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE article_title like ? ORDER BY `articles`.created_at DESC;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE article_title like ? ORDER BY `articles`.created_at DESC;";
 
         /**
          * $stmt, pour recupérer la requête préparée

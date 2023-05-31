@@ -113,7 +113,7 @@
                                                             </a>
                                                             <?php if (isset($_SESSION["Auth"])): ?>
                                                                 <?php if ($_SESSION["Auth"]["pseudo"] === $values["user_pseudo"]): ?>
-                                                                    <a href="?goto=<?= $this->datacrypt('dashboard') ?>&id=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('updateArticle') ?>"
+                                                                    <a href="?goto=<?= $this->datacrypt('dashboard') ?>&id=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('updateArticle') ?>&state=<?= $this->datacrypt('attente') ?>"
                                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                                                         aria-label="Edit">
                                                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
@@ -235,7 +235,7 @@
                                                                 </a>
                                                                 <?php if (isset($_SESSION["Auth"])): ?>
                                                                     <?php if ($_SESSION["Auth"]["pseudo"] === $values["user_pseudo"]): ?>
-                                                                        <a href="?goto=<?= $this->datacrypt('dashboard') ?>&id=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('updateArticle') ?>"
+                                                                        <a href="?goto=<?= $this->datacrypt('dashboard') ?>&id=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('updateArticle') ?>&state=<?= $this->datacrypt('attente') ?>"
                                                                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                                                             aria-label="Edit">
                                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"

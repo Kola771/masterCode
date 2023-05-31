@@ -1,2 +1,23 @@
-<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image6475fa2c649551.56308278.jpeg" alt="test" width="500" height="333"></p>
-<p>Welcome To MasterCode</p>
+<p><button>Share MDN!</button></p>
+<p class="result"></p>
+<script>
+    const shareData = {
+        title: "MDN",
+        text: "Learn web development on MDN!",
+        url: "https://developer.mozilla.org",
+      };
+      
+      const btn = document.querySelector("button");
+      const resultPara = document.querySelector(".result");
+      
+      // Share must be triggered by "user activation"
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.share(shareData);
+          resultPara.textContent = "MDN shared successfully";
+        } catch (err) {
+          resultPara.textContent = `Error: ${err}`;
+        }
+      });
+</script>
+  
