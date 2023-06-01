@@ -1,11 +1,12 @@
 <?php
 require_once('../App/Conf/Database.php');
 require_once('../App/Models/Article.php');
+require_once('../App/Models/ViewArticle.php');
 class ArticleController
 {
     use Crypt;
     // Déclaration des variables
-    private $article, $id, $title, $image, $code_html, $category_id, $user_id, $created_at, $updated_at;
+    private $article, $id, $title, $image, $code_html, $category_id, $user_id, $created_at, $updated_at, $views;
 
     // sanitaze(); pour les espacements et les injections de codes
     public function sanitaze($data)
@@ -95,7 +96,7 @@ class ArticleController
         $this->article = new Article();
         $data = $this->article->getOneArticleById($this->id);
         unlink('../public/ressources/images/images_principales/' . $data[0]["article_image"]);
-        
+
         // Suppression d'un article
         $array = $this->article->deleteOneArticle($this->id);
     }
@@ -107,6 +108,23 @@ class ArticleController
         $this->article = new Article();
         $array = $this->article->getAllArticles();
         return $array;
+    }
+
+    // Affiche tous les titres portant ces caractères
+    public function getTitlesArticleLike()
+    {
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        $value = $this->sanitaze($datas->value);
+        // instanciation de la classe model article
+        $this->article = new Article();
+        $allArticles = $this->article->getTitlesArticleLike($value);
+        // instanciation de la classe model viewsarticle
+        $this->views = new ViewArticle();
+        $views = $this->views->getAllviewsArt();
+        if (count($allArticles) > 0) {
+            include_once("../App/Views/FrontendUser/searchArticle.phtml");
+        }
     }
     // public function getAllArticleAtBrouillons()
     // {
@@ -165,6 +183,24 @@ class ArticleController
         return $array;
     }
 
+    public function getAllviewsArt()
+    {
+        // instanciation de la classe model viewsarticle
+        $this->views = new ViewArticle();
+        $array = $this->views->getAllviewsArt();
+        return $array;
+    }
+
+    public function getViewsById()
+    {
+        if (isset($_GET["articleid"])) {
+            // instanciation de la classe model viewsarticle
+            $this->views = new ViewArticle();
+            $array = $this->views->getViewsById($this->datadecrypt($_GET["articleid"]));
+            return $array;
+        }
+    }
+
     // Pour afficher un article spécifique
     public function getOneArticleById()
     {
@@ -172,6 +208,18 @@ class ArticleController
             // instanciation de la classe model article
             $this->article = new Article();
             $id = $this->datadecrypt($_GET["id"]);
+            $array = $this->article->getOneArticleById($id);
+            return $array;
+        }
+    }
+
+    // Pour afficher un article spécifique
+    public function getOneArticleByArtId()
+    {
+        if (isset($_GET["articleid"])) {
+            // instanciation de la classe model article
+            $this->article = new Article();
+            $id = $this->datadecrypt($_GET["articleid"]);
             $array = $this->article->getOneArticleById($id);
             return $array;
         }

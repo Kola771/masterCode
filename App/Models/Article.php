@@ -42,6 +42,25 @@ class Article extends Database
         return $result;
     }
 
+    // Affiche tous les titres portant ces caractères
+    public function getTitlesArticleLike($title)
+    {
+        // Connexion avec la base de données
+        $conn = $this->connect();
+        $this->title = "%$title%";
+
+        // Requête SQL
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `users`.user_role, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.article_title LIKE ?;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([$this->title]);
+
+        // Retourne un tableau grâce à fetchAll();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
     // Affiche un article spécifique
     public function getOneArticleById($id)
     {
@@ -50,7 +69,7 @@ class Article extends Database
         $this->id = $id;
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.state, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.article_id =?;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.state, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `users`.user_role, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.article_id =?;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
@@ -142,7 +161,7 @@ class Article extends Database
         $conn = $this->connect();
 
         // Requête SQL
-        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'publier' ORDER BY `articles`.created_at DESC;";
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `users`.user_role, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'publier' ORDER BY `articles`.created_at DESC;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);

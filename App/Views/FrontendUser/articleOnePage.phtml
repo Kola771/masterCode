@@ -2,42 +2,29 @@
 
 <main>
     <section class="binduz-er-author-item-area pb-20">
-        <div class="binduz-er-blog-bg-area"></div>
+        <div class="binduz-er-blog-bg-area" style="background-image: url(/ressources/images/images_principales/<?= $oneArticle[0]["article_image"] ?>);"></div>
         <div class=" container">
             <div class="row">
                 <div class=" col-lg-9">
                     <div class="binduz-er-author-item mb-40 mtop-90">
                         <div class="binduz-er-content">
-                            <div class="binduz-er-meta-item flexOneArticle">
-                                <div class="childFlexOne">
-                                    <div class="binduz-er-input-box commentPost">
-                                        M
-                                    </div>
-                                    <span>Publié par <span>Marcos</span></span>
-                                </div>
-                                <div class="binduz-er-meta-categories" id="categ">
-                                    <a href="#">JavaScript</a>
-                                </div>
-                                <div class="binduz-er-meta-date">
-                                    <span><i class="fal fa-calendar-alt"></i>2023-05-25</span>
-                                </div>
-                            </div>
+                            <h3 class="binduz-er-title"><?= $oneArticle[0]["article_title"] ?></h3>
                         </div>
                         <div class="row">
 
                             <div>
                                 <div class="binduz-er-blog-details-box">
                                     <div class="binduz-er-text">
-                                        Code html
+                                        <?= $oneArticle[0]["code_html"] ?>
                                     </div>
                                     <div class="elementArticle">
-                                        <!-- <div class="iconArticle">
-                                            <i class="fal fa-user"></i>
-                                            <span>Par Kola</span>
-                                        </div> -->
                                         <div class="iconArticle">
                                             <i class="fal fa-eye"></i>
-                                            <span>5k</span>
+                                            <?php if(count($oneView) > 0) : ?>
+                                            <span><?= $oneView[0]["nombre"] ?> vues</span>
+                                            <?php else : ?>
+                                            <span>0 vues</span>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="iconArticle redHeart">
                                             <form action="#">

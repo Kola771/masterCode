@@ -36,11 +36,17 @@ class Home {
     
     public function newArticles()
     {
+        $articles = new ArticleController();
+        $views = $articles->getAllviewsArt();
+        $allArticles = $articles->getAllArticlesPublier();
         require_once("../App/Views/FrontendUser/articlesPage.phtml");;
     }
 
     public function articleOne()
     {
+        $articles = new ArticleController();
+        $oneView = $articles->getViewsById();
+        $oneArticle = $articles->getOneArticleByArtId();
         require_once("../App/Views/FrontendUser/articleOnePage.phtml");;
     }
 

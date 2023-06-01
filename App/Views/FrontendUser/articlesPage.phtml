@@ -4,198 +4,66 @@
     <section class="binduz-er-author-item-area pb-20">
         <div class=" container">
             <div class="row">
-                <div class=" col-lg-9">
-                    <article class="binduz-er-author-item mb-40">
-                        <div class="binduz-er-thumb">
-                            <img src="/ressources/images/js1.jpg" alt="image">
-                        </div>
-                        <div class="binduz-er-content">
-                            <div class="binduz-er-meta-item">
-                                <div class="binduz-er-meta-categories">
-                                    <a href="#">JavaScript</a>
-                                </div>
-                                <div class="binduz-er-meta-date">
-                                    <span><i class="fal fa-calendar-alt"></i>2023-05-25</span>
-                                </div>
+                <div class="mainArticle col-lg-9">
+                    <?php foreach ($allArticles as $key => $values): ?>
+                        <article class="binduz-er-author-item mb-40 article">
+                            <div class="binduz-er-thumb imgArt">
+                                <img src="/ressources/images/images_principales/<?= $values["article_image"] ?>"
+                                    alt="image">
                             </div>
-                            <h3 class="binduz-er-title"><a
-                                    href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt('1') ?>&action=<?= $this->datacrypt('articleOne') ?>">Comment
-                                    enrégistrer une variable dans le
-                                    localStorage et l'utiliser ?</a></h3>
-                            <div class="binduz-er-meta-author">
-                                <div class="binduz-er-author accountImg">
-                                    <div class="binduz-er-input-box commentPost">
-                                        k
+                            <div class="binduz-er-content">
+                                <div class="binduz-er-meta-item">
+                                    <div class="binduz-er-meta-categories">
+                                        <a href="#">
+                                            <?= $values["category_name"] ?>
+                                        </a>
                                     </div>
-                                    <span>Publié par <span>Kola</span></span>
-                                </div>
-                                <div class="binduz-er-meta-list">
-                                    <ul>
-                                        <li><i class="fal fa-eye"></i> 5k</li>
-                                        <li><i class="fal fa-heart"></i> 5k</li>
-                                        <li><i class="fal fa-comments"></i> 5k</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="binduz-er-author-item mb-40">
-                        <div class="binduz-er-thumb">
-                            <img src="/ressources/images/html-tagst.jpg" alt="image">
-                        </div>
-                        <div class="binduz-er-content">
-                            <div class="binduz-er-meta-item">
-                                <div class="binduz-er-meta-categories">
-                                    <a href="#">HTML</a>
-                                </div>
-                                <div class="binduz-er-meta-date">
-                                    <span><i class="fal fa-calendar-alt"></i>2023-05-25</span>
-                                </div>
-                            </div>
-                            <h3 class="binduz-er-title"><a href="#">C'est quoi une balise sémantique ?</a></h3>
-                            <div class="binduz-er-meta-author">
-                                <div class="binduz-er-author accountImg">
-                                    <div class="binduz-er-input-box commentPost">
-                                        M
+                                    <div class="binduz-er-meta-date">
+                                        <span><i class="fal fa-calendar-alt"></i>
+                                            <?= $values["created_at"] ?>
+                                        </span>
                                     </div>
-                                    <span>Publié par <span>Marcos</span></span>
                                 </div>
-                                <div class="binduz-er-meta-list">
-                                    <ul>
-                                        <li><i class="fal fa-eye"></i> 5k</li>
-                                        <li><i class="fal fa-heart"></i> 5k</li>
-                                        <li><i class="fal fa-comments"></i> 5k</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="binduz-er-author-item mb-40">
-                        <div class="binduz-er-thumb">
-                            <img src="/ressources/images/chart.jpeg" alt="image">
-                        </div>
-                        <div class="binduz-er-content">
-                            <div class="binduz-er-meta-item">
-                                <div class="binduz-er-meta-categories">
-                                    <a href="#">VueJS</a>
-                                </div>
-                                <div class="binduz-er-meta-date">
-                                    <span><i class="fal fa-calendar-alt"></i>2023-05-25</span>
-                                </div>
-                            </div>
-                            <h3 class="binduz-er-title"><a href="#">Comment utiliser chartJS ? </a></h3>
-                            <div class="binduz-er-meta-author">
-                                <div class="binduz-er-author accountImg">
-                                    <div class="binduz-er-input-box commentPost">
-                                        E
+                                <h3 class="binduz-er-title"><a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>"><?= $values["article_title"] ?></a></h3>
+                                <div class="binduz-er-meta-author">
+                                    <?php if ($values["user_role"] === '0'): ?>
+                                        <div class="imageArt">
+                                            <img src="" alt="image">
+                                            <span>Publié par <span>
+                                                    MasterCode
+                                                </span></span>
+                                        </div>
+                                    <?php elseif ($values["user_role"] === '2'): ?>
+                                        <div class="binduz-er-author accountImg">
+                                            <div class="binduz-er-input-box commentPost"
+                                                style="background-color: <?= $values["user_bgc"] ?>;">
+                                                <?php $string = $values["user_pseudo"];
+                                                echo $string[0]; ?>
+                                            </div>
+                                            <span>Publié par <span>
+                                                    <?= $values["user_pseudo"] ?>
+                                                </span></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="binduz-er-meta-list">
+                                        <ul>
+                                            <li><i class="fal fa-eye"></i>
+                                                <?php for ($y = 0; $y < count($views); $y++): ?>
+                                                    <?php if ($values["article_id"] === $views[$y]["article_id"]): ?>
+                                                        <?= $views[$y]["nombre"] ?>
+                                                    <?php endif; ?>
+                                                <?php endfor; ?>
+                                            </li>
+
+                                            <li><i class="fal fa-heart"></i> 5k</li>
+                                            <li><i class="fal fa-comments"></i> 5k</li>
+                                        </ul>
                                     </div>
-                                    <span>Publié par <span>Erik</span></span>
-                                </div>
-                                <div class="binduz-er-meta-list">
-                                    <ul>
-                                        <li><i class="fal fa-eye"></i> 5k</li>
-                                        <li><i class="fal fa-heart"></i> 5k</li>
-                                        <li><i class="fal fa-comments"></i> 5k</li>
-                                    </ul>
                                 </div>
                             </div>
-                        </div>
-                    </article>
-                    <article class="binduz-er-author-item mb-40">
-                        <div class="binduz-er-thumb">
-                            <img src="/ressources/images/laravel9.jpg" alt="image">
-                        </div>
-                        <div class="binduz-er-content">
-                            <div class="binduz-er-meta-item">
-                                <div class="binduz-er-meta-categories">
-                                    <a href="#">Dépannage</a>
-                                </div>
-                                <div class="binduz-er-meta-date">
-                                    <span><i class="fal fa-calendar-alt"></i>2023-05-23</span>
-                                </div>
-                            </div>
-                            <h3 class="binduz-er-title"><a href="#">Comment installer laravel 9 sur son poste ?</a></h3>
-                            <div class="binduz-er-meta-author">
-                                <div class="binduz-er-author accountImg">
-                                    <div class="binduz-er-input-box commentPost">
-                                        E
-                                    </div>
-                                    <span>Publié par <span>Erik</span></span>
-                                </div>
-                                <div class="binduz-er-meta-list">
-                                    <ul>
-                                        <li><i class="fal fa-eye"></i> 5k</li>
-                                        <li><i class="fal fa-heart"></i> 5k</li>
-                                        <li><i class="fal fa-comments"></i> 5k</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="binduz-er-author-item mb-40">
-                        <div class="binduz-er-thumb">
-                            <img src="/ressources/images/ajax.jpg" alt="image">
-                        </div>
-                        <div class="binduz-er-content">
-                            <div class="binduz-er-meta-item">
-                                <div class="binduz-er-meta-categories">
-                                    <a href="#">JavaScript</a>
-                                </div>
-                                <div class="binduz-er-meta-date">
-                                    <span><i class="fal fa-calendar-alt"></i>2023-05-23</span>
-                                </div>
-                            </div>
-                            <h3 class="binduz-er-title"><a href="#">Comment télécharger une image en utilisant ajax
-                                    ?</a></h3>
-                            <div class="binduz-er-meta-author">
-                                <div class="binduz-er-author accountImg">
-                                    <div class="binduz-er-input-box commentPost">
-                                        M
-                                    </div>
-                                    <span>Publié par <span>Marcos</span></span>
-                                </div>
-                                <div class="binduz-er-meta-list">
-                                    <ul>
-                                        <li><i class="fal fa-eye"></i> 5k</li>
-                                        <li><i class="fal fa-heart"></i> 5k</li>
-                                        <li><i class="fal fa-comments"></i> 5k</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="binduz-er-author-item mb-40">
-                        <div class="binduz-er-thumb">
-                            <img src="/ressources/images/upload-php.jpg" alt="image">
-                        </div>
-                        <div class="binduz-er-content">
-                            <div class="binduz-er-meta-item">
-                                <div class="binduz-er-meta-categories">
-                                    <a href="#">PHP</a>
-                                </div>
-                                <div class="binduz-er-meta-date">
-                                    <span><i class="fal fa-calendar-alt"></i>2023-05-23</span>
-                                </div>
-                            </div>
-                            <h3 class="binduz-er-title"><a href="#">Comment télécharger une image en utilisant php ?</a>
-                            </h3>
-                            <div class="binduz-er-meta-author">
-                                <div class="binduz-er-author accountImg">
-                                    <div class="binduz-er-input-box commentPost">
-                                        K
-                                    </div>
-                                    <span>Publié par <span>Kola</span></span>
-                                </div>
-                                <div class="binduz-er-meta-list">
-                                    <ul>
-                                        <li><i class="fal fa-eye"></i> 5k</li>
-                                        <li><i class="fal fa-heart"></i> 5k</li>
-                                        <li><i class="fal fa-comments"></i> 5k</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    <?php endforeach; ?>
                 </div>
                 <div class=" col-lg-3">
                     <div class="binduz-er-populer-news-sidebar">
@@ -203,7 +71,6 @@
                         <form action="#" class="binduz-er-author-sidebar-search-bar searchArticle">
                             <div class="binduz-er-input-box">
                                 <input type="text" name="searchInt" id="searchInt" placeholder="Recherche intuitive">
-                                <button type="button"><i class="fal fa-search"></i></button>
                             </div>
                         </form>
 
@@ -337,7 +204,8 @@
         </div>
     </section>
 
-
+    
 </main>
 
+<script src="/ressources/js/articlePage.js"></script>
 <?php include_once("../App/Views/FrontendUser/includes/footer.phtml") ?>

@@ -59,6 +59,7 @@ class Dashboard
         }
         $countBroullons = count($allAr);
         $allArticles = $articles->getAllArticlesPublier();
+        $views = $articles->getAllviewsArt();
         $contacts = new ContactController();
         $countDay = $contacts->countDay();
         require_once("../App/Views/admin/articles.phtml");

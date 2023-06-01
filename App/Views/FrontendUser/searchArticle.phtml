@@ -1,0 +1,57 @@
+<?php foreach ($allArticles as $key => $values): ?>
+    <article class="binduz-er-author-item mb-40 article">
+        <div class="binduz-er-thumb imgArt">
+            <img src="/ressources/images/images_principales/<?= $values["article_image"] ?>" alt="image">
+        </div>
+        <div class="binduz-er-content">
+            <div class="binduz-er-meta-item">
+                <div class="binduz-er-meta-categories">
+                    <a href="#">
+                        <?= $values["category_name"] ?>
+                    </a>
+                </div>
+                <div class="binduz-er-meta-date">
+                    <span><i class="fal fa-calendar-alt"></i>
+                        <?= $values["created_at"] ?>
+                    </span>
+                </div>
+            </div>
+            <h3 class="binduz-er-title"><a
+                    href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>"><?= $values["article_title"] ?></a></h3>
+            <div class="binduz-er-meta-author">
+                <?php if ($values["user_role"] === '0'): ?>
+                    <div class="imageArt">
+                        <img src="" alt="image">
+                        <span>Publié par <span>
+                                MasterCode
+                            </span></span>
+                    </div>
+                <?php elseif ($values["user_role"] === '2'): ?>
+                    <div class="binduz-er-author accountImg">
+                        <div class="binduz-er-input-box commentPost" style="background-color: <?= $values["user_bgc"] ?>;">
+                            <?php $string = $values["user_pseudo"];
+                            echo $string[0]; ?>
+                        </div>
+                        <span>Publié par <span>
+                                <?= $values["user_pseudo"] ?>
+                            </span></span>
+                    </div>
+                <?php endif; ?>
+                <div class="binduz-er-meta-list">
+                    <ul>
+                        <li><i class="fal fa-eye"></i>
+                            <?php for ($y = 0; $y < count($views); $y++): ?>
+                                <?php if ($values["article_id"] === $views[$y]["article_id"]): ?>
+                                    <?= $views[$y]["nombre"] ?>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </li>
+
+                        <li><i class="fal fa-heart"></i> 5k</li>
+                        <li><i class="fal fa-comments"></i> 5k</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+<?php endforeach; ?>
