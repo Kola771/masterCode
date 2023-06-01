@@ -96,21 +96,23 @@ CREATE TABLE IF NOT EXISTS `comments` (
   CONSTRAINT `FK_comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.comments : ~0 rows (environ)
+-- Listage des données de la table blog.comments : ~12 rows (environ)
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
 INSERT INTO `comments` (`comment_id`, `comment_body`, `user_id`, `article_id`, `created_at`) VALUES
-	(1, '@Marcos très interessant', 2, 8, '2023-06-01 02:18:51'),
+	(1, '@Marcos très interessant<br />\npush', 2, 8, '2023-06-01 02:18:51'),
 	(2, 'Interessant', 11, 8, '2023-06-01 02:21:50'),
 	(3, '@Kola cool', 11, 8, '2023-06-01 02:21:58'),
 	(4, '@Kola 😎', 11, 8, '2023-06-01 02:22:08'),
 	(5, 'Très bien illustré ce cours', 11, 13, '2023-06-01 02:23:01'),
 	(6, 'Ah ce langage', 11, 12, '2023-06-01 02:23:24'),
-	(7, 'La suite<br />\n<br />\nC\'est vraiment intéressant😎', 2, 12, '2023-06-01 02:23:52'),
-	(8, '@ericaz99 cool non', 2, 8, '2023-06-01 03:25:37'),
+	(7, 'La suite<br />\nC\'est vraiment intéressant😎<br />\ndfdsfd', 2, 12, '2023-06-01 02:23:52'),
+	(8, '@ericaz99 cool non<br />\ngood', 2, 8, '2023-06-01 03:25:37'),
 	(9, '@ericaz99 vraiment passionnant😎<br />\nPas d\'erreur donc pas de soucis', 15, 12, '2023-06-01 03:33:32'),
 	(10, '@Tiburce très drôle', 11, 12, '2023-06-01 04:42:17'),
 	(11, 'Très intéressant', 15, 6, '2023-06-01 04:53:15'),
-	(14, '@Tiburce boss ça va ?<br />\nBien j\'espère', 11, 6, '2023-06-01 05:28:03');
+	(14, '@Tiburce boss ça va ?<br />\nBien j\'espère', 11, 6, '2023-06-01 05:28:03'),
+	(15, 'Bonjour Ca va ? Bonsoir', 2, 12, '2023-06-01 05:39:45'),
+	(16, '@ericaz99 ok<br />\nlghkjk', 2, 12, '2023-06-01 05:40:50');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. contacts
@@ -201,16 +203,13 @@ CREATE TABLE IF NOT EXISTS `viewsarticles` (
   CONSTRAINT `FK_viewsarticles_articles` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.viewsarticles : ~4 rows (environ)
+-- Listage des données de la table blog.viewsarticles : ~7 rows (environ)
 /*!40000 ALTER TABLE `viewsarticles` DISABLE KEYS */;
 INSERT INTO `viewsarticles` (`viewarticle_id`, `nom_hote`, `article_id`) VALUES
-	(4, 'M3L6vur6LT87nPsRsSISL4ic8xYYX2Gc56p8ROYv2Zaw34M5Yr910Led/E637alU', 13),
-	(5, 'BXnZBGec/yIJM3wkgq/jk7h0qd5mnU9n663WT[plus]nt4Zi3v31reL1wqhc9nVRZp1XK', 12),
-	(9, 'vINoju1FoD7qzzFWBw9ypdsMhv8o6DIFDm6Z8SxBANG6f/vw7chkau8TqvjsPucp', 6),
-	(13, 'wKAshnRUjxulpCPHQlo9e7QEttkMNHJt16vgua3THDMya7WevVAffh4JlJYhQN5H', 8),
-	(14, 'Fa[plus]146VmHd74Ebz9[plus]OPyXEevpJ3n4u[plus]Ck5Ye//HV0WI=', 12),
-	(15, 'LV4XouGi9lvLBoEww3APB8QxOnCs7HWXkwFWz0kHRkc=', 13),
-	(16, 'ixd2aSD[plus]v/TBVdj6PBgpvRCvZQ9Jw7/hLnaZ/Pn6jjk=', 6);
+	(17, '2QNfNvNPxy/Ri27rBaMjtkK7P/NFJ7rprMcD0Aspj/fu8HTPeQ8ldun5JLQNhORq', 13),
+	(18, 'icgokiAKlEYgJLQlz94DYwOi[plus]dAzR1TAaDC820sTDOE=', 6),
+	(19, 'UN5W0Sz0NoFur2VJ1CTqRoKnBGd6J6eVAcsozas7R1eVfP[plus]UeZ/B5Szxe20Db1EE', 12),
+	(20, '6W[plus]zc69hJjZXRYR13IhDVN2BNi70r2LvdyqJXesVrzsng0T6KX/Y10JxeTDoMk9A', 8);
 /*!40000 ALTER TABLE `viewsarticles` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

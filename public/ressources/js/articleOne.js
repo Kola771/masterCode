@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             form.style.display = "block";
             up.parentElement.parentElement.parentElement.children[2].style.display = "none";
             up.parentElement.parentElement.parentElement.children[3].style.display = "none";
-            text.value = up.parentElement.parentElement.parentElement.children[2].textContent.trim();
+            text.innerHTML = up.parentElement.parentElement.parentElement.children[2].textContent.trim();
         })
     })
 
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         form.style.display = "block";
                         up.parentElement.parentElement.parentElement.children[2].style.display = "none";
                         up.parentElement.parentElement.parentElement.children[3].style.display = "none";
-                        text.value = up.parentElement.parentElement.parentElement.children[2].textContent.trim();
+                        text.innerHTML = up.parentElement.parentElement.parentElement.children[2].textContent.trim();
                     })
                 })
             
