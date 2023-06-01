@@ -1,6 +1,6 @@
 <?php
 require_once('../App/Conf/Database.php');
-require_once('../App/Conf/Comment.php');
+require_once('../App/Models/Comment.php');
 
 class CommentController
 {
@@ -33,13 +33,11 @@ class CommentController
 
             $this->comments = nl2br($datas->body);
             $articleid = $this->datadecrypt($_GET["articleid"]);
-            $userid = $_SESSION["Auth"]["id"];
+            $userid = $this->datadecrypt($_SESSION["Auth"]["id"]);
             $created_at = date("Y-m-d h:i:s");
 
-            if (!empty($this->comments)) {
-                $this->comment = new Comment();
-                $this->comment->addComment($this->comments, $userid, $articleid, $created_at);
-            }
+            $this->comment = new Comment();
+            $this->comment->addComment($this->comments, $userid, $articleid, $created_at);
         }
     }
 
