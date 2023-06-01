@@ -32,15 +32,9 @@ class Search
         $category = new Category();
         if ($search !== "%%") {
             $users = $user->searchLike($search);
-            // if (count($users) == 0) {
-                $articles = $article->searchLike($search);
-                // if (count($articles) == 0) {
-                    $contacts = $contact->searchLike($search);
-                    // if (count($contacts) == 0) {
-                        $categories = $category->searchLike($search);
-                    // }
-                // }
-            // }
+            $articles = $article->searchLike($search);
+            $contacts = $contact->searchLike($search);
+            $categories = $category->searchLike($search);
             require_once("../App/Views/admin/search.phtml");
         }
     }
