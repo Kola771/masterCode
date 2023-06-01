@@ -134,7 +134,7 @@
                                                                                 <button class="upPost"
                                                                                     value="<?= $this->datacrypt($values['comment_id']) ?>"><i
                                                                                         class="fal fa-pencil"></i> Modifier</button>
-                                                                                <button><i class="fal fa-ban"></i>
+                                                                                <button class="del" value="<?= $this->datacrypt($values['comment_id']) ?>"><i class="fal fa-ban"></i>
                                                                                     Supprimer</span></button>
                                                                             <?php endif; ?>
                                                                             <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
@@ -291,8 +291,8 @@
 </main>
 <?php if (isset($_SESSION["Auth"])): ?>
     <script src="/ressources/js/articleOne.js"></script>
-    <?php else: ?>
-        <script src="/ressources/js/notConnect.js"></script>
+<?php else: ?>
+    <script src="/ressources/js/notConnect.js"></script>
 <?php endif; ?>
 <?php include_once("../App/Views/getViewArticle.phtml") ?>
 <?php include_once("../App/Views/FrontendUser/includes/footer.phtml") ?>

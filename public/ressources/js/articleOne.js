@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let answers = document.querySelectorAll(".answer");
     let upCom = document.querySelectorAll(".upCom");
     let upPost = document.querySelectorAll(".upPost");
+    let del = document.querySelectorAll(".del");
     let commentPost = document.getElementById("commentPost");
     let sendComment = document.getElementById("sendComment");
     let childPostParagraph = document.querySelectorAll(".childPost>p");
@@ -65,6 +66,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "post"
             }
             fetch("?ajax=comment-controller&action=up-comment", option)
+        })
+    })
+
+    del.forEach(el => {
+        el.addEventListener("click", (e) => {
+            e.preventDefault()
+            let parent = el.parentElement.parentElement.parentElement.parentElement.parentElement;
+            let data = {
+                id: el.value
+            }
+            data = JSON.stringify(data);
+            let option = {
+                header: {
+                    content: "application/json"
+                },
+                body: data,
+                method: "post"
+            }
+            // fetch("?ajax=comment-controller&action=up-comment", option)
+            parent.remove();
         })
     })
 

@@ -30,7 +30,7 @@
                                     <button class="upCom"><i class="fal fa-pencil"></i> Modifier</button>
                                     <button class="upPost" value="<?= $this->datacrypt($values['comment_id']) ?>"><i
                                             class="fal fa-pencil"></i> Modifier</button>
-                                    <button><i class="fal fa-ban"></i> Supprimer</span></button>
+                                    <button class="del" value="<?= $this->datacrypt($values['comment_id']) ?>"><i class="fal fa-ban"></i> Supprimer</span></button>
                                 <?php endif; ?>
                                 <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
                                     <?php if ($_SESSION['Auth']['pseudo'] !== $values['user_pseudo']): ?>
