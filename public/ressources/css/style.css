@@ -9742,6 +9742,7 @@ div.imageArt>img {
   aspect-ratio: 1;
   border-radius: 50%;
   width: 55px;
+  border: 2px solid;
 }
 
 div.imageArt>span>span {
@@ -9924,7 +9925,7 @@ div.childFlexOne>span>span {
 
 .parentComment {
   display: flex;
-  align-items: center;
+  align-self: start;
   gap: 1em;
   margin-block: 16px 10px;
 }
@@ -9942,6 +9943,7 @@ div.childFlexOne>span>span {
   font-size: 22px;
   color: #eee;
   text-transform: uppercase;
+  border: 2px solid;
 }
 
 .bodyPost {
@@ -9953,7 +9955,7 @@ div.childFlexOne>span>span {
 
 .bodyPost>div.childPost {
   background-color: #f8f8f8;
-  width: 100%;
+  flex-basis: 100%;
   padding: .4em;
   border-radius: .4em;
 }
@@ -9974,14 +9976,32 @@ div.childPost span {
   gap: 1em;
 }
 
-.bodyPost>div:nth-child(2)
+.formUp
 {
+  margin-top: 5px;
+  flex-basis: 100%;
   display: flex;
   gap: .5em;
 }
 
+.formUpd {
+  width: 100%;
+  height: 100px;
+  display: none;
+}
+
+.formUpd>textarea {
+  width: 100%;
+  height: 80px;
+  resize: none;
+}
+
+.upPost {
+  display: none;
+}
+
 .upDelForm button,
-.bodyPost>div>a {
+.childPost>.formUp>a {
   background-color: var(--clr-primary);
   padding: .5em;
   color: #eee;

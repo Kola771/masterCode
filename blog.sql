@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   CONSTRAINT `FK_articles_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.articles : ~5 rows (environ)
+-- Listage des données de la table blog.articles : ~6 rows (environ)
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
 INSERT INTO `articles` (`article_id`, `article_image`, `article_title`, `code_html`, `state`, `category_id`, `user_id`, `created_at`, `updated_at`) VALUES
 	(6, 'image647645d17f0f29.58924958.jpg', 'Introduction JavaScript', '<h2 style="text-align: center;"><span style="font-family: \'arial black\', sans-serif; font-size: 18pt; color: rgb(230, 126, 35);"><strong>Welcome to MasterCode</strong></span></h2>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="ressources/images/articles_images/image647645737606c4.66314234.jpg" alt="javascript" width="500" height="281"></p>\n<h3 style="text-align: center;"><span style="font-size: 14pt; color: rgb(35, 111, 161);">Essai</span></h3>', 'publier', 18, 3, '2023-05-30 06:52:01', NULL),
@@ -98,6 +98,19 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 -- Listage des données de la table blog.comments : ~0 rows (environ)
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` (`comment_id`, `comment_body`, `user_id`, `article_id`, `created_at`) VALUES
+	(1, '@Marcos très interessant', 2, 8, '2023-06-01 02:18:51'),
+	(2, 'Interessant', 11, 8, '2023-06-01 02:21:50'),
+	(3, '@Kola cool', 11, 8, '2023-06-01 02:21:58'),
+	(4, '@Kola 😎', 11, 8, '2023-06-01 02:22:08'),
+	(5, 'Très bien illustré ce cours', 11, 13, '2023-06-01 02:23:01'),
+	(6, 'Ah ce langage', 11, 12, '2023-06-01 02:23:24'),
+	(7, 'La suite<br />\n<br />\nC\'est vraiment intéressant😎', 2, 12, '2023-06-01 02:23:52'),
+	(8, '@ericaz99 cool non', 2, 8, '2023-06-01 03:25:37'),
+	(9, '@ericaz99 vraiment passionnant😎<br />\nPas d\'erreur donc pas de soucis', 15, 12, '2023-06-01 03:33:32'),
+	(10, '@Tiburce très drôle', 11, 12, '2023-06-01 04:42:17'),
+	(11, 'Très intéressant', 15, 6, '2023-06-01 04:53:15'),
+	(14, '@Tiburce boss ça va ?<br />\nBien j\'espère', 11, 6, '2023-06-01 05:28:03');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 
 -- Listage de la structure de la table blog. contacts
@@ -112,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   PRIMARY KEY (`contact_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.contacts : ~2 rows (environ)
+-- Listage des données de la table blog.contacts : ~1 rows (environ)
 /*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
 INSERT INTO `contacts` (`contact_id`, `contact_email`, `contact_name`, `contact_theme`, `contact_body`, `state`, `created_at`) VALUES
 	(2, 'kol@gmail.com', 'kola', 'text', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex non dolorum ab rerum quam doloribus quia tempore quidem, sunt magnam praesentium. Numquam ab minus officiis voluptates consequatur ratione ex ipsum dolore quidem nihil, ullam rem eveniet vel libero quos ad odio sapiente quod reprehenderit voluptate quo doloribus dolor laborum sint? Aspernatur labore exercitationem sunt dolorem similique fugiat error mollitia. Autem minima odit nobis sequi id, laudantium cum dolorem tenetur, quibusdam consequatur ullam corporis facere iusto eos, eveniet a harum. Tenetur, consectetur saepe. Exercitationem quam excepturi nemo doloremque deserunt ad dolorum, eligendi, tempora minima reprehenderit impedit quis dolorem quod sapiente ducimus.', 'attente', '2023-05-27 15:37:51');
@@ -167,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `user_pseudo` (`user_pseudo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.users : ~5 rows (environ)
+-- Listage des données de la table blog.users : ~6 rows (environ)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `user_email`, `email_code`, `user_pseudo`, `user_role`, `user_password`, `user_bgc`, `created_at`, `updated_at`) VALUES
 	(2, 'koladeaboudou@gmail.com', 201455, 'Kola', '0', '$2y$10$WXZQRuoNjqxiWthZlQOqpuFR6oDWnKeKes9OdAtH/zUU68sr8HaYG', '#66CDAA', '2023-04-01 06:49:13', NULL),
@@ -188,13 +201,16 @@ CREATE TABLE IF NOT EXISTS `viewsarticles` (
   CONSTRAINT `FK_viewsarticles_articles` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table blog.viewsarticles : ~2 rows (environ)
+-- Listage des données de la table blog.viewsarticles : ~4 rows (environ)
 /*!40000 ALTER TABLE `viewsarticles` DISABLE KEYS */;
 INSERT INTO `viewsarticles` (`viewarticle_id`, `nom_hote`, `article_id`) VALUES
 	(4, 'M3L6vur6LT87nPsRsSISL4ic8xYYX2Gc56p8ROYv2Zaw34M5Yr910Led/E637alU', 13),
 	(5, 'BXnZBGec/yIJM3wkgq/jk7h0qd5mnU9n663WT[plus]nt4Zi3v31reL1wqhc9nVRZp1XK', 12),
 	(9, 'vINoju1FoD7qzzFWBw9ypdsMhv8o6DIFDm6Z8SxBANG6f/vw7chkau8TqvjsPucp', 6),
-	(13, 'wKAshnRUjxulpCPHQlo9e7QEttkMNHJt16vgua3THDMya7WevVAffh4JlJYhQN5H', 8);
+	(13, 'wKAshnRUjxulpCPHQlo9e7QEttkMNHJt16vgua3THDMya7WevVAffh4JlJYhQN5H', 8),
+	(14, 'Fa[plus]146VmHd74Ebz9[plus]OPyXEevpJ3n4u[plus]Ck5Ye//HV0WI=', 12),
+	(15, 'LV4XouGi9lvLBoEww3APB8QxOnCs7HWXkwFWz0kHRkc=', 13),
+	(16, 'ixd2aSD[plus]v/TBVdj6PBgpvRCvZQ9Jw7/hLnaZ/Pn6jjk=', 6);
 /*!40000 ALTER TABLE `viewsarticles` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

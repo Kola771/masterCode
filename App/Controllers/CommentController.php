@@ -38,7 +38,18 @@ class CommentController
 
             $this->comment = new Comment();
             $this->comment->addComment($this->comments, $userid, $articleid, $created_at);
+            $oneCom = $this->comment->getAllComment($this->datadecrypt($_GET["articleid"]));
+            include_once("../App/Views/FrontendUser/commentPost.phtml");
         }
+    }
+
+    public function upComment()
+    {
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        $this->comment = new Comment();
+        $this->comments = nl2br($datas->body);
+        $this->comment->upComment($this->datadecrypt($datas->id), $this->comments);
     }
 
     // deleteOneComment(), pour supprimer un commentaire de la bd

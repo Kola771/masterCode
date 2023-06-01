@@ -2,13 +2,17 @@
 
 <main>
     <section class="binduz-er-author-item-area pb-20">
-        <div class="binduz-er-blog-bg-area" style="background-image: url(/ressources/images/images_principales/<?= $oneArticle[0]["article_image"] ?>);"></div>
+        <div class="binduz-er-blog-bg-area"
+            style="background-image: url(/ressources/images/images_principales/<?= $oneArticle[0]["article_image"] ?>);">
+        </div>
         <div class=" container">
             <div class="row">
                 <div class=" col-lg-9">
                     <div class="binduz-er-author-item mb-40 mtop-90">
                         <div class="binduz-er-content">
-                            <h3 class="binduz-er-title"><?= $oneArticle[0]["article_title"] ?></h3>
+                            <h3 class="binduz-er-title">
+                                <?= $oneArticle[0]["article_title"] ?>
+                            </h3>
                         </div>
                         <div class="row">
 
@@ -20,10 +24,12 @@
                                     <div class="elementArticle">
                                         <div class="iconArticle">
                                             <i class="fal fa-eye"></i>
-                                            <?php if(count($oneView) > 0) : ?>
-                                            <span><?= $oneView[0]["nombre"] ?> vues</span>
-                                            <?php else : ?>
-                                            <span>0 vues</span>
+                                            <?php if (count($oneView) > 0): ?>
+                                                <span>
+                                                    <?= $oneView[0]["nombre"] ?> vues
+                                                </span>
+                                            <?php else: ?>
+                                                <span>0 vues</span>
                                             <?php endif; ?>
                                         </div>
                                         <div class="iconArticle redHeart">
@@ -34,8 +40,15 @@
                                             <span>5k</span>
                                         </div>
                                         <div class="iconArticle skyComment">
-                                            <a href="#commentForm"><i class="fal fa-comments"></i></a>
-                                            <span>5k</span>
+                                            <a href="#commentForm"><i class="fal fa-comments"></i>
+                                                <?php if (count($oneCom) > 0): ?>
+                                                    <span>
+                                                        <?= count($oneCom) ?> posts
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span>0 posts</span>
+                                                <?php endif; ?>
+                                            </a>
                                         </div>
                                     </div>
 
@@ -68,8 +81,13 @@
                                             </div>
                                             <div class=" col-lg-12">
                                                 <div class="binduz-er-input-box text-end mt-15">
-                                                    <button type="button" id="sendComment"
-                                                        class="binduz-er-main-btn">Postez votre commentaire</button>
+                                                    <?php if (isset($_SESSION["Auth"])): ?>
+                                                        <button type="button" id="sendComment"
+                                                            class="binduz-er-main-btn">Postez votre commentaire</button>
+                                                    <?php else: ?>
+                                                        <button type="button" id="notConnect"
+                                                            class="binduz-er-main-btn">Postez votre commentaire</button>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,83 +97,60 @@
                                             <h3 class="binduz-er-title">Voir les commentaires</h3>
                                         </div>
                                         <div class="row overPost">
-                                            <div class="parentComment">
-                                                <div class="binduz-er-input-box commentPost">
-                                                    k
-                                                </div>
-                                                <div class="bodyPost">
-                                                    <div class="childPost">
-                                                        <h4>Kola</h4>
-                                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                                            Molestiae, consequuntur?</p>
-                                                        <span><i class="fal fa-calendar-alt"></i> 2023-05-25</span>
+                                            <?php if (count($oneCom) > 0): ?>
+                                                <?php foreach ($oneCom as $key => $values): ?>
+                                                    <div class="parentComment">
+                                                        <div class="binduz-er-input-box commentPost"
+                                                            style="background-color: <?= $values['user_bgc'] ?>">
+                                                            <?php $string = $values["user_pseudo"];
+                                                            echo $string[0]; ?>
+                                                        </div>
+                                                        <div class="bodyPost">
+                                                            <div class="childPost">
+                                                                <h4>
+                                                                    <?= $values['user_pseudo'] ?>
+                                                                </h4>
+                                                                <form class="formUpd">
+                                                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                                </form>
+                                                                <p>
+                                                                    <?= $values['comment_body'] ?>
+                                                                </p>
+                                                                <span><i class="fal fa-calendar-alt"></i>
+                                                                    <?= $values['created_at'] ?>
+                                                                </span>
+                                                                <?php if (isset($_SESSION["Auth"])): ?>
+                                                                    <div class="formUp">
+                                                                        <?php if ($_SESSION["Auth"]["pseudo"] !== $values["user_pseudo"]): ?>
+                                                                            <a href="#commentForm" class="answer">Répondre</a>
+                                                                        <?php endif; ?>
+                                                                        <form action="#" class="upDelForm">
+                                                                            <input type="hidden"
+                                                                                value="<?= $this->datadecrypt($values['comment_id']) ?>"
+                                                                                id="user_id_comment">
+                                                                            <?php if ($_SESSION["Auth"]["pseudo"] === $values["user_pseudo"]): ?>
+                                                                                <button class="upCom"><i class="fal fa-pencil"></i>
+                                                                                    Modifier</button>
+                                                                                <button class="upPost"
+                                                                                    value="<?= $this->datacrypt($values['comment_id']) ?>"><i
+                                                                                        class="fal fa-pencil"></i> Modifier</button>
+                                                                                <button><i class="fal fa-ban"></i>
+                                                                                    Supprimer</span></button>
+                                                                            <?php endif; ?>
+                                                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
+                                                                                <?php if ($_SESSION['Auth']['pseudo'] !== $values['user_pseudo']): ?>
+                                                                                    <button><i class="fal fa-ban"></i> Supprimer ce
+                                                                                        post</span></button>
+                                                                                <?php endif; ?>
+                                                                            <?php endif; ?>
+                                                                        </form>
+                                                                    </div>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <a href="#commentForm" class="answer">Répondre</a>
-                                                        <form action="#" class="upDelForm">
-                                                            <input type="hidden" value="" id="user_id_comment">
-                                                            <button><i class="fal fa-pencil"></i> Modifier</button>
-                                                            <button><i class="fal fa-ban"></i> Supprimer</span></button>
-                                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
-                                                                <button><i class="fal fa-ban"></i> Supprimer de cet
-                                                                    utilisateur</span></button>
-                                                            <?php endif; ?>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="parentComment">
-                                                <div class="binduz-er-input-box commentPost">
-                                                    E
-                                                </div>
-                                                <div class="bodyPost">
-                                                    <div class="childPost">
-                                                        <h4>Erik</h4>
-                                                        <p>@Marcos @Kola Lorem ipsum dolor sit amet consectetur,
-                                                            adipisicing elit.
-                                                            Molestiae, consequuntur?</p>
-                                                        <span><i class="fal fa-calendar-alt"></i> 2023-05-25</span>
-                                                    </div>
-                                                    <div>
-                                                        <a href="#commentForm" class="answer">Répondre</a>
-                                                        <form action="#" class="upDelForm">
-                                                            <input type="hidden" value="" id="user_id_del_comment">
-                                                            <button><i class="fal fa-pencil"></i> Modifier</button>
-                                                            <button><i class="fal fa-ban"></i> Supprimer</span></button>
-                                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
-                                                                <button><i class="fal fa-ban"></i> Supprimer de cet
-                                                                    utilisateur</span></button>
-                                                            <?php endif; ?>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="parentComment">
-                                                <div class="binduz-er-input-box commentPost">
-                                                    M
-                                                </div>
-                                                <div class="bodyPost">
-                                                    <div class="childPost">
-                                                        <h4>Marcos</h4>
-                                                        <p>@Erik Lorem ipsum dolor sit amet consectetur, adipisicing
-                                                            elit.
-                                                            Molestiae, consequuntur?</p>
-                                                        <span><i class="fal fa-calendar-alt"></i> 2023-05-25</span>
-                                                    </div>
-                                                    <div>
-                                                        <a href="#commentForm" class="answer">Répondre</a>
-                                                        <form action="#" class="upDelForm">
-                                                            <input type="hidden" value="">
-                                                            <button><i class="fal fa-pencil"></i> Modifier</button>
-                                                            <button><i class="fal fa-ban"></i> Supprimer</span></button>
-                                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
-                                                                <button><i class="fal fa-ban"></i> Supprimer de cet
-                                                                    utilisateur</span></button>
-                                                            <?php endif; ?>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
                                         </div>
                                     </article>
                                 </div>
@@ -294,6 +289,10 @@
 
 
 </main>
-<script src="/ressources/js/articleOne.js"></script>
+<?php if (isset($_SESSION["Auth"])): ?>
+    <script src="/ressources/js/articleOne.js"></script>
+    <?php else: ?>
+        <script src="/ressources/js/notConnect.js"></script>
+<?php endif; ?>
 <?php include_once("../App/Views/getViewArticle.phtml") ?>
 <?php include_once("../App/Views/FrontendUser/includes/footer.phtml") ?>

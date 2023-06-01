@@ -1,0 +1,48 @@
+<?php if (count($oneCom) > 0): ?>
+    <?php foreach ($oneCom as $key => $values): ?>
+        <div class="parentComment">
+            <div class="binduz-er-input-box commentPost" style="background-color: <?= $values['user_bgc'] ?>">
+                <?php $string = $values["user_pseudo"];
+                echo $string[0]; ?>
+            </div>
+            <div class="bodyPost">
+                <div class="childPost">
+                    <h4>
+                        <?= $values['user_pseudo'] ?>
+                    </h4>
+                    <form class="formUpd">
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </form>
+                    <p>
+                        <?= $values['comment_body'] ?>
+                    </p>
+                    <span><i class="fal fa-calendar-alt"></i>
+                        <?= $values['created_at'] ?>
+                    </span>
+                    <?php if (isset($_SESSION["Auth"])): ?>
+                        <div class="formUp">
+                            <?php if ($_SESSION["Auth"]["pseudo"] !== $values["user_pseudo"]): ?>
+                                <a href="#commentForm" class="answer">Répondre</a>
+                            <?php endif; ?>
+                            <form action="#" class="upDelForm">
+                                <input type="hidden" value="<?= $this->datadecrypt($values['comment_id']) ?>" id="user_id_comment">
+                                <?php if ($_SESSION["Auth"]["pseudo"] === $values["user_pseudo"]): ?>
+                                    <button class="upCom"><i class="fal fa-pencil"></i> Modifier</button>
+                                    <button class="upPost" value="<?= $this->datacrypt($values['comment_id']) ?>"><i
+                                            class="fal fa-pencil"></i> Modifier</button>
+                                    <button><i class="fal fa-ban"></i> Supprimer</span></button>
+                                <?php endif; ?>
+                                <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
+                                    <?php if ($_SESSION['Auth']['pseudo'] !== $values['user_pseudo']): ?>
+                                        <button><i class="fal fa-ban"></i> Supprimer ce
+                                            post</span></button>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </form>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>
