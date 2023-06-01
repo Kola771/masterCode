@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let supprimes = document.querySelectorAll(".supprime");
     supprimes.forEach(sup => {
         sup.addEventListener("click", () => {
-            console.log(sup);
+            console.log(sup); 
         })
     })
 })
