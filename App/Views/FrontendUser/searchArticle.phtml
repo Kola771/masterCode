@@ -48,7 +48,13 @@
                         </li>
 
                         <li><i class="fal fa-heart"></i> 5k</li>
-                        <li><i class="fal fa-comments"></i> 5k</li>
+                        <li><i class="fal fa-comments"></i>
+                            <?php for ($y = 0; $y < count($numCom); $y++): ?>
+                                <?php if ($values["article_id"] === $numCom[$y]["article_id"]): ?>
+                                    <?= $numCom[$y]["nombre"] ?>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </li>
                     </ul>
                 </div>
             </div>

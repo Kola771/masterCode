@@ -32,11 +32,12 @@ class Comment extends Database
         $this->article_id = $article_id;
 
         // Requête SQL
-        $sql = "SELECT `comments`.comment_id, `comments`.comment_body, `comments`.user_id,  `users`.user_pseudo, `comments`.article_id, `comments`.created_at FROM `blog`.comments INNER JOIN `blog`.articles ON `articles`.article_id = `comments`.article_id WHERE `articles`.article_id = ?;";
+        $sql = "SELECT `comments`.comment_id, `comments`.comment_body, `comments`.user_id,  `users`.user_pseudo, `comments`.article_id, `comments`.created_at FROM `blog`.comments INNER JOIN `blog`.users ON `users`.user_id = `comments`.user_id INNER JOIN `blog`.articles ON `articles`.article_id = `comments`.article_id WHERE `articles`.article_id = ?;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
-        $result = $statement->execute([$this->article_id]);
+        $statement->execute([$this->article_id]);
+        $result = $statement->fetchAll();
         return $result;
     }
 
@@ -66,10 +67,22 @@ class Comment extends Database
 
         // Requête préparée
         $statement = $conn->prepare($sql);
-        $statement->execute([$this->id]);
+        $result = $statement->execute([$this->id]);
+        return $result;
+    }
 
-        // Retourne un null/true si c'est bon;
-        $result = $statement;
+    // Suppression d'un commentaire
+    public function getCountByArt()
+    {
+        $conn = $this->connect();
+
+        // Requête SQL
+        $sql = "SELECT comments.article_id, count(comments.article_id) AS nombre FROM `blog`.comments GROUP BY comments.article_id;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([]);
+        $result = $statement->fetchAll();
         return $result;
     }
 }

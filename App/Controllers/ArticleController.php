@@ -1,6 +1,7 @@
 <?php
 require_once('../App/Conf/Database.php');
 require_once('../App/Models/Article.php');
+require_once('../App/Models/Comment.php');
 require_once('../App/Models/ViewArticle.php');
 class ArticleController
 {
@@ -121,7 +122,9 @@ class ArticleController
         $allArticles = $this->article->getTitlesArticleLike($value);
         // instanciation de la classe model viewsarticle
         $this->views = new ViewArticle();
+        $comment = new Comment();
         $views = $this->views->getAllviewsArt();
+        $numCom = $comment->getCountByArt();
         if (count($allArticles) > 0) {
             include_once("../App/Views/FrontendUser/searchArticle.phtml");
         }
@@ -197,6 +200,16 @@ class ArticleController
             // instanciation de la classe model viewsarticle
             $this->views = new ViewArticle();
             $array = $this->views->getViewsById($this->datadecrypt($_GET["articleid"]));
+            return $array;
+        }
+    }
+
+    public function getAllComment()
+    {
+        if (isset($_GET["articleid"])) {
+            // instanciation de la classe model viewsarticle
+            $comment = new Comment();
+            $array = $comment->getAllComment($this->datadecrypt($_GET["articleid"]));
             return $array;
         }
     }
@@ -354,5 +367,12 @@ class ArticleController
         $this->updated_at = date("Y-m-d h:i:s");
         // Insertion de l'article
         $update = $this->article->updateOneArticle($this->id, $datas->title, $datas->img, $datas->code_html, $datas->state, $this->updated_at);
+    }
+
+    public function getCountByArt()
+    {
+        $comments = new Comment();
+        $array = $comments->getCountByArt();
+        return $array;
     }
 }

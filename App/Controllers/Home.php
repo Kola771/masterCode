@@ -38,6 +38,7 @@ class Home {
     {
         $articles = new ArticleController();
         $views = $articles->getAllviewsArt();
+        $numCom = $articles->getCountByArt();
         $allArticles = $articles->getAllArticlesPublier();
         require_once("../App/Views/FrontendUser/articlesPage.phtml");;
     }
@@ -46,6 +47,7 @@ class Home {
     {
         $articles = new ArticleController();
         $oneView = $articles->getViewsById();
+        $oneCom = $articles->getAllComment();
         $oneArticle = $articles->getOneArticleByArtId();
         require_once("../App/Views/FrontendUser/articleOnePage.phtml");;
     }

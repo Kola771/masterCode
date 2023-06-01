@@ -9974,7 +9974,14 @@ div.childPost span {
   gap: 1em;
 }
 
-.upDelForm button {
+.bodyPost>div:nth-child(2)
+{
+  display: flex;
+  gap: .5em;
+}
+
+.upDelForm button,
+.bodyPost>div>a {
   background-color: var(--clr-primary);
   padding: .5em;
   color: #eee;
