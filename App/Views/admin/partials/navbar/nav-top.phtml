@@ -99,7 +99,7 @@
                             x-transition:leave-end="opacity-0" @click.away="closeNotificationsMenu"
                             @keydown.escape="closeNotificationsMenu"
                             class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
-                            <li class="flex">
+                            <!-- <li class="flex">
                                 <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                                     href="#">
                                     <span>Commentaires</span>
@@ -108,7 +108,7 @@
                                         2
                                     </span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="flex">
                                 <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                                     href="?goto=<?= $this->datacrypt('dashboard') ?>&action=<?= $this->datacrypt('brouillons') ?>">
@@ -140,7 +140,6 @@
                         class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none text-white border-gray-800"
                         @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                         aria-haspopup="true">
-                        <!-- <img class="object-cover w-8 h-8 rounded-full" src="/ressources/images/user.png" alt="" aria-hidden="true" /> -->
                         <?php if (isset($_SESSION['Auth'])): ?>
                             <div class="accountHeader object-cover w-8 h-8 rounded-full flex justify-center items-center border-gray-800"
                                 style="text-transform: uppercase; background-color: <?= $_SESSION["Auth"]["bgc"] ?>;">
@@ -150,14 +149,6 @@
                                 </span>
                             </div>
                         <?php endif; ?>
-                        <!-- <span aria-hidden="true" class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"></span> -->
-                        <!-- <div class="relative">
-            <span class="absolute text-green-500 right-0 bottom-0">
-               <svg width="20" height="20">
-                  <circle cx="6" cy="6" r="6" fill="currentColor"></circle>
-               </svg>
-            </span>
-         </div> -->
                     </button>
                     <template x-if="isProfileMenuOpen">
                         <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"

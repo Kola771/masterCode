@@ -39,6 +39,7 @@ class Home {
         $articles = new ArticleController();
         $views = $articles->getAllviewsArt();
         $numCom = $articles->getCountByArt();
+        $numLike = $articles->getCountByLike();
         $allArticles = $articles->getAllArticlesPublier();
         require_once("../App/Views/FrontendUser/articlesPage.phtml");;
     }
@@ -48,6 +49,7 @@ class Home {
         $articles = new ArticleController();
         $oneView = $articles->getViewsById();
         $oneCom = $articles->getAllComment();
+        $onelike = $articles->selectCountLike();
         $oneArticle = $articles->getOneArticleByArtId();
         require_once("../App/Views/FrontendUser/articleOnePage.phtml");;
     }
@@ -88,5 +90,10 @@ class Home {
         $countDay = $contacts->countDay();
         require_once("../App/Views/admin/dashboard.phtml");
         //  require_once("../App/Views/BackendAdmin/pages/dashboard.phtml");
+    }
+
+    public function sauvegarde()
+    {
+        require_once("../App/Views/FrontendUser/dataUser.phtml");
     }
 }

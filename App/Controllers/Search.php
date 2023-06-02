@@ -22,6 +22,7 @@ class Search
 
     public function searchView()
     {
+        @session_start();
         $data = file_get_contents("php://input");
         $data = json_decode($data);
         $value = $this->sanitaze($data->value);

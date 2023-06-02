@@ -34,7 +34,7 @@
                                 <?php endif; ?>
                                 <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
                                     <?php if ($_SESSION['Auth']['pseudo'] !== $values['user_pseudo']): ?>
-                                        <button><i class="fal fa-ban"></i> Supprimer ce
+                                        <button class="delPost" value="<?= $this->datacrypt($values['comment_id']) ?>"><i class="fal fa-ban"></i> Supprimer ce
                                             post</span></button>
                                     <?php endif; ?>
                                 <?php endif; ?>

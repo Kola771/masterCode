@@ -2,6 +2,7 @@
 require_once('../App/Conf/Database.php');
 require_once('../App/Models/Article.php');
 require_once('../App/Models/Comment.php');
+require_once('../App/Models/Like.php');
 require_once('../App/Models/ViewArticle.php');
 class ArticleController
 {
@@ -125,6 +126,8 @@ class ArticleController
         $comment = new Comment();
         $views = $this->views->getAllviewsArt();
         $numCom = $comment->getCountByArt();
+        $like = new Like();
+        $numLike = $like->getCountByLike();
         if (count($allArticles) > 0) {
             include_once("../App/Views/FrontendUser/searchArticle.phtml");
         }
@@ -236,6 +239,27 @@ class ArticleController
             $array = $this->article->getOneArticleById($id);
             return $array;
         }
+    }
+
+    // Pour afficher les like que contient un article
+    public function selectCountLike()
+    {
+        if (isset($_GET["articleid"])) {
+            // instanciation de la classe model like
+            $like = new Like();
+            $id = $this->datadecrypt($_GET["articleid"]);
+            $array = $like->selectCount($id);
+            return $array;
+        }
+    }
+
+    // Pour afficher les like que contient un article
+    public function getCountByLike()
+    {
+        // instanciation de la classe model like
+        $like = new Like();
+        $array = $like->getCountByLike();
+        return $array;
     }
 
     // Tant qu'une catégorie a été choisie, il fait une redirection

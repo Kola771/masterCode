@@ -71,7 +71,6 @@ class Comment extends Database
         return $result;
     }
 
-    // Suppression d'un commentaire
     public function getCountByArt()
     {
         $conn = $this->connect();

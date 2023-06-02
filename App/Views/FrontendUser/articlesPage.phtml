@@ -1,5 +1,4 @@
 <?php include_once("../App/Views/FrontendUser/includes/header.phtml") ?>
-
 <main class="mainAbout">
     <section class="binduz-er-author-item-area pb-20">
         <div class=" container">
@@ -27,12 +26,12 @@
                                     </div>
                                     <h3 class="binduz-er-title"><a
                                             href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>"><?= $values["article_title"] ?></a></h3>
-                                    <div class="binduz-er-meta-author" style="margin-top: -18px;">
+                                    <div class="binduz-er-meta-author" style="margin-top: -18px; gap: .8em;">
                                         <?php if ($values["user_role"] === '0'): ?>
                                             <div class="imageArt">
                                                 <img src="/ressources/images/Capture.PNG" alt="image">
                                                 <span>Publié par <span>
-                                                        MasterCode
+                                                        Master Code
                                                     </span></span>
                                             </div>
                                         <?php elseif ($values["user_role"] === '2'): ?>
@@ -47,7 +46,7 @@
                                                     </span></span>
                                             </div>
                                         <?php endif; ?>
-                                        <div class="binduz-er-meta-list">
+                                        <div class="binduz-er-meta-list elTyp">
                                             <ul>
                                                 <li><i class="fal fa-eye"></i>
                                                     <?php for ($y = 0; $y < count($views); $y++): ?>
@@ -57,8 +56,16 @@
                                                     <?php endfor; ?>
                                                 </li>
 
-                                                <li><i class="fal fa-heart"></i> 5k</li>
-                                                <li><i class="fal fa-comments"></i>
+                                                <li class="<?= (isset($_SESSION['Auth'])) ? 'like' : '' ?>"><button value="<?= $this->datacrypt($values['article_id']) ?>" style="display:none"></button><i class="fal fa-heart"></i>
+                                                    <?php for ($y = 0; $y < count($numLike); $y++): ?>
+                                                        <?php if ($values["article_id"] === $numLike[$y]["article_id"]): ?>
+                                                            <?= $numLike[$y]["nombre"] ?>
+                                                        <?php endif; ?>
+                                                    <?php endfor; ?>
+                                                </li>
+                                                <li><a
+                                                        href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>#commentForm"><i
+                                                            class="fal fa-comments"></i></a>
                                                     <?php for ($y = 0; $y < count($numCom); $y++): ?>
                                                         <?php if ($values["article_id"] === $numCom[$y]["article_id"]): ?>
                                                             <?= $numCom[$y]["nombre"] ?>
@@ -66,6 +73,26 @@
                                                     <?php endfor; ?>
                                                 </li>
                                             </ul>
+                                        </div>
+                                        <div class="saveLink">
+                                            <button
+                                                value="localhost/?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>"
+                                                class="linkcopy">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                                                </svg>
+                                            </button>
+                                            <?php if (isset($_SESSION["Auth"])): ?>
+                                                <button value="<?= $this->datacrypt($values["article_id"]) ?>" class="saveData">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+                                                    </svg>
+                                                </button>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>

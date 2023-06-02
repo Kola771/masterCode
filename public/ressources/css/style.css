@@ -9918,6 +9918,51 @@ div.childFlexOne>span>span {
   color: #000;
 }
 
+.dataflex {
+  display: flex;
+  gap: 1em;
+}
+
+.dataflex .pd1 {
+  padding: .5em;
+}
+
+.saveLink {
+  display: flex;
+ margin-left: 15px;
+ justify-content: end;
+ gap: .4em;
+}
+
+div.elTyp
+{
+  flex-basis: 40%;
+}
+
+.like {
+  cursor: pointer;
+}
+
+.title-h3 {
+  color: #eee;
+}
+
+.saveLink>button {
+  width: 13%;
+  border-radius: 50%;
+  border: 2px solid;
+  padding: .3em;
+  cursor: pointer;
+  background-color: #f4f4f4;
+}
+
+.saveLink>button>svg {
+  width: 100%;
+  border-radius: 50%;
+  padding: .3em;
+  cursor: pointer;
+}
+
 .overPost {
   overflow-y: scroll;
   height: 400px;
@@ -10014,6 +10059,10 @@ div.childPost span {
     height: 600px;
   }
 
+  .saveLink>button {
+    width: 15%;
+  }
+
   article.article>.imgArt>img {
     width: 100%;
     height: 35vh;
@@ -10047,4 +10096,11 @@ div.aboutImage>img {
 
 .bg-foot {
   background-color: var(--clr-elementary);
+}
+
+@media only screen and (max-width: 576px)
+{
+  .saveLink>button {
+    width: 10%;
+  }
 }

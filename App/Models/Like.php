@@ -21,6 +21,20 @@ class Like extends Database
         // Retourne un null/true si c'est bon;
         return $result;
     }
+    
+    public function getCountByLike()
+    {
+        $conn = $this->connect();
+
+        // Requête SQL
+        $sql = "SELECT likes.article_id, count(likes.article_id) AS nombre FROM `blog`.likes GROUP BY likes.article_id;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([]);
+        $result = $statement->fetchAll();
+        return $result;
+    }
 
     // selectCount(), pour compter le nombre de personnes ayant aimé une oeuvre
     public function selectCount($article_id)
