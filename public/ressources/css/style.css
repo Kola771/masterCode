@@ -9785,6 +9785,15 @@ div.imgElement>img {
   div.articleImg>img {
     height: 350px;
   }
+  
+  .dataflex {
+    flex-direction: column;
+    gap: .5em;  
+  }
+  
+  .chfl {
+    flex-basis: 30%;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -9920,11 +9929,31 @@ div.childFlexOne>span>span {
 
 .dataflex {
   display: flex;
-  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .2em;  
+}
+
+.chfl {
+  flex-basis: 30%;
+}
+
+div .archiveNot {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.spanEl span>span {
+  color: var(--clr-primary);
+  font-weight: bold;
+}
+
+div.binduz-er-recently-viewed-item div.chImg div>img {
+  height: 20vh;
 }
 
 .dataflex .pd1 {
-  padding: .5em;
+  padding: .8em;
 }
 
 .saveLink {
@@ -10059,6 +10088,10 @@ div.childPost span {
     height: 600px;
   }
 
+  div .archiveNot {
+    font-size: 20px;
+  }
+
   .saveLink>button {
     width: 15%;
   }
@@ -10079,6 +10112,14 @@ div.childPost span {
 
   div.imgElement>img {
     height: 310px;
+  }
+  
+  .chfl {
+    flex-basis: 48%;
+  }
+
+  div div.binduz-er-recently-viewed-item div.chImg div>img {
+    height: 31vh;
   }
 }
 

@@ -94,6 +94,10 @@ class Home {
 
     public function sauvegarde()
     {
+        @session_start();
+        $articles = new ArticleController();
+        $datasusers = $articles->selectSessionId(); 
+        $diff = $articles->dataReg();
         require_once("../App/Views/FrontendUser/dataUser.phtml");
     }
 }
