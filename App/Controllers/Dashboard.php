@@ -59,6 +59,7 @@ class Dashboard
         }
         $countBroullons = count($allAr);
         $allArticles = $articles->getAllArticlesPublier();
+        $numCom = $articles->getCountByArt();
         $views = $articles->getAllviewsArt();
         $contacts = new ContactController();
         $countDay = $contacts->countDay();

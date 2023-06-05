@@ -57,7 +57,7 @@
                                             <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] !== '1'): ?>
                                                 <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('dash') ?>">Dashboard</a></li>
                                             <?php endif; ?>
-                                            <li><a href="#">Vos Sauvegardes</a></li>
+                                            <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('sauvegarde') ?>">Archives</a></li>
                                             <li><a href="#">Commentaires</a></li>
                                             <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newLogout') ?>">Se déconnecter</a></li>
                                         </ul>

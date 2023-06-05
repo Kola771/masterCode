@@ -1,0 +1,66 @@
+<?php include_once("../App/Views/FrontendUser/includes/header.phtml") ?>
+<section class="binduz-er-editors-pack-white-area mt-80">
+    <div class=" container">
+        <div class="mtop">
+            <h2>Vos archives</h2>
+            <?php if (count($datasusers) > 0): ?>
+                <div class="dataflex">
+                    <?php foreach ($datasusers as $key => $data): ?>
+                        <?php foreach ($diff as $key => $date): ?>
+                            <?php if ($data["article_id"] === $date["article_id"]): ?>
+                                <div class="chfl col-lg-3 col-md-6">
+                                    <div class="binduz-er-video-post binduz-er-recently-viewed-item">
+                                        <div class="binduz-er-latest-news-item chImg">
+                                            <div class="binduz-er-thumb">
+                                                <img src="ressources/images/images_principales/<?= $data["article_image"] ?>"
+                                                    alt="image">
+                                            </div>
+                                            <div class="binduz-er-content pd1">
+                                                <div class="binduz-er-meta-item">
+                                                    <div class="binduz-er-meta-categories">
+                                                        <a href="#">
+                                                            <?= $data['category_name'] ?>
+                                                        </a>
+                                                    </div>
+                                                    <div class="binduz-er-meta-date">
+                                                        Enrégistré le
+                                                        <span class="dateSave">
+                                                            <?= explode(" ", $data['created_at'])[0] ?>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <h3 class="binduz-er-title"><a
+                                                        href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($data["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>"><?= $data['article_title'] ?></a></h3>
+                                                <div class="binduz-er-meta-author spanEl">
+                                                    <?php if ($data['user_role'] === '0'): ?>
+
+                                                        <span>Publié par <span>Master Code</span>.</span>
+                                                        <?php if ($date["day"] === 14): ?>
+                                                            <span style="font-weight: bold; color: red;">Cet article va bientôt disparaitre de vos archives !!</span>
+                                                        <?php endif; ?>
+
+                                                    <?php elseif ($data['user_role'] === '2'): ?>
+
+                                                        <span>Publié par <span>
+                                                                <?= $data['user_pseudo'] ?>
+                                                            </span></span>
+                                                        <?php if ($date["day"] === 14): ?>
+                                                            <span style="font-weight: bold; color: red;">Cet article va bientôt disparaitre de vos archives !!</span>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="archiveNot">Vous n'avez pas d'archives disponibles.</div>
+        <?php endif; ?>
+    </div>
+</section>
+<?php include_once("../App/Views/FrontendUser/includes/scriptInc.phtml") ?>

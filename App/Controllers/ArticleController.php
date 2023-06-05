@@ -2,6 +2,8 @@
 require_once('../App/Conf/Database.php');
 require_once('../App/Models/Article.php');
 require_once('../App/Models/Comment.php');
+require_once('../App/Models/DataUser.php');
+require_once('../App/Models/Like.php');
 require_once('../App/Models/ViewArticle.php');
 class ArticleController
 {
@@ -125,6 +127,8 @@ class ArticleController
         $comment = new Comment();
         $views = $this->views->getAllviewsArt();
         $numCom = $comment->getCountByArt();
+        $like = new Like();
+        $numLike = $like->getCountByLike();
         if (count($allArticles) > 0) {
             include_once("../App/Views/FrontendUser/searchArticle.phtml");
         }
@@ -236,6 +240,27 @@ class ArticleController
             $array = $this->article->getOneArticleById($id);
             return $array;
         }
+    }
+
+    // Pour afficher les like que contient un article
+    public function selectCountLike()
+    {
+        if (isset($_GET["articleid"])) {
+            // instanciation de la classe model like
+            $like = new Like();
+            $id = $this->datadecrypt($_GET["articleid"]);
+            $array = $like->selectCount($id);
+            return $array;
+        }
+    }
+
+    // Pour afficher les like que contient un article
+    public function getCountByLike()
+    {
+        // instanciation de la classe model like
+        $like = new Like();
+        $array = $like->getCountByLike();
+        return $array;
     }
 
     // Tant qu'une catégorie a été choisie, il fait une redirection
@@ -374,5 +399,61 @@ class ArticleController
         $comments = new Comment();
         $array = $comments->getCountByArt();
         return $array;
+    }
+
+    public function selectSessionId()
+    {
+        @session_start();
+        if (isset($_SESSION["Auth"])) {
+            $data = new DataUser();
+            $array = $data->selectSession($this->datadecrypt($_SESSION["Auth"]["id"]));
+            return $array;
+        }
+    }
+
+    public function dataReg()
+    {
+        @session_start();
+        if (isset($_SESSION["Auth"])) {
+            $bigArray = [];
+            $data = new DataUser();
+            $array = $data->selectSession($this->datadecrypt($_SESSION["Auth"]["id"]));
+            if (count($array) > 0) {
+                for ($i = 0; $i < count($array); $i++) {
+                    $now = time();
+                    $dat = strtotime($array[$i]["created_at"]);
+                    $diff = abs($now - $dat);
+                    $second = $diff % 60;
+                    $diff = floor(($diff - $second) / 60);
+                    $minute = $diff % 60;
+                    $diff = floor(($diff - $minute) / 60);
+                    $hour = $diff % 24;
+                    $diff = floor(($diff - $hour) / 24);
+                    $day = (int) $diff;
+                    if ($day >= 15) {
+                        $data->deleteData($array[$i]["article_id"], $this->datadecrypt($_SESSION["Auth"]["id"]));
+                    }
+                }
+
+                for ($i = 0; $i < count($array); $i++) {
+                    $now = time();
+                    $dat = strtotime($array[$i]["created_at"]);
+                    $diff = abs($now - $dat);
+                    $second = $diff % 60;
+                    $diff = floor(($diff - $second) / 60);
+                    $minute = $diff % 60;
+                    $diff = floor(($diff - $minute) / 60);
+                    $hour = $diff % 24;
+                    $diff = floor(($diff - $hour) / 24);
+                    $day = (int) $diff;
+                    if ($day < 15) {
+                        $bigArray[$i]["article_id"] = $array[$i]["article_id"];
+                        $bigArray[$i]["day"] = $day;
+                    }
+                }
+                
+            }
+            return $bigArray;
+        }
     }
 }

@@ -26,23 +26,31 @@
                                             <i class="fal fa-eye"></i>
                                             <?php if (count($oneView) > 0): ?>
                                                 <span>
-                                                    <?= $oneView[0]["nombre"] ?> vues
+                                                    <?= $oneView[0]["nombre"] ?> vue(s)
                                                 </span>
                                             <?php else: ?>
-                                                <span>0 vues</span>
+                                                <span>0 vue(s)</span>
                                             <?php endif; ?>
                                         </div>
                                         <div class="iconArticle redHeart">
-                                            <form action="#">
-                                                <input type="hidden" id="user_id" value="">
-                                                <button><i class="fal fa-heart"></i></button>
+                                            <form>
+                                                <button class="like"
+                                                    value="<?= (isset($_SESSION['Auth'])) ? $_SESSION['Auth']['id'] : '' ?>"><i
+                                                        class="fal fa-heart"></i></button>
                                             </form>
-                                            <span>5k</span>
+                                            <?php if ($onelike === false): ?>
+                                                <span id="numCom">
+                                                    <span id="numLike">0 like(s)</span>
+                                                <?php else: ?>
+                                                    <span id="numLike">
+                                                        <?= $onelike["Nombre"] ?> like(s)
+                                                    </span>
+                                                <?php endif; ?>
                                         </div>
                                         <div class="iconArticle skyComment">
                                             <a href="#commentForm"><i class="fal fa-comments"></i>
                                                 <?php if (count($oneCom) > 0): ?>
-                                                    <span>
+                                                    <span id="numCom">
                                                         <?= count($oneCom) ?> posts
                                                     </span>
                                                 <?php else: ?>
@@ -54,19 +62,20 @@
 
                                     <div class="binduz-er-footer-add-item bg-prog">
                                     </div>
-
-                                    <div class="binduz-er-blog-post-newsletter">
-                                        <div
-                                            class="binduz-er-populer-news-sidebar-newsletter author-page-newsletter mt-40">
-                                            <div class="binduz-er-newsletter-box text-center">
-                                                <img src="/ressources/images/icon/icon-4.png" alt="logo du site">
-                                                <h3 class="binduz-er-title">Si cet article vous a plu, inscrivez-vous
-                                                    sur le site😉. Merci d'avance.</h3>
-                                                <a class="clrArticle">inscrivez-vous <i
-                                                        class="fal fa-long-arrow-right"></i></a>
+                                    <?php if (!isset($_SESSION["Auth"])): ?>
+                                        <div class="binduz-er-blog-post-newsletter">
+                                            <div
+                                                class="binduz-er-populer-news-sidebar-newsletter author-page-newsletter mt-40">
+                                                <div class="binduz-er-newsletter-box text-center">
+                                                    <img src="/ressources/images/icon/icon-4.png" alt="logo du site">
+                                                    <h3 class="title-h3">Si cet article vous a plu, inscrivez-vous
+                                                        sur le site😉. Merci d'avance.</h3>
+                                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newViewLogin') ?>" class="clrArticle">inscrivez-vous <i
+                                                            class="fal fa-long-arrow-right"></i></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
 
                                     <form action="#" method="post" id="commentForm" class="binduz-er-blog-post-form">
                                         <div class="binduz-er-blog-post-title">
@@ -76,7 +85,7 @@
                                             <div class=" col-lg-12">
                                                 <div class="binduz-er-input-box commentArticle">
                                                     <textarea name="commentPost" id="commentPost" cols="30" rows="10"
-                                                        placeholder="Saisissez votre commentaire"></textarea>
+                                                        placeholder="Laissez un commentaire"></textarea>
                                                 </div>
                                             </div>
                                             <div class=" col-lg-12">
@@ -134,12 +143,16 @@
                                                                                 <button class="upPost"
                                                                                     value="<?= $this->datacrypt($values['comment_id']) ?>"><i
                                                                                         class="fal fa-pencil"></i> Modifier</button>
-                                                                                <button class="del" value="<?= $this->datacrypt($values['comment_id']) ?>"><i class="fal fa-ban"></i>
+                                                                                <button class="del"
+                                                                                    value="<?= $this->datacrypt($values['comment_id']) ?>"><i
+                                                                                        class="fal fa-ban"></i>
                                                                                     Supprimer</span></button>
                                                                             <?php endif; ?>
                                                                             <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] == '0'): ?>
                                                                                 <?php if ($_SESSION['Auth']['pseudo'] !== $values['user_pseudo']): ?>
-                                                                                    <button><i class="fal fa-ban"></i> Supprimer ce
+                                                                                    <button class="delPost"
+                                                                                        value="<?= $this->datacrypt($values['comment_id']) ?>"><i
+                                                                                            class="fal fa-ban"></i> Supprimer ce
                                                                                         post</span></button>
                                                                                 <?php endif; ?>
                                                                             <?php endif; ?>

@@ -10436,6 +10436,15 @@ div.imgElement > img {
   div.articleImg > img {
     height: 350px;
   }
+  
+  .dataflex {
+    flex-direction: column;
+    gap: .5em;  
+  }
+  
+  .chfl {
+    flex-basis: 30%;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -10572,6 +10581,71 @@ div.childFlexOne > span > span {
   color: #000;
 }
 
+.dataflex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .2em;  
+}
+
+.chfl {
+  flex-basis: 30%;
+}
+
+div .archiveNot {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.spanEl span>span {
+  color: var(--clr-primary);
+  font-weight: bold;
+}
+
+div.binduz-er-recently-viewed-item div.chImg div>img {
+  height: 20vh;
+}
+
+.dataflex .pd1 {
+  padding: .8em;
+}
+
+.saveLink {
+  display: flex;
+ margin-left: 15px;
+ justify-content: end;
+ gap: .4em;
+}
+
+div.elTyp
+{
+  flex-basis: 40%;
+}
+
+.like {
+  cursor: pointer;
+}
+
+.title-h3 {
+  color: #eee;
+}
+
+.saveLink>button {
+  width: 13%;
+  border-radius: 50%;
+  border: 2px solid;
+  padding: .3em;
+  cursor: pointer;
+  background-color: #f4f4f4;
+}
+
+.saveLink>button>svg {
+  width: 100%;
+  border-radius: 50%;
+  padding: .3em;
+  cursor: pointer;
+}
+
 .overPost {
   overflow-y: scroll;
   height: 400px;
@@ -10667,7 +10741,19 @@ div.childPost span {
     height: 600px;
   }
 
+<<<<<<< HEAD
   article.article > .imgArt > img {
+=======
+  div .archiveNot {
+    font-size: 20px;
+  }
+
+  .saveLink>button {
+    width: 15%;
+  }
+
+  article.article>.imgArt>img {
+>>>>>>> 838a82e32895453fc8d87683553c7c0af6aaf8c9
     width: 100%;
     height: 35vh;
   }
@@ -10683,6 +10769,14 @@ div.childPost span {
 
   div.imgElement > img {
     height: 310px;
+  }
+  
+  .chfl {
+    flex-basis: 48%;
+  }
+
+  div div.binduz-er-recently-viewed-item div.chImg div>img {
+    height: 31vh;
   }
 }
 
@@ -10701,3 +10795,13 @@ div.aboutImage > img {
 .bg-foot {
   background-color: var(--clr-elementary);
 }
+<<<<<<< HEAD
+=======
+
+@media only screen and (max-width: 576px)
+{
+  .saveLink>button {
+    width: 10%;
+  }
+}
+>>>>>>> 838a82e32895453fc8d87683553c7c0af6aaf8c9

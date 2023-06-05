@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let upCom = document.querySelectorAll(".upCom");
     let upPost = document.querySelectorAll(".upPost");
     let del = document.querySelectorAll(".del");
+    let like = document.querySelector(".like");
+    let delPost = document.querySelectorAll(".delPost");
     let commentPost = document.getElementById("commentPost");
+    let numCom = document.getElementById("numCom");
     let sendComment = document.getElementById("sendComment");
     let childPostParagraph = document.querySelectorAll(".childPost>p");
 
@@ -84,7 +87,50 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: data,
                 method: "post"
             }
-            // fetch("?ajax=comment-controller&action=up-comment", option)
+            fetch("?ajax=comment-controller&action=delete-one-comment", option);
+            let number = Number(numCom.innerText.split(" ")[0]) - 1;
+            numCom.textContent = number + " posts"
+            parent.remove();
+        })
+    })
+
+    like.addEventListener("click", (e) => {
+        e.preventDefault()
+        let data = {
+            id: like.value
+        }
+        data = JSON.stringify(data);
+        let option = {
+            header: {
+                content: "application/json"
+            },
+            body: data,
+            method: "post"
+        }
+        let url = window.location.href.split("&")[1];
+        fetch("?ajax=like-controller&action=add-like&" + url, option).then(response => response.json()).then(response => {
+            document.getElementById("numLike").textContent = response + " like(s)"
+        })
+    })
+
+    delPost.forEach(el => {
+        el.addEventListener("click", (e) => {
+            e.preventDefault()
+            let parent = el.parentElement.parentElement.parentElement.parentElement.parentElement;
+            let data = {
+                id: el.value
+            }
+            data = JSON.stringify(data);
+            let option = {
+                header: {
+                    content: "application/json"
+                },
+                body: data,
+                method: "post"
+            }
+            fetch("?ajax=comment-controller&action=delete-one-comment", option);
+            let number = Number(numCom.innerText.split(" ")[0]) - 1;
+            numCom.textContent = number + " posts"
             parent.remove();
         })
     })
@@ -106,6 +152,11 @@ document.addEventListener("DOMContentLoaded", () => {
             let url = window.location.href.split("&")[1];
             let overPost = document.querySelector(".overPost");
             fetch("?ajax=comment-controller&action=add-comment&" + url, option).then(response => response.text()).then(response => {
+                commentPost.value = "Laissez un commentaire";
+                let numCom = document.getElementById("numCom");
+                let number = Number(numCom.innerText.split(" ")[0]) + 1;
+                numCom.textContent = number + " posts"
+
                 overPost.innerHTML = response;
                 let childPostParagraph = document.querySelectorAll(".childPost>p");
                 childPostParagraph.forEach(paragraph => {
@@ -142,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         text.innerHTML = up.parentElement.parentElement.parentElement.children[2].textContent.trim();
                     })
                 })
-            
+
                 upPost.forEach(up => {
                     up.addEventListener("click", (e) => {
                         e.preventDefault()
@@ -169,7 +220,52 @@ document.addEventListener("DOMContentLoaded", () => {
                         fetch("?ajax=comment-controller&action=up-comment", option)
                     })
                 })
-            
+                let del = document.querySelectorAll(".del");
+                del.forEach(el => {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault()
+                        let parent = el.parentElement.parentElement.parentElement.parentElement.parentElement;
+                        let data = {
+                            id: el.value
+                        }
+                        data = JSON.stringify(data);
+                        let option = {
+                            header: {
+                                content: "application/json"
+                            },
+                            body: data,
+                            method: "post"
+                        }
+                        fetch("?ajax=comment-controller&action=delete-one-comment", option);
+                        let number = Number(numCom.innerText.split(" ")[0]) - 1;
+                        numCom.textContent = number + " posts"
+                        parent.remove();
+                    })
+                })
+
+                let delPost = document.querySelectorAll(".delPost");
+                delPost.forEach(el => {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault()
+                        let parent = el.parentElement.parentElement.parentElement.parentElement.parentElement;
+                        let data = {
+                            id: el.value
+                        }
+                        data = JSON.stringify(data);
+                        let option = {
+                            header: {
+                                content: "application/json"
+                            },
+                            body: data,
+                            method: "post"
+                        }
+                        fetch("?ajax=comment-controller&action=delete-one-comment", option);
+                        let number = Number(numCom.innerText.split(" ")[0]) - 1;
+                        numCom.textContent = number + " posts"
+                        parent.remove();
+                    })
+                })
+
             })
         }
     })
