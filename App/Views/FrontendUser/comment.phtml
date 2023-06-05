@@ -1,0 +1,46 @@
+<?php include_once("../App/Views/FrontendUser/includes/header.phtml") ?>
+<main>
+    <div class="container">
+        <section class="binduz-er-editors-pack-white-area mt-80">
+                <h2>Vos commentaires</h2>
+                <?php foreach ($allComments as $key => $value): ?>
+                    <?php $pseudo = $_SESSION['Auth']['pseudo']; ?>
+                    <?php if(preg_match("/$pseudo/i", $value["comment_body"])) : ?>
+                    <article class="eachPost eachImg">
+                        <img src="/ressources/images/images_principales/<?= $value['article_image'] ?>" alt="image">
+                        <div>
+                            <h3>
+                                <a
+                                    href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($value["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>#post<?= $value['comment_id'] ?>">
+                                    <?= $value["article_title"] ?>
+                                </a>
+                            </h3>
+                            <p>Vous avez été <span class="fow-el">targué</span> sur cet article le
+                                <?= $value["created_at"] ?>.
+                            </p>
+                        </div>
+                    </article>
+                    <?php else : ?>
+                        <article class="eachPost eachImg">
+                        <img src="/ressources/images/images_principales/<?= $value['article_image'] ?>" alt="image">
+                        <div>
+                            <h3>
+                                <a
+                                    href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($value["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>#post<?= $value['comment_id'] ?>">
+                                    <?= $value["article_title"] ?>
+                                </a>
+                            </h3>
+                            <p>Vous avez commenté cet article le
+                                <?= $value["created_at"] ?>.
+                            </p>
+                        </div>
+                    </article>
+                <?php endif; ?>
+                <?php endforeach; ?>
+            <div class="targ">
+
+            </div>
+        </section>
+    </div>
+</main>
+<?php include_once("../App/Views/FrontendUser/includes/scriptinc.phtml") ?>

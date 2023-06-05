@@ -62,4 +62,15 @@ class CommentController
         $this->comment->deleteOneComment($id);
     }
 
+    public function getAllCommentByIdUser()
+    {
+        if(isset($_SESSION["Auth"]))
+        {
+            $this->comment = new Comment();
+            $pseudo = "%" . $_SESSION['Auth']['pseudo'] . "%";
+            $allComments = $this->comment->getAllCommentByIdUser($this->datadecrypt($_SESSION["Auth"]["id"]), $pseudo);
+        }
+        return $allComments;
+    }
+
 }

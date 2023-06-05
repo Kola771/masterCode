@@ -133,6 +133,29 @@ class ArticleController
             include_once("../App/Views/FrontendUser/searchArticle.phtml");
         }
     }
+
+    // Affiche tous les titres portant ces caractères et appartenant à une catégorie spécifique
+    public function getTitlesArticleLikeByCat()
+    {
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        if (isset($_GET["categoryid"])) {
+            $value = $this->sanitaze($datas->value);
+            // instanciation de la classe model article
+            $this->article = new Article();
+            $allArticles = $this->article->getTitlesArticleLikeByCat($value, $this->datadecrypt($_GET["categoryid"]));
+            // instanciation de la classe model viewsarticle
+            $this->views = new ViewArticle();
+            $comment = new Comment();
+            $views = $this->views->getAllviewsArt();
+            $numCom = $comment->getCountByArt();
+            $like = new Like();
+            $numLike = $like->getCountByLike();
+            if (count($allArticles) > 0) {
+                include_once("../App/Views/FrontendUser/searchCat.phtml");
+            }
+        }
+    }
     // public function getAllArticleAtBrouillons()
     // {
     //     // instanciation de la classe model article
@@ -178,6 +201,17 @@ class ArticleController
         // instanciation de la classe model article
         $this->article = new Article();
         $array = $this->article->getAllArticlesPublier();
+        return $array;
+    }
+
+    // Affiche tous les articles publiés appartenant à une catégoire
+    public function getAllArticlesPublierByCat()
+    {
+        if (isset($_GET["categoryid"])) {
+            // instanciation de la classe model article
+            $this->article = new Article();
+            $array = $this->article->getAllArticlesPublierByCat($this->datadecrypt($_GET["categoryid"]));
+        }
         return $array;
     }
 
@@ -451,9 +485,25 @@ class ArticleController
                         $bigArray[$i]["day"] = $day;
                     }
                 }
-                
+
             }
             return $bigArray;
         }
+    }
+
+    public function bestArticles()
+    {
+        $view = new ViewArticle();
+        $tab = [];
+        $array = $view->getAllviewsArt();
+        foreach ($array as $key => $value) {
+            array_push($tab, (int) $value["nombre"]);
+        }
+        rsort($tab);
+        // var_dump($tab);
+        for ($i=0; $i<3; $i++) {
+            
+        }
+
     }
 }

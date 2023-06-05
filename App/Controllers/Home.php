@@ -3,6 +3,7 @@ require_once("../App/Controllers/crypt.php");
 require_once("../App/Controllers/UserController.php");
 require_once("../App/Controllers/ArticleController.php");
 require_once("../App/Controllers/ContactController.php");
+require_once("../App/Controllers/CommentController.php");
 require_once("../App/Controllers/CategoryController.php");
 class Home {
     use Crypt;
@@ -11,6 +12,8 @@ class Home {
     
     public function newviewHome()
     {
+        $category = new CategoryController();
+        $allCategory = $category->allCategories();
         require_once("../App/Views/FrontendUser/homePage.phtml");
     }
     
@@ -26,27 +29,47 @@ class Home {
     
     public function newContact()
     {
+        $category = new CategoryController();
+        $allCategory = $category->allCategories();
         require_once("../App/Views/FrontendUser/contactPage.phtml");
     }
     
     public function newAbout()
     {
+        $category = new CategoryController();
+        $allCategory = $category->allCategories();
         require_once("../App/Views/FrontendUser/aboutPage.phtml");
     }
     
     public function newArticles()
     {
         $articles = new ArticleController();
+        $category = new CategoryController();
+        $allCategory = $category->allCategories();
         $views = $articles->getAllviewsArt();
         $numCom = $articles->getCountByArt();
         $numLike = $articles->getCountByLike();
         $allArticles = $articles->getAllArticlesPublier();
         require_once("../App/Views/FrontendUser/articlesPage.phtml");;
     }
+    
+    public function categoryArticles()
+    {
+        $articles = new ArticleController();
+        $category = new CategoryController();
+        $allCategory = $category->allCategories();
+        $views = $articles->getAllviewsArt();
+        $numCom = $articles->getCountByArt();
+        $numLike = $articles->getCountByLike();
+        $allArticles = $articles->getAllArticlesPublierByCat();
+        require_once("../App/Views/FrontendUser/categoryArticles.phtml");;
+    }
 
     public function articleOne()
     {
         $articles = new ArticleController();
+        $category = new CategoryController();
+        $allCategory = $category->allCategories();
         $oneView = $articles->getViewsById();
         $oneCom = $articles->getAllComment();
         $onelike = $articles->selectCountLike();
@@ -79,6 +102,7 @@ class Home {
             $allAr = $articles->getAllArticlesAttenteBySession();
         }
         $articleSession = $articles->getAllArticlesBySession();
+        $bestArticles = $articles->bestArticles();
         $countBroullons = count($allAr);
         $countusers = $users->countUsers();
         $statistique = $users->statistique();
@@ -96,8 +120,21 @@ class Home {
     {
         @session_start();
         $articles = new ArticleController();
+        $category = new CategoryController();
+        $allCategory = $category->allCategories();
         $datasusers = $articles->selectSessionId(); 
         $diff = $articles->dataReg();
         require_once("../App/Views/FrontendUser/dataUser.phtml");
+    }
+
+    public function comments()
+    {
+        @session_start();
+        $articles = new ArticleController();
+        $comments = new CommentController();
+        $category = new CategoryController();
+        $allCategory = $category->allCategories();
+        $allComments = $comments->getAllCommentByIdUser();
+        require_once("../App/Views/FrontendUser/comment.phtml");
     }
 }

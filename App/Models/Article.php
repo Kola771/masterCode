@@ -61,6 +61,26 @@ class Article extends Database
         return $result;
     }
 
+    // Affiche tous les titres portant ces caractères appartenant à une catégorie spécifique
+    public function getTitlesArticleLikeByCat($title, $category_id)
+    {
+        // Connexion avec la base de données
+        $conn = $this->connect();
+        $this->title = "%$title%";
+        $this->category_id = $category_id;
+
+        // Requête SQL
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `users`.user_role, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'publier' AND `articles`.article_title LIKE ? AND `categories`.category_id = ?;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([$this->title, $this->category_id]);
+
+        // Retourne un tableau grâce à fetchAll();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
     // Affiche un article spécifique
     public function getOneArticleById($id)
     {
@@ -172,6 +192,24 @@ class Article extends Database
         return $result;
     }
 
+    // Affiche tous les articles publiés appartenant à une catégoire
+    public function getAllArticlesPublierByCat($category_id)
+    {
+        // Connexion avec la base de données
+        $conn = $this->connect();
+        $this->category_id = $category_id;
+        // Requête SQL
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `users`.user_role, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE `articles`.state = 'publier' AND `categories`.category_id = ? ORDER BY `articles`.created_at DESC;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([$this->category_id]);
+
+        // Retourne un tableau grâce à fetchAll();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
     // Ajoute les articles dans la table articles 
     public function addArticle($image, $title, $code_html, $state, $category_id, $user_id, $created_at)
     {
@@ -244,6 +282,25 @@ class Article extends Database
          */
         $stmt = $conn->prepare($sql);
         $stmt->execute([$this->title]);
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    public function bestArt($num)
+    {
+
+        $conn = $this->connect();
+
+        /**
+         * $sql, pour les requêtes vers la base de données
+         */
+        $sql = "SELECT `articles`.article_id, `articles`.article_image, `articles`.article_title, `articles`.code_html, `categories`.category_name, `users`.user_pseudo, `users`.user_bgc, `articles`.created_at, `articles`.updated_at FROM `blog`.articles INNER JOIN `blog`.categories ON `categories`.category_id = `articles`.category_id INNER JOIN `blog`.users ON `users`.user_id = `articles`.user_id WHERE article_title like ? ORDER BY `articles`.created_at DESC;";
+
+        /**
+         * $stmt, pour recupérer la requête préparée
+         */
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$num]);
         $result = $stmt->fetchAll();
         return $result;
     }
