@@ -10741,9 +10741,6 @@ div.childPost span {
     height: 600px;
   }
 
-<<<<<<< HEAD
-  article.article > .imgArt > img {
-=======
   div .archiveNot {
     font-size: 20px;
   }
@@ -10753,7 +10750,6 @@ div.childPost span {
   }
 
   article.article>.imgArt>img {
->>>>>>> 838a82e32895453fc8d87683553c7c0af6aaf8c9
     width: 100%;
     height: 35vh;
   }
@@ -10795,8 +10791,6 @@ div.aboutImage > img {
 .bg-foot {
   background-color: var(--clr-elementary);
 }
-<<<<<<< HEAD
-=======
 
 @media only screen and (max-width: 576px)
 {
@@ -10804,4 +10798,3 @@ div.aboutImage > img {
     width: 10%;
   }
 }
->>>>>>> 838a82e32895453fc8d87683553c7c0af6aaf8c9
