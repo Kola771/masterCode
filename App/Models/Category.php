@@ -56,7 +56,7 @@ class Category extends Database
         /**
          * $sql, pour les requêtes vers la base de données
          */
-        $sql = "SELECT * FROM `blog`.categories;";
+        $sql = "SELECT * FROM `blog`.categories ORDER BY category_name ASC;";
 
         /**
          * $stmt, pour recupérer la requête préparée

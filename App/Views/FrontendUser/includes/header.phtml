@@ -58,7 +58,7 @@
                                                 <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('dash') ?>">Dashboard</a></li>
                                             <?php endif; ?>
                                             <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('sauvegarde') ?>">Archives</a></li>
-                                            <li><a href="#">Commentaires</a></li>
+                                            <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('comments') ?>">Commentaires</a></li>
                                             <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newLogout') ?>">Se déconnecter</a></li>
                                         </ul>
                                     </li>
@@ -75,16 +75,9 @@
                                 <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
                                     <a href="#">Nos catégories</a>
                                     <ul class="binduz-er-news-sub-menu">
-                                        <li><a href="#">HTML</a></li>
-                                        <li><a href="#">CSS</a></li>
-                                        <li><a href="#">JavaScript</a></li>
-                                        <li><a href="#">PHP</a></li>
-                                        <li><a href="#">SQL</a></li>
-                                        <li><a href="#">VueJS</a></li>
-                                        <li><a href="#">React JS</a></li>
-                                        <li><a href="#">Angular JS</a></li>
-                                        <li><a href="#">JQuery</a></li>
-                                        <li><a href="#">Java</a></li>
+                                        <?php foreach($allCategory as $key => $category) : ?>
+                                        <li><a href="?goto=<?= $this->datacrypt('home') ?>&categoryid=<?= $this->datacrypt($category['category_id']) ?>&action=<?= $this->datacrypt('categoryArticles') ?>"><?= $category["category_name"] ?></a></li>
+                                        <?php endforeach ; ?>
                                     </ul>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children">

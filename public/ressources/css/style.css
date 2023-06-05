@@ -9831,6 +9831,46 @@ div.accountAuthor, div.accountHeader {
   justify-content: center;
 }
 
+.binduz-er-editors-pack-white-area>h2 {
+  cursor: pointer;
+  border-bottom: 5px solid var(--clr-primary);
+  padding: .3em .2em;
+  font-size: 22px;
+}
+
+.eachImg {
+  gap: .5em;
+  margin-block: 30px;
+  border-bottom: 2px solid;
+  padding: .8em;
+  border-radius: .5em;
+}
+
+.eachImg:hover {
+  background-color: #CEE5F1;
+}
+
+.eachImg>img {
+  width: 4%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.eachImg>div>h3 {
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.eachImg>div>p {
+  margin-bottom: 0px;
+}
+
+.fow-el {
+  font-weight: bold;
+  color: var(--clr-primary);
+}
+
 .clrBtn, .clrArticle {
   background-color: var(--clr-primary);
   border: 1px solid #eee;
@@ -9848,7 +9888,7 @@ div.accountAuthor, div.accountHeader {
   padding: .5em;
 }
 
-.iconArticle {
+.iconArticle, .eachImg {
   display: flex;
   align-items: center;
 }
@@ -10142,6 +10182,20 @@ div.aboutImage>img {
 @media only screen and (max-width: 576px)
 {
   .saveLink>button {
+    width: 10%;
+  }
+}
+
+@media only screen and (max-width: 992px)
+{
+  .eachImg>img {
+    width: 8%;
+  }
+}
+
+@media only screen and (max-width: 576px)
+{
+  .eachImg>img {
     width: 10%;
   }
 }

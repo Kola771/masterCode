@@ -39,7 +39,6 @@
                                                         class="fal fa-heart"></i></button>
                                             </form>
                                             <?php if ($onelike === false): ?>
-                                                <span id="numCom">
                                                     <span id="numLike">0 like(s)</span>
                                                 <?php else: ?>
                                                     <span id="numLike">
@@ -54,7 +53,7 @@
                                                         <?= count($oneCom) ?> posts
                                                     </span>
                                                 <?php else: ?>
-                                                    <span>0 posts</span>
+                                                    <span id="numCom">0 posts</span>
                                                 <?php endif; ?>
                                             </a>
                                         </div>
@@ -108,7 +107,7 @@
                                         <div class="row overPost">
                                             <?php if (count($oneCom) > 0): ?>
                                                 <?php foreach ($oneCom as $key => $values): ?>
-                                                    <div class="parentComment">
+                                                    <div class="parentComment" id="<?= "post" . $values['comment_id'] ?>">
                                                         <div class="binduz-er-input-box commentPost"
                                                             style="background-color: <?= $values['user_bgc'] ?>">
                                                             <?php $string = $values["user_pseudo"];
@@ -120,7 +119,7 @@
                                                                     <?= $values['user_pseudo'] ?>
                                                                 </h4>
                                                                 <form class="formUpd">
-                                                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                                    <textarea name="zonetext" id="zonetext" cols="30" rows="10"></textarea>
                                                                 </form>
                                                                 <p>
                                                                     <?= $values['comment_body'] ?>

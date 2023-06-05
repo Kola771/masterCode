@@ -1,0 +1,94 @@
+<?php if (count($allArticles) > 0): ?>
+    <?php foreach ($allArticles as $key => $values): ?>
+        <article class="binduz-er-author-item mb-40 article">
+            <div class="binduz-er-thumb imgArt">
+                <img src="/ressources/images/images_principales/<?= $values["article_image"] ?>" alt="image">
+            </div>
+            <div class="binduz-er-content">
+                <div class="binduz-er-meta-item">
+                    <div class="binduz-er-meta-categories">
+                        <a href="#">
+                            <?= $values["category_name"] ?>
+                        </a>
+                    </div>
+                    <div class="binduz-er-meta-date">
+                        <span><i class="fal fa-calendar-alt"></i>
+                            <?= $values["created_at"] ?>
+                        </span>
+                    </div>
+                </div>
+                <h3 class="binduz-er-title"><a
+                        href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>"><?= $values["article_title"] ?></a></h3>
+                <div class="binduz-er-meta-author" style="margin-top: -18px; gap: .8em;">
+                    <?php if ($values["user_role"] === '0'): ?>
+                        <div class="imageArt">
+                            <img src="/ressources/images/Capture.PNG" alt="image">
+                            <span>Publié par <span>
+                                    Master Code
+                                </span></span>
+                        </div>
+                    <?php elseif ($values["user_role"] === '2'): ?>
+                        <div class="binduz-er-author accountImg">
+                            <div class="binduz-er-input-box commentPost" style="background-color: <?= $values["user_bgc"] ?>;">
+                                <?php $string = $values["user_pseudo"];
+                                echo $string[0]; ?>
+                            </div>
+                            <span>Publié par <span>
+                                    <?= $values["user_pseudo"] ?>
+                                </span></span>
+                        </div>
+                    <?php endif; ?>
+                    <div class="binduz-er-meta-list elTyp">
+                        <ul>
+                            <li><i class="fal fa-eye"></i>
+                                <?php for ($y = 0; $y < count($views); $y++): ?>
+                                    <?php if ($values["article_id"] === $views[$y]["article_id"]): ?>
+                                        <?= $views[$y]["nombre"] ?>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                            </li>
+                                        <?php @session_start(); ?>
+                            <li class="<?= (isset($_SESSION['Auth'])) ? 'like' : '' ?>"><button value="<?= $this->datacrypt($values['article_id']) ?>"
+                                    style="display:none"></button><i class="fal fa-heart"></i>
+                                <?php for ($y = 0; $y < count($numLike); $y++): ?>
+                                    <?php if ($values["article_id"] === $numLike[$y]["article_id"]): ?>
+                                        <?= $numLike[$y]["nombre"] ?>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                            </li>
+                            <li><a
+                                    href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>#commentForm"><i
+                                        class="fal fa-comments"></i></a>
+                                <?php for ($y = 0; $y < count($numCom); $y++): ?>
+                                    <?php if ($values["article_id"] === $numCom[$y]["article_id"]): ?>
+                                        <?= $numCom[$y]["nombre"] ?>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="saveLink">
+                        <button
+                            value="localhost/?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($values["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>"
+                            class="linkcopy">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                            </svg>
+                        </button>
+                        <?php if (isset($_SESSION["Auth"])): ?>
+                            <button value="<?= $this->datacrypt($values["article_id"]) ?>" class="saveData">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+                                </svg>
+                            </button>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </article>
+    <?php endforeach; ?>
+<?php endif; ?>

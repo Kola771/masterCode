@@ -3,7 +3,7 @@
 class Comment extends Database
 {
     // Déclaration des variables
-    private $id, $body, $user_id, $article_id, $created_at;
+    private $id, $body, $user_id, $pseudo, $article_id, $created_at;
 
     // Ajoute les commentaires dans la bdd précisement dans la table comments
     public function addComment($body, $user_id, $article_id, $created_at)
@@ -42,17 +42,19 @@ class Comment extends Database
     }
 
     // Affiche tous les commentaires d'un utilisateur spécifique
-    public function getAllCommentByIdUser($user_id)
+    public function getAllCommentByIdUser($user_id, $pseudo)
     {
         $conn = $this->connect();
         $this->user_id = $user_id;
+        $this->pseudo = $pseudo;
 
         // Requête SQL
-        $sql = "SELECT `comments`.comment_id, `comments`.comment_body, `comments`.user_id, `users`.user_pseudo, `comments`.article_id, `comments`.created_at FROM `blog`.comments INNER JOIN `blog`.users ON `users`.user_id = `comments`.user_id WHERE `users`.user_id = ?;";
+        $sql = "SELECT `comments`.comment_id, `comments`.comment_body, `comments`.user_id, `users`.user_pseudo, `comments`.article_id, `articles`.article_title, `articles`.article_image, `comments`.created_at FROM `blog`.comments INNER JOIN `blog`.users ON `users`.user_id = `comments`.user_id INNER JOIN `blog`.articles ON `articles`.article_id = `comments`.article_id WHERE `users`.user_id = ? OR comment_body LIKE ? ORDER BY created_at DESC;";
 
         // Requête préparée
         $statement = $conn->prepare($sql);
-        $result = $statement->execute([$this->user_id]);
+        $statement->execute([$this->user_id, $this->pseudo]);
+        $result = $statement->fetchAll();
         return $result;
     }
 
