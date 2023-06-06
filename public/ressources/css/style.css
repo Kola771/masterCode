@@ -8124,7 +8124,80 @@ p {
     17.BINDUZ CONTACT US css 
 ===========================*/
 .binduz-er-contact-us-area {
+<<<<<<< HEAD
   padding-bottom: 60px;
+=======
+  padding: 120px;
+}
+
+.input[type="text"],
+.input[type="email"],
+.select,
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.input[type="submit"] {
+  background-color: #3b5999;
+  color: white;
+  border: 1px solid #3b5999;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.input[type="submit"]:hover {
+  color: #3b5999;
+  background-color: white;
+  border: 1px solid #3b5999;
+}
+
+/* Style the container/contact section */
+.containerss {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+  padding-left: 30px;
+}
+
+/* Create two columns that float next to eachother */
+.columnss {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+  
+}
+
+.images {
+  background-image: url(../../ressources/images/contact_us.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-origin:border-box;
+  background-position-y: 35%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 768px) {
+  .columnss,
+  .input[type="submit"] {
+    width: 100%;
+    margin-top: 0;
+  }
+>>>>>>> 16a4308d1caf37aca99af3844ebaf5cc8175fcef
 }
 
 .binduz-er-map-area .binduz-er-map-box iframe {
@@ -9831,6 +9904,7 @@ div.accountAuthor, div.accountHeader {
   justify-content: center;
 }
 
+<<<<<<< HEAD
 .binduz-er-editors-pack-white-area>h2 {
   cursor: pointer;
   border-bottom: 5px solid var(--clr-primary);
@@ -9872,6 +9946,10 @@ div.accountAuthor, div.accountHeader {
 }
 
 .clrBtn, .clrArticle {
+=======
+.clrBtn,
+.clrArticle {
+>>>>>>> 16a4308d1caf37aca99af3844ebaf5cc8175fcef
   background-color: var(--clr-primary);
   border: 1px solid #eee;
   border-radius: .2em;
@@ -10246,6 +10324,7 @@ div.aboutImage>img {
     width: 10%;
   }
 }
+<<<<<<< HEAD
 
 @media only screen and (max-width: 992px)
 {
@@ -10260,3 +10339,5 @@ div.aboutImage>img {
     width: 10%;
   }
 }
+=======
+>>>>>>> 16a4308d1caf37aca99af3844ebaf5cc8175fcef
