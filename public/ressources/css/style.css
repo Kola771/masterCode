@@ -9777,6 +9777,72 @@ div.imgElement>img {
   height: 200px;
 }
 
+/*===========================
+    17.BINDUZ CONTACT US css 
+===========================*/
+.binduz-er-contact-us-area {
+  padding: 120px;
+}
+
+.input[type="text"],
+.input[type="email"],
+.select,
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.input[type="submit"] {
+  background-color: #3b5999;
+  color: white;
+  border: 1px solid #3b5999;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.input[type="submit"]:hover {
+  color: #3b5999;
+  background-color: white;
+  border: 1px solid #3b5999;
+}
+
+/* Style the container/contact section */
+.containerss {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.columnss {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+}
+
+.images {
+  background-image: url(../../ressources/images/contact_us.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-origin:border-box;
+  background-position-y: 35%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
 @media only screen and (max-width: 767px) {
   div.lastArtImg>img {
     height: 250px;
