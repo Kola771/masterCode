@@ -10485,6 +10485,7 @@ div.accountHeader {
   justify-content: center;
 }
 
+<<<<<<< HEAD
 .binduz-er-editors-pack-white-area>h2 {
   cursor: pointer;
   border-bottom: 5px solid var(--clr-primary);
@@ -10525,8 +10526,11 @@ div.accountHeader {
   color: var(--clr-primary);
 }
 
+.clrBtn, .clrArticle {
+=======
 .clrBtn,
 .clrArticle {
+>>>>>>> 971cf83f12c4e8f976f08d9a21109431b3789995
   background-color: var(--clr-primary);
   border: 1px solid #eee;
   border-radius: 0.2em;
@@ -10838,6 +10842,7 @@ div.aboutImage > img {
     width: 10%;
   }
 }
+<<<<<<< HEAD
 
 @media only screen and (max-width: 992px)
 {
@@ -10852,3 +10857,5 @@ div.aboutImage > img {
     width: 10%;
   }
 }
+=======
+>>>>>>> 971cf83f12c4e8f976f08d9a21109431b3789995
