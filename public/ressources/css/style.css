@@ -36,6 +36,7 @@ body {
   --fz30: 30px;
   --fz40: 40px;
 }
+
 /* fin */
 
 *,
@@ -9707,7 +9708,7 @@ p {
   gap: .4em;
 }
 
-div.accountHeader{
+div.accountHeader {
   margin: 5px auto 10px;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -9722,6 +9723,7 @@ div.imageElement>a>img {
   max-width: 110px;
   height: 100px;
 }
+
 div.footerImg>a>img {
   max-width: 90px;
   height: 80px;
@@ -9831,7 +9833,7 @@ div.imgElement>img {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
-  background-origin:border-box;
+  background-origin: border-box;
   background-position-y: 35%;
 }
 
@@ -9847,16 +9849,17 @@ div.imgElement>img {
   div.lastArtImg>img {
     height: 250px;
   }
+
   div.imageDiv>img,
   div.articleImg>img {
     height: 350px;
   }
-  
+
   .dataflex {
     flex-direction: column;
-    gap: .5em;  
+    gap: .5em;
   }
-  
+
   .chfl {
     flex-basis: 30%;
   }
@@ -9866,6 +9869,7 @@ div.imgElement>img {
   div.articleImg>img {
     height: 380px;
   }
+
   div.footerImg>a>img {
     max-width: 80px;
     height: 80px;
@@ -9888,20 +9892,34 @@ div.binduz-er-content div.accountAuthor>div.commentPost+span {
   margin-left: 10px;
 }
 
-div.accountImg, div.accountAuthor, div.accountHeader {
+div.accountImg,
+div.accountAuthor,
+div.accountHeader {
   display: flex;
   align-items: center;
 }
 
-div.accountAuthor, div.accountHeader {
+div.accountAuthor,
+div.accountHeader {
   justify-content: center;
 }
 
-.binduz-er-editors-pack-white-area>h2 {
-  cursor: pointer;
-  border-bottom: 5px solid var(--clr-primary);
+.binduz-er-editors-pack-white-area>.PostEl>.h2Post {
   padding: .3em .2em;
   font-size: 22px;
+}
+
+.binduz-er-editors-pack-white-area>.PostEl {
+  border-bottom: 5px solid var(--clr-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.binduz-er-editors-pack-white-area>.PostEl>form>input {
+  border: 1px solid var(--clr-primary);
+  padding: .4em;
+  border-radius: .5em;
 }
 
 .eachImg {
@@ -9937,7 +9955,8 @@ div.accountAuthor, div.accountHeader {
   color: var(--clr-primary);
 }
 
-.clrBtn, .clrArticle {
+.clrBtn,
+.clrArticle {
   background-color: var(--clr-primary);
   border: 1px solid #eee;
   border-radius: .2em;
@@ -9954,7 +9973,8 @@ div.accountAuthor, div.accountHeader {
   padding: .5em;
 }
 
-.iconArticle, .eachImg {
+.iconArticle,
+.eachImg {
   display: flex;
   align-items: center;
 }
@@ -10021,8 +10041,7 @@ div.binduz-er-content>div.flexOneArticle>div#categ {
   margin: 0;
 }
 
-div.flexOneArticle>div.childFlexOne
-{
+div.flexOneArticle>div.childFlexOne {
   display: flex;
   align-items: center;
   gap: .6em;
@@ -10037,7 +10056,7 @@ div.childFlexOne>span>span {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: .2em;  
+  gap: .2em;
 }
 
 .chfl {
@@ -10064,13 +10083,12 @@ div.binduz-er-recently-viewed-item div.chImg div>img {
 
 .saveLink {
   display: flex;
- margin-left: 15px;
- justify-content: end;
- gap: .4em;
+  margin-left: 15px;
+  justify-content: end;
+  gap: .4em;
 }
 
-div.elTyp
-{
+div.elTyp {
   flex-basis: 40%;
 }
 
@@ -10156,8 +10174,7 @@ div.childPost span {
   gap: 1em;
 }
 
-.formUp
-{
+.formUp {
   margin-top: 5px;
   flex-basis: 100%;
   display: flex;
@@ -10219,13 +10236,13 @@ div.childPost span {
   div.imgElement>img {
     height: 310px;
   }
-  
+
   .chfl {
     flex-basis: 48%;
   }
 
   div div.binduz-er-recently-viewed-item div.chImg div>img {
-    height: 31vh;
+    height: 30vh;
   }
 }
 
@@ -10245,23 +10262,25 @@ div.aboutImage>img {
   background-color: var(--clr-elementary);
 }
 
-@media only screen and (max-width: 576px)
-{
+@media only screen and (max-width: 576px) {
   .saveLink>button {
-    width: 10%;
+    width: 15%;
   }
 }
 
-@media only screen and (max-width: 992px)
-{
+@media only screen and (max-width: 992px) {
   .eachImg>img {
     width: 8%;
   }
 }
 
-@media only screen and (max-width: 576px)
-{
+@media only screen and (max-width: 576px) {
   .eachImg>img {
     width: 10%;
+  }
+
+  .binduz-er-editors-pack-white-area>.PostEl>form>input {
+    padding: .2em;
+    border-radius: .2em;
   }
 }

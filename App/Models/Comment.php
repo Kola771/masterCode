@@ -58,6 +58,40 @@ class Comment extends Database
         return $result;
     }
 
+    // Affiche tous les commentaires d'un utilisateur spécifique fait à une date spécifique
+    public function getAllCommentTriById($user_id, $time)
+    {
+        $conn = $this->connect();
+        $this->user_id = $user_id;
+        $this->created_at = $time;
+
+        // Requête SQL
+        $sql = "SELECT `comments`.comment_id, `comments`.comment_body, `comments`.user_id, `users`.user_pseudo, `comments`.article_id, `articles`.article_title, `articles`.article_image, `comments`.created_at FROM `blog`.comments INNER JOIN `blog`.users ON `users`.user_id = `comments`.user_id INNER JOIN `blog`.articles ON `articles`.article_id = `comments`.article_id WHERE `users`.user_id = ? AND `comments`.created_at LIKE ?;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([$this->user_id, $this->created_at]);
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
+    //  Affiche les commentaires dans lesquels le nom de l'utilisateur est targué fait à une date t
+    public function getAllCommentTriTarByPseu($pseudo, $time)
+    {
+        $conn = $this->connect();
+        $this->pseudo = $pseudo;
+        $this->created_at = $time;
+
+        // Requête SQL
+        $sql = "SELECT `comments`.comment_id, `comments`.comment_body, `comments`.user_id, `users`.user_pseudo, `comments`.article_id, `articles`.article_title, `articles`.article_image, `comments`.created_at FROM `blog`.comments INNER JOIN `blog`.users ON `users`.user_id = `comments`.user_id INNER JOIN `blog`.articles ON `articles`.article_id = `comments`.article_id WHERE comment_body LIKE ? AND `comments`.created_at LIKE ?;";
+
+        // Requête préparée
+        $statement = $conn->prepare($sql);
+        $statement->execute([$this->pseudo, $this->created_at]);
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
     // Suppression d'un commentaire
     public function deleteOneComment($id)
     {

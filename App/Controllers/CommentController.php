@@ -73,4 +73,20 @@ class CommentController
         return $allComments;
     }
 
+    public function getAllCommentTriTarById()
+    {
+        @session_start();
+        if(isset($_SESSION["Auth"]))
+        {
+            $datas = file_get_contents("php://input");
+            $datas = json_decode($datas);
+            $this->comment = new Comment();
+            $time = "" . $datas->value . "%";
+            $pseudo = "%" . $_SESSION['Auth']['pseudo'] . "%";
+            $allComments = $this->comment->getAllCommentTriById($this->datadecrypt($_SESSION["Auth"]["id"]), $time);
+            $allPosts = $this->comment->getAllCommentTriTarByPseu($pseudo, $time);
+            require_once("../App/Views/FrontendUser/searchComment.phtml");
+        }
+    }
+
 }

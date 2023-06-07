@@ -1,0 +1,32 @@
+<?php foreach ($allPosts as $key => $value): ?>
+    <article class="eachPost eachImg">
+        <img src="/ressources/images/images_principales/<?= $value['article_image'] ?>" alt="image">
+        <div>
+            <h3>
+                <a
+                    href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($value["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>#post<?= $value['comment_id'] ?>">
+                    <?= $value["article_title"] ?>
+                </a>
+            </h3>
+            <p>Vous avez été <span class="fow-el">targué</span> sur cet article le
+                <?= $value["created_at"] ?>.
+            </p>
+        </div>
+    </article>
+<?php endforeach; ?>
+<?php foreach ($allComments as $key => $value): ?>
+    <article class="eachPost eachImg">
+        <img src="/ressources/images/images_principales/<?= $value['article_image'] ?>" alt="image">
+        <div>
+            <h3>
+                <a
+                    href="?goto=<?= $this->datacrypt('home') ?>&articleid=<?= $this->datacrypt($value["article_id"]) ?>&action=<?= $this->datacrypt('articleOne') ?>#post<?= $value['comment_id'] ?>">
+                    <?= $value["article_title"] ?>
+                </a>
+            </h3>
+            <p>Vous avez commenté cet article le
+                <?= $value["created_at"] ?>.
+            </p>
+        </div>
+    </article>
+<?php endforeach; ?>
