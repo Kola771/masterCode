@@ -178,5 +178,25 @@ class Category extends Database
         $result = $stmt->fetchAll();
         return $result;
     }
+    
+    public function allCountArtCat($id)
+    {
+        $conn = $this->connect();
+        $this->id = $id;
+
+        /**
+         * $sql, pour les requêtes vers la base de données
+         */
+        $sql = "SELECT categories.category_id, categories.category_name, articles.article_title, COUNT(viewsarticles.article_id) AS nombre
+        FROM categories INNER JOIN articles ON articles.category_id = categories.category_id INNER JOIN viewsarticles ON viewsarticles.article_id = articles.article_id WHERE categories.category_id = ? AND articles.state = 'publier' GROUP BY viewsarticles.article_id;";
+
+        /**
+         * $stmt, pour recupérer la requête préparée
+         */
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$this->id]);
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 
 }

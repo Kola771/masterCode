@@ -232,6 +232,14 @@ class ArticleController
         return $array;
     }
 
+    public function getAllviewsArtDesc()
+    {
+        // instanciation de la classe model viewsarticle
+        $this->views = new ViewArticle();
+        $array = $this->views->getAllviewsArtDesc();
+        return $array;
+    }
+
     public function getViewsById()
     {
         if (isset($_GET["articleid"])) {
@@ -276,7 +284,7 @@ class ArticleController
         }
     }
 
-    // Pour afficher les like que contient un article
+    // Pour afficher les like qu'a un article
     public function selectCountLike()
     {
         if (isset($_GET["articleid"])) {
@@ -288,7 +296,7 @@ class ArticleController
         }
     }
 
-    // Pour afficher les like que contient un article
+    // Pour afficher les like de chaque article
     public function getCountByLike()
     {
         // instanciation de la classe model like
@@ -491,19 +499,28 @@ class ArticleController
         }
     }
 
-    public function bestArticles()
+    public function catDomine()
     {
-        $view = new ViewArticle();
-        $tab = [];
-        $array = $view->getAllviewsArt();
-        foreach ($array as $key => $value) {
-            array_push($tab, (int) $value["nombre"]);
+        $cat = new Category();
+        $array = $cat->allCategories();
+        $bigArray = [];
+        $number = 0;
+        foreach ($array as $key => $arr) {
+            $arrays = $cat->allCountArtCat($arr["category_id"]);
+            foreach ($arrays as $k => $val) {
+                $number += $val["nombre"];
+            }
+            $bigArray[$arr["category_name"]] = $number;
+            $number = 0;
         }
-        rsort($tab);
-        // var_dump($tab);
-        for ($i=0; $i<3; $i++) {
-            
+        asort($bigArray);
+        $max = max($bigArray);
+        foreach ($bigArray as $k => $big) {
+            if ($big === $max) {
+                $dominante = $k;
+            }
         }
-
+        return $dominante;
     }
+
 }

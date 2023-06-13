@@ -102,7 +102,10 @@ class Home {
             $allAr = $articles->getAllArticlesAttenteBySession();
         }
         $articleSession = $articles->getAllArticlesBySession();
-        $bestArticles = $articles->bestArticles();
+        $catDomine = $articles->catDomine();
+        $getAllviewsArtDesc = $articles->getAllviewsArtDesc();
+        $allArticles = $articles->getAllArticlesPublier();
+        $numCom = $articles->getCountByArt();
         $countBroullons = count($allAr);
         $countusers = $users->countUsers();
         $statistique = $users->statistique();
