@@ -353,4 +353,30 @@ class Article extends Database
         return $result;
     }
 
+    public function updateOneArticleWimg($id, $title, $code, $state, $time)
+    {
+        $conn = $this->connect();
+        $this->id = $id;
+        $this->title = $title;
+        $this->code_html = $code;
+        $this->state = $state;
+        $this->updated_at = $time;
+        /**
+         * $sql, pour les requêtes vers la base de données
+         */
+        $sql = "UPDATE `blog`.articles SET `articles`.article_title = :title, `articles`.code_html = :code, `articles`.state = :state, `articles`.updated_at = :tim WHERE `articles`.article_id = :id";
+        /**
+         * $stmt, pour recupérer la requête préparée
+         */
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ":id" => $this->id,
+            ":title" => $this->title,
+            ":code" => $this->code_html,
+            ":state" => $this->state,
+            ":tim" => $this->updated_at
+        ]);
+        return $result;
+    }
+
 }

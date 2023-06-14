@@ -436,6 +436,17 @@ class ArticleController
         $update = $this->article->updateOneArticle($this->id, $datas->title, $datas->img, $datas->code_html, $datas->state, $this->updated_at);
     }
 
+    public function updateOneArticleWithOutImg()
+    {
+        $datas = file_get_contents("php://input");
+        $datas = json_decode($datas);
+        $this->id = $this->datadecrypt($datas->id);
+        $this->article = new Article();
+        $this->updated_at = date("Y-m-d h:i:s");
+        // Insertion de l'article
+        $update = $this->article->updateOneArticleWimg($this->id, $datas->title, $datas->code_html, $datas->state, $this->updated_at);
+    }
+
     public function getCountByArt()
     {
         $comments = new Comment();
