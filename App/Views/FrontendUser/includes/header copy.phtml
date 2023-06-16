@@ -43,19 +43,18 @@
                         <div class="binduz-er-news-canvas_close">
                             <a href="javascript:void(0)"><i class="fal fa-times"></i></a>
                         </div>
-                        <?php if (isset($_SESSION['Auth'])) : ?>
+                        <?php if (isset($_SESSION['Auth'])): ?>
                             <div class="accountHeader" style="background-color: <?= $_SESSION["Auth"]["bgc"] ?>;">
-                                <?php $pseudo = $_SESSION['Auth']['pseudo'];
-                                echo $pseudo[0]; ?>
+                                <?php $pseudo = $_SESSION['Auth']['pseudo']; echo $pseudo[0]; ?>
                             </div>
                         <?php endif; ?>
                         <div id="menu" class="text-left ">
                             <ul class="binduz-er-news-offcanvas_main_menu">
-                                <?php if (isset($_SESSION['Auth'])) : ?>
+                                <?php if (isset($_SESSION['Auth'])): ?>
                                     <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
                                         <a href="#"><?= $_SESSION['Auth']['pseudo'] ?></a>
                                         <ul class="binduz-er-news-sub-menu">
-                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] !== '1') : ?>
+                                            <?php if (isset($_SESSION['Auth']['role']) && $_SESSION['Auth']['role'] !== '1'): ?>
                                                 <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('dash') ?>">Dashboard</a></li>
                                             <?php endif; ?>
                                             <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('sauvegarde') ?>">Archives</a></li>
@@ -65,28 +64,32 @@
                                     </li>
                                 <?php endif; ?>
                                 <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
-                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newviewHome') ?>">Accueil</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newviewHome') ?>">Accueil</a>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children">
-                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newArticles') ?>">Découvrir
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newArticles') ?>">Découvrir
                                         nos articles</a>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children binduz-er-news-active">
                                     <a href="#">Nos catégories</a>
                                     <ul class="binduz-er-news-sub-menu">
-                                        <?php foreach ($allCategory as $key => $category) : ?>
-                                            <li><a href="?goto=<?= $this->datacrypt('home') ?>&categoryid=<?= $this->datacrypt($category['category_id']) ?>&action=<?= $this->datacrypt('categoryArticles') ?>"><?= $category["category_name"] ?></a></li>
-                                        <?php endforeach; ?>
+                                        <?php foreach($allCategory as $key => $category) : ?>
+                                        <li><a href="?goto=<?= $this->datacrypt('home') ?>&categoryid=<?= $this->datacrypt($category['category_id']) ?>&action=<?= $this->datacrypt('categoryArticles') ?>"><?= $category["category_name"] ?></a></li>
+                                        <?php endforeach ; ?>
                                     </ul>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children">
-                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newAbout') ?>">A
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newAbout') ?>">A
                                         propos de nous</a>
                                 </li>
                                 <li class="binduz-er-news-menu-item-has-children">
-                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newContact') ?>">Contactez-nous</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newContact') ?>">Contactez-nous</a>
                                 </li>
-                                <?php if (!isset($_SESSION['Auth'])) : ?>
+                                <?php if (!isset($_SESSION['Auth'])): ?>
                                     <li class="binduz-er-news-menu-item-has-children">
                                         <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newViewLogin') ?>"> Se connecter</a>
                                     </li>
@@ -121,7 +124,8 @@
                     </div>
                     <div class=" col-6">
                         <div class="binduz-er-news-search-close float-end">
-                            <button class="binduz-er-news-search-close-btn flexSearch">Fermer <i class="fal fa-times"></i> </button>
+                            <button class="binduz-er-news-search-close-btn flexSearch">Fermer <i
+                                    class="fal fa-times"></i> </button>
                         </div> <!-- search close -->
                     </div>
                 </div> <!-- row -->
@@ -155,7 +159,8 @@
                     <div class="binduz-er-news-top-header-btns">
                         <ul>
                             <li>
-                                <span class="binduz-er-toggle-btn binduz-er-news-canvas_open"><i class="fal fa-bars"></i> Menu</span>
+                                <span class="binduz-er-toggle-btn binduz-er-news-canvas_open"><i
+                                        class="fal fa-bars"></i> Menu</span>
                             </li>
                             <li>
                                 <a class="binduz-er-news-search-open" href="#"><i class="fal fa-search"></i>
@@ -169,18 +174,22 @@
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul class="navbar-nav nav-element mr-auto">
                                 <li class="nav-link-element actived">
-                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newviewHome') ?>">Accueil</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newviewHome') ?>">Accueil</a>
                                 </li>
                                 <li class="nav-link-element">
-                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newArticles') ?>">Découvrir
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newArticles') ?>">Découvrir
                                         nos articles</a>
                                 </li>
                                 <li class="nav-link-element">
-                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newAbout') ?>">A
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newAbout') ?>">A
                                         propos de nous</a>
                                 </li>
                                 <li class="nav-link-element">
-                                    <a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newContact') ?>">Contactez-nous</a>
+                                    <a
+                                        href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newContact') ?>">Contactez-nous</a>
                                 </li>
                             </ul>
                         </div> <!-- navbar collapse -->
@@ -189,9 +198,9 @@
                 <div class="">
                     <div class="binduz-er-news-top-header-weather">
                         <ul>
-                            <?php if (!isset($_SESSION['Auth'])) : ?>
+                            <?php if (!isset($_SESSION['Auth'])): ?>
                                 <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newViewLogin') ?>"><i class="fal fa-user"></i> Se connecter</a></li>
-                            <?php else : ?>
+                            <?php else: ?>
                                 <li><a href="?goto=<?= $this->datacrypt('home') ?>&action=<?= $this->datacrypt('newLogout') ?>">Se déconnecter</a></li>
                             <?php endif; ?>
                         </ul>
