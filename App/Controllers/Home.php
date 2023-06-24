@@ -140,4 +140,16 @@ class Home {
         $allComments = $comments->getAllCommentByIdUser();
         require_once("../App/Views/FrontendUser/comment.phtml");
     }
+
+/****************code ajouter a partir d'ici *************/
+    
+// public function newviewHome(){
+
+//     $category = new CategoryController();
+//     $allCategory = $category->allCategories();
+//     require_once("../App/Views/FrontSpace/home.phtml");
+// }
 }
+
+
+
